@@ -17,7 +17,6 @@ class App extends React.Component {
 
   componentDidMount() {
     ImportFromCSV().then(result => {
-      console.log(result)
       this.setState({
         groups: result.groups,
         pages: result.pages,

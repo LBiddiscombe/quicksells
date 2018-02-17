@@ -2,14 +2,16 @@ import React from 'react'
 
 class GridItem extends React.Component {
   render() {
-    if (this.props.isEmpty) {
+    const product = this.props.product
+
+    if (product.empty) {
       return <div className="item empty" />
     }
 
-    if (this.props.noImage) {
+    if (!product.image) {
       return (
         <div className="item filled noimage">
-          <div className="itemlabel">{this.props.label}</div>
+          <div className="itemlabel">{product.label}</div>
         </div>
       )
     }
@@ -17,9 +19,9 @@ class GridItem extends React.Component {
     return (
       <div className="item filled">
         <div className="itemimg">
-          <img src={'/images/' + this.props.image} alt={this.props.label} />
+          <img src={product.image} alt={product.label} />
         </div>
-        <div className="itemlabel">{this.props.label}</div>
+        <div className="itemlabel">{product.label}</div>
       </div>
     )
   }

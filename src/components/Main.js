@@ -31,14 +31,6 @@ class Main extends React.Component {
         .pages.find(p => p.id === this.state.activepage).products
     }
 
-    /*
-    const groupIdx = layout.find
-    const layoutProducts = layout.groups.find(
-      g => (g.id = this.state.activegroup)
-    )
-    console.log(products, layoutProducts)
-    */
-
     return (
       <main id="main">
         <Nav

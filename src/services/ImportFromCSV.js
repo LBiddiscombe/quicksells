@@ -1,3 +1,11 @@
+/*
+  Importer for QuickSellButtons.csv
+  Expects CCS with columns
+    Action,Page,Menu Group,Menu Option,Description,Image,ItemID,Top,Left
+  Updates image path
+  Remaps column names
+  Filters on specific groups and pages
+*/
 import csvJSON from './csvJSON'
 
 function ImportFromCSV() {
@@ -23,7 +31,26 @@ function ImportFromCSV() {
     fetch('./data/QuickSellButtons.csv')
       .then(response => response.text())
       .then(response => {
-        products = csvJSON(response)
+        const results = csvJSON(response)
+
+        products = results
+          .filter(p => {
+            return (
+              groups.map(r => r.id).includes(p.MenuGroup) &&
+              pages.map(r => r.id).includes(p.Page)
+            )
+          })
+          .map(p => {
+            const product = {
+              item: p.ItemID,
+              label: p.Description,
+              image: p.Image !== 'NULL' ? '/images/' + p.Image : false,
+              group: p.MenuGroup,
+              page: p.Page,
+              seq: p.MenuOption
+            }
+            return product
+          })
 
         const qsGroups = groups.map(group => {
           const productPages = pages.map(p => {
@@ -32,17 +59,17 @@ function ImportFromCSV() {
 
             for (let i = 0; i < gridLength; i++) {
               gridItems.push({
-                Page: p.id,
-                MenuGroup: group.id,
-                MenuOption: i + 1,
-                Empty: true
+                page: p.id,
+                group: group.id,
+                seq: i + 1,
+                empty: true
               })
             }
 
             products
-              .filter(r => r.MenuGroup === group.id && r.Page === p.id)
+              .filter(r => r.group === group.id && r.page === p.id)
               .map(p => {
-                gridItems[p.MenuOption - 1] = p
+                gridItems[p.seq - 1] = p
                 return true
               })
 

@@ -164,6 +164,7 @@ aside.left {
 .qsnav ul {
   margin: 1rem 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .qsnav .qstabs li {
   display: inline;
@@ -229,7 +230,7 @@ li.listitem > .listitemlabel {
   .headercenter {
     text-align: center;
   }
-  .qsnav .qstabs a {
+  .qsnav .qstabs li {
     font-size: 1rem;
   }
   .items {
@@ -250,6 +251,7 @@ li.listitem > .listitemlabel {
   }
   .item.noimage .itemlabel {
     display: grid;
+    font-size: 0.5rem;
   }
   .dragover {
     outline: 2px dashed var(--accent-color);

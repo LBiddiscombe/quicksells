@@ -1,17 +1,15 @@
 import React from 'react'
 
-class Tab extends React.Component {
-  render() {
-    return (
-      <li
-        className={this.props.tab.id === this.props.activeId ? 'is-active' : ''}
-        value={this.props.tab.id}
-        data-field={this.props.controlField}
-      >
-        {this.props.tab.name}
-      </li>
-    )
-  }
+function Tab(props) {
+  return (
+    <li
+      className={props.tab.id === props.activeId ? 'is-active' : ''}
+      value={props.tab.id}
+      data-field={props.controlField}
+    >
+      {props.tab.name}
+    </li>
+  )
 }
 
 class Tabs extends React.Component {
