@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
+import { polyfill } from 'mobile-drag-drop'
 
 ReactDOM.render(<App />, document.getElementById('root'))
 registerServiceWorker()
 
+polyfill()
 setItemGridHeight()
 
 window.onresize = function(event) {

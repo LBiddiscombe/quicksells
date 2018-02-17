@@ -13,6 +13,24 @@ class App extends React.Component {
       products: [],
       layout: {}
     }
+
+    this.handleLayoutChange = this.handleLayoutChange.bind(this)
+  }
+
+  handleLayoutChange(source, target) {
+    const newLayout = this.state.layout
+
+    const layoutPage = newLayout.groups
+      .find(g => g.id === source.group)
+      .pages.find(p => p.id === source.page).products
+
+    const temp = source.seq
+    layoutPage[source.seq - 1].seq = layoutPage[target.seq - 1].seq
+    layoutPage[target.seq - 1].seq = temp
+
+    this.setState({
+      layout: newLayout
+    })
   }
 
   componentDidMount() {
@@ -21,7 +39,8 @@ class App extends React.Component {
         groups: result.groups,
         pages: result.pages,
         products: result.pages,
-        layout: result.layout
+        layout: result.layout,
+        changeLayout: this.handleLayoutChange
       })
     })
   }
@@ -35,6 +54,7 @@ class App extends React.Component {
           groups={this.state.groups}
           pages={this.state.pages}
           layout={this.state.layout}
+          changeLayout={this.state.changeLayout}
         />
       </div>
     )

@@ -4,8 +4,14 @@ import GridItem from './GridItem'
 class GridItems extends React.Component {
   render() {
     const products = this.props.products
-    let griditems = products.map(p => {
-      return <GridItem key={p.seq} product={p} />
+    let griditems = products.sort((a, b) => a.seq - b.seq).map(p => {
+      return (
+        <GridItem
+          key={p.seq}
+          product={p}
+          changeLayout={this.props.changeLayout}
+        />
+      )
     })
 
     return (

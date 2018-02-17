@@ -40,7 +40,7 @@ class Main extends React.Component {
           activepage={this.state.activepage}
           handleClick={this.handleClick}
         />
-        <GridItems products={products} />
+        <GridItems products={products} changeLayout={this.props.changeLayout} />
       </main>
     )
   }
