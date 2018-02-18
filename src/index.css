@@ -266,6 +266,9 @@ li.listitem > .listitemlabel {
     display: grid;
     font-size: 0.5rem;
   }
+  .item.empty:hover svg {
+    visibility: hidden;
+  }
   .dragover {
     outline: 2px dashed var(--accent-color);
   }
