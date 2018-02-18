@@ -40,16 +40,15 @@ class GridItem extends React.Component {
     const product = this.props.product
     const isFilled = !product.empty
     const isWithImage = Boolean(product.image)
-    var classNames = 'item'
-
-    classNames = isFilled ? classNames + ' filled' : classNames + ' empty'
-    classNames = isWithImage ? classNames : classNames + ' noimage'
+    var classNames = ['item']
+    classNames.push(isFilled ? 'filled' : 'empty')
+    if (!isWithImage) classNames.push('noimage')
 
     return (
       <div
         id={'Item' + product.seq}
         ref={'Item' + product.seq}
-        className={classNames}
+        className={classNames.join(' ')}
         draggable={isFilled}
         onDragStartCapture={isFilled ? this.handleDragStart : null}
         onDragEnterCapture={this.handleDragEnter}
@@ -63,6 +62,11 @@ class GridItem extends React.Component {
           </div>
         )}
         {isFilled && <div className="itemlabel">{product.label}</div>}
+        {!isFilled && (
+          <div className="itemlabel">
+            <i className="fas fa-4x fa-plus-circle" />
+          </div>
+        )}
       </div>
     )
   }

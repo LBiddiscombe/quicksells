@@ -7,7 +7,7 @@
   --main-bg: #f3fbfe;
   --aside-bg: #f3fbfe;
   --item-bg: white;
-  --a-color: rgba(255, 255, 255, 0.75);
+  --a-color: 240, 240, 240;
   --item-empty-bg: rgba(255, 255, 255, 0.05);
   --item-hover-bg: rgba(255, 255, 255, 0.1);
   --shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
@@ -57,7 +57,7 @@ header {
   grid-area: import;
 }
 .headerright a {
-  color: var(--a-color);
+  color: rgba(var(--a-color), 0.75);
 }
 
 /*#endregion */
@@ -102,7 +102,13 @@ main {
 }
 .item.empty {
   background-color: var(--item-empty-bg);
+  color: rgba(var(--a-color), 0.2);
 }
+
+.item.empty svg {
+  visibility: hidden;
+}
+
 .item.noimage {
   grid-template-rows: 1fr;
   grid-template-areas: 'label';
@@ -111,6 +117,11 @@ main {
 .item.empty:hover {
   background-color: var(--item-hover-bg);
 }
+
+.item.empty:hover svg {
+  visibility: visible;
+}
+
 .item .itemimg {
   grid-area: image;
   pointer-events: none;
@@ -170,7 +181,7 @@ aside.left {
   display: inline;
   font-size: 1.2rem;
   padding: 0.2em 0.5em 0.2em;
-  color: var(--a-color);
+  color: rgba(var(--a-color), 0.75);
   border-bottom: 3px solid var(--header-bg);
 }
 .qsnav .qstabs li.is-active {
