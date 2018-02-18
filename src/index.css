@@ -48,6 +48,7 @@ header {
 }
 .headerleft {
   grid-area: logo;
+  margin: 0 1rem;
   color: var(--accent-color);
 }
 .headercenter {
@@ -236,9 +237,10 @@ li.listitem > .listitemlabel {
     grid-gap: 0;
   }
   header {
-    padding: 0.5rem;
+    padding: 1.5rem 0.5rem;
   }
   .headercenter {
+    margin-left: -3rem;
     text-align: center;
   }
   .qsnav .qstabs li {
