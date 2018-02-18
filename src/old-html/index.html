@@ -1,124 +1,146 @@
-<div class="app" data-component="App">
-  <header data-component="Header">
-    <div class="headerleft">
-      <i class="fas fa-3x fa-th"></i>
-    </div>
-    <div class="headercenter">
-      <p class="title is-4 has-text-light">
-        Quicksell Builder
-      </p>
-    </div>
-    <div class="headerright">
-    </div>
-  </header>
-  <aside class="left" data-component="Aside">
-    <nav class="panel">
-      <div class="panel-block" data-component="Search">
-        <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="search name or code">
-          <span class="icon is-small is-left">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quicksell Prototype</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <link rel="stylesheet" href="libs/mobile-drag-drop/default.css">
+  <script src="libs/mobile-drag-drop/index.min.js"></script>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+  <div class="app" data-component="App">
+    <header data-component="Header">
+      <div class="headerleft">
+        <i class="fas fa-3x fa-th"></i>
+      </div>
+      <div class="headercenter">
+        <p class="title is-4 has-text-light">
+          Quicksell Builder
+        </p>
+      </div>
+      <div class="headerright">
+      </div>
+    </header>
+    <aside class="left" data-component="Aside">
+      <nav class="panel">
+        <div class="panel-block" data-component="Search">
+          <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="search name or code">
+            <span class="icon is-small is-left">
               <i class="fas fa-search"></i>
             </span>
-        </p>
-        <button id="resetfilter" class="button is-link is-outlined">
+          </p>
+          <button id="resetfilter" class="button is-link is-outlined">
             reset filters
           </button>
-      </div>
-      <div class="panel-block" data-component="ListItems">
-        <ul class="listitems">
-          <li class="listitem" data-component="ListItem">
-            <div class="listitemimg"></div>
-            <div class="listitemlabel">
-              Apples Granny Smith
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </aside>
+        </div>
+        <div class="panel-block" data-component="ListItems">
+          <ul class="listitems">
+            <li class="listitem" data-component="ListItem">
+              <div class="listitemimg"></div>
+              <div class="listitemlabel">
+                Apples Granny Smith
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
 
-  <main id="main" data-component="Main">
-    <nav class="qsnav" data-component="Nav">
-      <p class="qstabs" data-component="Tabs">
-        <a>Bakery</a>
-        <a>ePayment</a>
-        <a class="is-active">Produce</a>
-        <a>News</a>
-      </p>
-      <p class="qstabs" data-component="Tabs">
-        <a class="is-active">Popular</a>
-        <a>A-E</a>
-        <a>F-J</a>
-        <a>K-O</a>
-        <a>P-T</a>
-        <a>U-Z</a>
-      </p>
-    </nav>
-    <div id="items" class="items" data-component="GridItems">
-      <div class="item filled" data-component="GridItem">
-        <div class="itemimg">
-          <img src="/images/fresh_produce/bakingpotatoes.bmp" />
+    <main id="main" data-component="Main">
+      <nav class="qsnav" data-component="Nav">
+        <p class="qstabs" data-component="Tabs">
+          <a>Bakery</a>
+          <a>ePayment</a>
+          <a class="is-active">Produce</a>
+          <a>News</a>
+        </p>
+        <p class="qstabs" data-component="Tabs">
+          <a class="is-active">Popular</a>
+          <a>A-E</a>
+          <a>F-J</a>
+          <a>K-O</a>
+          <a>P-T</a>
+          <a>U-Z</a>
+        </p>
+      </nav>
+      <div id="items" class="items" data-component="GridItems">
+        <div class="item filled" data-component="GridItem">
+          <div class="itemimg">
+            <img src="/images/fresh_produce/bakingpotatoes.bmp" />
+          </div>
+          <div class="itemlabel">
+            Baking potatoes
+          </div>
         </div>
-        <div class="itemlabel">
-          Baking potatoes
+        <div class="item filled" data-component="GridItem">
+          <div class="itemimg">
+            <img src="/images/fresh_produce/braeburnapples.bmp" />
+          </div>
+          <div class="itemlabel">
+            Braeburn apples
+          </div>
+        </div>
+        <div class="item filled" data-component="GridItem">
+          <div class="itemimg">
+            <img src="/images/fresh_produce/broccoli.bmp" />
+          </div>
+          <div class="itemlabel">
+            Broccoli
+          </div>
+        </div>
+        <div class="item filled" data-component="GridItem">
+          <div class="itemimg">
+            <img src="/images/fresh_produce/goldendeliciousapples.bmp" />
+          </div>
+          <div class="itemlabel">
+            Golden Delicious Apples
+          </div>
+        </div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item empty" data-component="GridItem"></div>
+        <div class="item filled" data-component="GridItem">
+          <div class="itemimg">
+            <img src="/images/fresh_produce/bakingpotatoes.bmp" />
+          </div>
+          <div class="itemlabel">
+            Baking potatoes
+          </div>
         </div>
       </div>
-      <div class="item filled" data-component="GridItem">
-        <div class="itemimg">
-          <img src="/images/fresh_produce/braeburnapples.bmp" />
-        </div>
-        <div class="itemlabel">
-          Braeburn apples
-        </div>
-      </div>
-      <div class="item filled" data-component="GridItem">
-        <div class="itemimg">
-          <img src="/images/fresh_produce/broccoli.bmp" />
-        </div>
-        <div class="itemlabel">
-          Broccoli
-        </div>
-      </div>
-      <div class="item filled" data-component="GridItem">
-        <div class="itemimg">
-          <img src="/images/fresh_produce/goldendeliciousapples.bmp" />
-        </div>
-        <div class="itemlabel">
-          Golden Delicious Apples
-        </div>
-      </div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item empty" data-component="GridItem"></div>
-      <div class="item filled" data-component="GridItem">
-        <div class="itemimg">
-          <img src="/images/fresh_produce/bakingpotatoes.bmp" />
-        </div>
-        <div class="itemlabel">
-          Baking potatoes
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 
-</div>
+  </div>
+  <script src="./js/app.js"></script>
+
+</body>
+
+</html>
