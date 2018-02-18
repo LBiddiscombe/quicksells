@@ -9,10 +9,10 @@ class Main extends React.Component {
       activegroup: '2',
       activepage: '1'
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.handleTabChange = this.handleTabChange.bind(this)
   }
 
-  handleClick(e) {
+  handleTabChange(e) {
     if (e.target.value) {
       this.setState({ [e.target.dataset.field]: e.target.value.toString() })
       if (e.target.dataset.field === 'activegroup') {
@@ -38,7 +38,7 @@ class Main extends React.Component {
           pages={this.props.pages}
           activegroup={this.state.activegroup}
           activepage={this.state.activepage}
-          handleClick={this.handleClick}
+          handleTabChange={this.handleTabChange}
         />
         <GridItems products={products} changeLayout={this.props.changeLayout} />
       </main>
