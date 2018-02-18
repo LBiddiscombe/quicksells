@@ -218,16 +218,19 @@ li.listitem > .listitemimg {
 li.listitem > .listitemlabel {
   grid-area: label;
 }
-
 /*#endregion */
 
 /*#region Media queries */
-
-@media (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1200px) {
   .items {
     grid-gap: 0.25rem;
   }
+
+  .item .itemlabel {
+    font-size: 0.6rem;
+  }
 }
+
 @media (max-width: 768px) {
   .app {
     grid-template-columns: 1fr;
@@ -273,5 +276,4 @@ li.listitem > .listitemlabel {
     outline: 2px dashed var(--accent-color);
   }
 }
-
 /*#endregion */
