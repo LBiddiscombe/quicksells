@@ -1,5 +1,19 @@
 /*#region Globals & Variables */
-
+/*
+http://coop-design-manual.herokuapp.com/styles/colours.html
+:root {
+  --accent-color: #00b1e7;
+  --header-bg: #4e4e4e;
+  --header-color: white;
+  --main-bg: #f3fbfe;
+  --aside-bg: #f3fbfe;
+  --item-bg: white;
+  --a-color: 240, 240, 240;
+  --item-empty-bg: rgba(255, 255, 255, 0.05);
+  --item-hover-bg: rgba(255, 255, 255, 0.1);
+  --shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+*/
 :root {
   --accent-color: #ffc600;
   --header-bg: #193549;
