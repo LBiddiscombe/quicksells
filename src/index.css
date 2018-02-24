@@ -163,6 +163,8 @@ main {
 
 aside.left {
   grid-area: aside;
+  max-height: 75vh;
+  overflow: auto;
   background-color: var(--aside-bg);
 }
 #resetfilter {
@@ -176,6 +178,7 @@ aside.left {
 .panel-tabs:first-child,
 .panel-block:first-child {
   border: none;
+  display: sticky;
 }
 
 /*#endregion */
@@ -219,16 +222,19 @@ li.listitem {
   grid-gap: 0.25rem;
   align-items: center;
 }
+
 li.listitem > .listitemimg {
   grid-area: image;
-  --listitemimg: url('http://via.placeholder.com/84x64');
-  background: var(--listitemimg);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 3rem;
-  width: 3rem;
+  pointer-events: none;
+  height: 100%;
 }
+
+.listitemimg img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 li.listitem > .listitemlabel {
   grid-area: label;
 }

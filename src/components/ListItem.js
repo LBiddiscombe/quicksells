@@ -1,14 +1,18 @@
-import React from "react";
+import React from 'react'
 
 class ListItem extends React.Component {
   render() {
+    const product = this.props.product
+
     return (
       <li className="listitem">
-        <div className="listitemimg" />
-        <div className="listitemlabel">Apples Granny Smith</div>
+        <div className="listitemimage">
+          <img className="listitemimage" src={product.image || 'http://via.placeholder.com/84x64'} alt="" />
+        </div>
+        <div className="listitemlabel">{product.label}</div>
       </li>
-    );
+    )
   }
 }
 
-export default ListItem;
+export default ListItem

@@ -17,5 +17,5 @@ window.onresize = function(event) {
 
 function setItemGridHeight() {
   const items = document.getElementById('items')
-  items.style.height = items.clientWidth * 4 / 7 + 'px'
+  if (items !== null) items.style.height = items.clientWidth * 4 / 7 + 'px'
 }

@@ -1,16 +1,20 @@
-import React from "react";
-import ListItem from "./ListItem";
+import React from 'react'
+import ListItem from './ListItem'
 
 class ListItems extends React.Component {
   render() {
+    const products = this.props.products
+
     return (
       <div className="panel-block">
         <ul className="listitems">
-          <ListItem />
+          {products.map((product, i) => {
+            return <ListItem key={i} product={product} />
+          })}
         </ul>
       </div>
-    );
+    )
   }
 }
 
-export default ListItems;
+export default ListItems
