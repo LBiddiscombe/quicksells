@@ -1,5 +1,4 @@
 import React from 'react'
-import Zoom from 'react-reveal/Zoom'
 
 class GridItem extends React.Component {
   constructor() {
@@ -46,31 +45,29 @@ class GridItem extends React.Component {
     if (!isWithImage) classNames.push('noimage')
 
     return (
-      <Zoom disabled appear mountOnEnter delay={10 * (product.seq - 1)} duration={100} spy={product}>
-        <div
-          id={'Item' + product.seq}
-          ref={'Item' + product.seq}
-          className={classNames.join(' ')}
-          draggable={isFilled}
-          onDragStartCapture={isFilled ? this.handleDragStart : null}
-          onDragEnterCapture={this.handleDragEnter}
-          onDragLeaveCapture={this.handleDragLeave}
-          onDragOverCapture={this.handleDragOver}
-          onDropCapture={e => this.handleDrop(e, this)}
-        >
-          {isWithImage && (
-            <div className="itemimg">
-              <img src={product.image} alt={product.label} />
-            </div>
-          )}
-          {isFilled && <div className="itemlabel">{product.label}</div>}
-          {!isFilled && (
-            <div className="itemlabel">
-              <i className="fas fa-4x fa-plus-circle" />
-            </div>
-          )}
-        </div>
-      </Zoom>
+      <div
+        id={'Item' + product.seq}
+        ref={'Item' + product.seq}
+        className={classNames.join(' ')}
+        draggable={isFilled}
+        onDragStartCapture={isFilled ? this.handleDragStart : null}
+        onDragEnterCapture={this.handleDragEnter}
+        onDragLeaveCapture={this.handleDragLeave}
+        onDragOverCapture={this.handleDragOver}
+        onDropCapture={e => this.handleDrop(e, this)}
+      >
+        {isWithImage && (
+          <div className="itemimg">
+            <img src={product.image} alt={product.label} />
+          </div>
+        )}
+        {isFilled && <div className="itemlabel">{product.label}</div>}
+        {!isFilled && (
+          <div className="itemlabel">
+            <i className="fas fa-4x fa-plus-circle" />
+          </div>
+        )}
+      </div>
     )
   }
 }

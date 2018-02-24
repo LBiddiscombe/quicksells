@@ -6,7 +6,6 @@
     "mobile-drag-drop": "^2.3.0-rc.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-reveal": "^1.1.6",
     "react-scripts": "1.1.1",
     "react-transition-group": "^2.2.1"
   },
