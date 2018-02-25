@@ -211,7 +211,7 @@ aside.left {
 
 /*#region List Items */
 
-ul.itemlist {
+ul.listitems {
   width: 100%;
 }
 li.listitem {
@@ -219,7 +219,8 @@ li.listitem {
   grid-template-columns: 3rem 1fr;
   grid-template-areas: 'image label';
   grid-gap: 0.25rem;
-  align-items: center;
+  align-items: start;
+  margin-bottom: 0.5rem;
 }
 
 li.listitem > .listitemimg {
@@ -236,6 +237,13 @@ li.listitem > .listitemimg {
 
 li.listitem > .listitemlabel {
   grid-area: label;
+  font-weight: 600;
+}
+
+.listitemcode {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #aaa;
 }
 /*#endregion */
 
