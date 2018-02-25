@@ -20,7 +20,9 @@ class App extends React.Component {
   handleLayoutChange(source, target) {
     const newLayout = this.state.layout
 
-    const layoutPage = newLayout.groups.find(g => g.id === source.group).pages.find(p => p.id === source.page).products
+    const layoutPage = newLayout.groups
+      .find(g => g.id === source.group)
+      .pages.find(p => p.id === source.page).products
 
     const temp = source.seq
     layoutPage[source.seq - 1].seq = layoutPage[target.seq - 1].seq

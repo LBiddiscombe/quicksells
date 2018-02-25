@@ -8,9 +8,16 @@ class ListItems extends React.Component {
     return (
       <div className="panel-block">
         <ul className="listitems">
-          {products.map((product, i) => {
-            return <ListItem key={i} product={product} />
-          })}
+          {products
+            .filter(product => {
+              return (
+                product.label.toLowerCase().indexOf(this.props.filter.toLowerCase()) !== -1 ||
+                product.item.indexOf(this.props.filter) !== -1
+              )
+            })
+            .map((product, i) => {
+              return <ListItem key={i} product={product} />
+            })}
         </ul>
       </div>
     )

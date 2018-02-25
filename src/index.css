@@ -37,9 +37,9 @@ html {
 .app {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 100px minmax(100px, calc(100vh - 100px - 1.5rem));
   grid-template-areas: 'header main' 'aside main';
-  grid-gap: 0.5rem;
+  grid-gap: 0.25rem;
   margin: 0.5rem;
 }
 
@@ -83,9 +83,9 @@ main {
   grid-area: main;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto minmax(min-content, 1fr);
   grid-template-areas: 'tabs' 'quicksells';
-  align-items: center;
+  align-items: start;
   background-color: var(--header-bg);
   box-shadow: var(--shadow);
 }
@@ -163,7 +163,6 @@ main {
 
 aside.left {
   grid-area: aside;
-  max-height: 75vh;
   overflow: auto;
   background-color: var(--aside-bg);
 }

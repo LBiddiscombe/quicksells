@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 class Search extends React.Component {
   render() {
@@ -9,17 +9,15 @@ class Search extends React.Component {
             className="input"
             type="text"
             placeholder="search name or code"
+            onChange={this.props.handleFilterChange}
           />
           <span className="icon is-small is-left">
             <i className="fas fa-search" />
           </span>
         </p>
-        <button id="resetfilter" className="button is-link is-outlined">
-          reset filters
-        </button>
       </div>
-    );
+    )
   }
 }
 
-export default Search;
+export default Search

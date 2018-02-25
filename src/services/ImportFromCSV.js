@@ -22,9 +22,23 @@ function getGridPosition(top, left) {
   return pos
 }
 
+function getUniqueProducts(products) {
+  return products.reduce(
+    (uniqueProducts, product) =>
+      uniqueProducts.findIndex(p => p.item === product.item) < 0
+        ? [...uniqueProducts, product]
+        : uniqueProducts,
+    []
+  )
+}
+
 function ImportFromCSV() {
   return new Promise((resolve, reject) => {
-    const groups = [{ id: '2', name: 'Produce' }, { id: '3', name: 'Bakery' }, { id: '56', name: 'Services' }]
+    const groups = [
+      { id: '2', name: 'Produce' },
+      { id: '3', name: 'Bakery' },
+      { id: '56', name: 'Services' }
+    ]
 
     const pages = [
       { id: '1', name: 'Popular' },
@@ -45,7 +59,9 @@ function ImportFromCSV() {
 
         products = results
           .filter(p => {
-            return groups.map(r => r.id).includes(p.MenuGroup) && pages.map(r => r.id).includes(p.Page)
+            return (
+              groups.map(r => r.id).includes(p.MenuGroup) && pages.map(r => r.id).includes(p.Page)
+            )
           })
           .map(p => {
             return {
@@ -59,6 +75,8 @@ function ImportFromCSV() {
               left: p.Left
             }
           })
+
+        const uniqueProducts = getUniqueProducts(products)
 
         const qsGroups = groups.map(group => {
           const productPages = pages.map(p => {
@@ -100,7 +118,7 @@ function ImportFromCSV() {
         resolve({
           groups,
           pages,
-          products,
+          products: uniqueProducts,
           layout
         })
       })
