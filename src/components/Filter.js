@@ -1,6 +1,6 @@
 import React from 'react'
 
-class Search extends React.Component {
+class Filter extends React.Component {
   render() {
     return (
       <div className="panel-block">
@@ -20,4 +20,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search
+export default Filter

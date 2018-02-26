@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './components/Header'
-import Search from './components/Search'
+import Filter from './components/Filter'
 import Aside from './components/Aside'
 import Main from './components/Main'
 import ImportFromCSV from './services/ImportFromCSV'
@@ -54,7 +54,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header />
-        <Search handleFilterChange={this.handleFilterChange} />
+        <Filter handleFilterChange={this.handleFilterChange} />
         <Aside products={this.state.products} filter={this.state.filter} />
         <Main
           groups={this.state.groups}
