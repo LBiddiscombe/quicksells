@@ -262,7 +262,7 @@ li.listitem > .listitemlabel {
   .app {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
-    grid-template-areas: 'header' 'main' 'aside';
+    grid-template-areas: 'header' 'main' 'filter' 'aside';
     margin: 0;
     grid-gap: 0;
   }
