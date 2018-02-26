@@ -30,6 +30,13 @@ html {
   background-color: var(--main-bg);
 }
 
+.lock-screen {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+}
+
 /*#endregion */
 
 /*#region App layout */

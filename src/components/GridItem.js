@@ -1,16 +1,6 @@
 import React from 'react'
 
-function stopBodyScrolling(bool) {
-  if (bool === true) {
-    document.body.addEventListener('touchmove', freezeVp, false)
-  } else {
-    document.body.removeEventListener('touchmove', freezeVp, false)
-  }
-}
-
-var freezeVp = function(e) {
-  e.preventDefault()
-}
+const body = document.body
 
 class GridItem extends React.Component {
   constructor() {
@@ -24,7 +14,7 @@ class GridItem extends React.Component {
 
   handleDragStart(ev) {
     ev.dataTransfer.setData('text', JSON.stringify(this.props.product))
-    stopBodyScrolling(true)
+    body.classList.add('lock-screen')
   }
 
   handleDragEnter(ev) {
@@ -44,7 +34,7 @@ class GridItem extends React.Component {
 
   handleDrop(ev, target) {
     ev.preventDefault()
-    stopBodyScrolling(false)
+    body.classList.remove('lock-screen')
     ev.target.classList.remove('dragover')
     let source = JSON.parse(ev.dataTransfer.getData('text'))
     this.props.changeLayout(source, target.props.product)
