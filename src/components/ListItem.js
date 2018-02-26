@@ -9,7 +9,7 @@ class ListItem extends React.Component {
         <div className="listitemimage">
           <img
             className="listitemimage"
-            src={product.image || 'http://via.placeholder.com/84x64'}
+            src={product.image || 'https://via.placeholder.com/84x64'}
             alt=""
           />
         </div>
