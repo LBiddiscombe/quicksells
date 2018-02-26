@@ -37,8 +37,8 @@ html {
 .app {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 100px minmax(100px, calc(100vh - 100px - 1.5rem));
-  grid-template-areas: 'header main' 'aside main';
+  grid-template-rows: 100px 50px minmax(100px, calc(100vh - 150px - 1.5rem));
+  grid-template-areas: 'header main' 'filter main' 'aside main';
   grid-gap: 0.25rem;
   margin: 0.5rem;
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './components/Header'
+import Search from './components/Search'
 import Aside from './components/Aside'
 import Main from './components/Main'
 import ImportFromCSV from './services/ImportFromCSV'
@@ -11,9 +12,10 @@ class App extends React.Component {
       groups: [],
       pages: [],
       products: [],
-      layout: {}
+      layout: {},
+      filter: ''
     }
-
+    this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleLayoutChange = this.handleLayoutChange.bind(this)
   }
 
@@ -33,14 +35,17 @@ class App extends React.Component {
     })
   }
 
+  handleFilterChange(e) {
+    this.setState({ filter: e.target.value })
+  }
+
   componentDidMount() {
     ImportFromCSV().then(result => {
       this.setState({
         groups: result.groups,
         pages: result.pages,
         products: result.products,
-        layout: result.layout,
-        changeLayout: this.handleLayoutChange
+        layout: result.layout
       })
     })
   }
@@ -49,12 +54,13 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header />
-        <Aside products={this.state.products} />
+        <Search handleFilterChange={this.handleFilterChange} />
+        <Aside products={this.state.products} filter={this.state.filter} />
         <Main
           groups={this.state.groups}
           pages={this.state.pages}
           layout={this.state.layout}
-          changeLayout={this.state.changeLayout}
+          changeLayout={this.handleLayoutChange}
         />
       </div>
     )
