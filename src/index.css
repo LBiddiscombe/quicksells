@@ -82,6 +82,7 @@ header {
 main {
   grid-area: main;
   display: grid;
+  touch-action: none;
   grid-template-columns: 1fr;
   grid-template-rows: auto minmax(min-content, 1fr);
   grid-template-areas: 'tabs' 'quicksells';
@@ -113,7 +114,6 @@ main {
 }
 .item.filled {
   background-color: var(--item-bg);
-  touch-action: none;
   cursor: move;
 }
 .item.empty {
