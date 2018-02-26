@@ -113,6 +113,7 @@ main {
 }
 .item.filled {
   background-color: var(--item-bg);
+  touch-action: none;
   cursor: move;
 }
 .item.empty {
