@@ -6,12 +6,8 @@ class ListItem extends React.Component {
 
     return (
       <li className="listitem">
-        <div className="listitemimage">
-          <img
-            className="listitemimage"
-            src={product.image || 'https://via.placeholder.com/84x64'}
-            alt=""
-          />
+        <div className="listitemimg">
+          <img src={product.image || 'https://via.placeholder.com/84x64'} alt="" />
         </div>
         <div className="listitemlabel">
           {product.label}

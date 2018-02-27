@@ -1,7 +1,5 @@
 import React from 'react'
 
-const body = document.body
-
 class GridItem extends React.Component {
   constructor() {
     super()
@@ -10,6 +8,10 @@ class GridItem extends React.Component {
     this.handleDragLeave = this.handleDragLeave.bind(this)
     this.handleDragOver = this.handleDragOver.bind(this)
     this.handleDrop = this.handleDrop.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.state = {
+      flipped: false
+    }
   }
 
   handleDragStart(ev) {
@@ -46,6 +48,16 @@ class GridItem extends React.Component {
     ev.preventDefault()
   }
 
+  handleClick(ev) {
+    const product = this.props.product
+    const isWithImage = Boolean(product.image)
+    if (isWithImage) {
+      this.setState({
+        flipped: !this.state.flipped
+      })
+    }
+  }
+
   render() {
     const product = this.props.product
     const isFilled = !product.empty
@@ -53,6 +65,7 @@ class GridItem extends React.Component {
     var classNames = ['item']
     classNames.push(isFilled ? 'filled' : 'empty')
     if (!isWithImage) classNames.push('noimage')
+    if (isWithImage && this.state.flipped) classNames.push('flipped')
 
     return (
       <div
@@ -65,8 +78,9 @@ class GridItem extends React.Component {
         onDragLeaveCapture={this.handleDragLeave}
         onDragOverCapture={this.handleDragOver}
         onDropCapture={e => this.handleDrop(e, this)}
-        onTouchStart={e => this.touchStart(e)}
-        onTouchMove={e => this.touchMove(e)}
+        onTouchStart={isFilled ? e => this.touchStart(e) : null}
+        onTouchMove={isFilled ? e => this.touchMove(e) : null}
+        onClick={this.handleClick}
       >
         {isWithImage && (
           <div className="itemimg">
