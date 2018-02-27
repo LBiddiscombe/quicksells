@@ -30,13 +30,6 @@ html {
   background-color: var(--main-bg);
 }
 
-.lock-screen {
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-  position: fixed;
-}
-
 /*#endregion */
 
 /*#region App layout */
@@ -89,7 +82,6 @@ header {
 main {
   grid-area: main;
   display: grid;
-  touch-action: none;
   grid-template-columns: 1fr;
   grid-template-rows: auto minmax(min-content, 1fr);
   grid-template-areas: 'tabs' 'quicksells';
@@ -171,7 +163,8 @@ main {
 
 aside.left {
   grid-area: aside;
-  overflow: auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   background-color: var(--aside-bg);
 }
 #resetfilter {
@@ -185,7 +178,6 @@ aside.left {
 .panel-tabs:first-child,
 .panel-block:first-child {
   border: none;
-  display: sticky;
 }
 
 /*#endregion */
@@ -307,7 +299,7 @@ li.listitem > .listitemlabel {
   .item.empty:hover svg {
     visibility: hidden;
   }
-  .dragover {
+  .item.dragover {
     outline: 2px dashed var(--accent-color);
   }
 }

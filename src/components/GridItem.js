@@ -14,7 +14,6 @@ class GridItem extends React.Component {
 
   handleDragStart(ev) {
     ev.dataTransfer.setData('text', JSON.stringify(this.props.product))
-    body.classList.add('lock-screen')
   }
 
   handleDragEnter(ev) {
@@ -34,10 +33,17 @@ class GridItem extends React.Component {
 
   handleDrop(ev, target) {
     ev.preventDefault()
-    body.classList.remove('lock-screen')
     ev.target.classList.remove('dragover')
     let source = JSON.parse(ev.dataTransfer.getData('text'))
     this.props.changeLayout(source, target.props.product)
+  }
+
+  touchStart(ev) {
+    ev.preventDefault()
+  }
+
+  touchMove(ev) {
+    ev.preventDefault()
   }
 
   render() {
@@ -59,6 +65,8 @@ class GridItem extends React.Component {
         onDragLeaveCapture={this.handleDragLeave}
         onDragOverCapture={this.handleDragOver}
         onDropCapture={e => this.handleDrop(e, this)}
+        onTouchStart={e => this.touchStart(e)}
+        onTouchMove={e => this.touchMove(e)}
       >
         {isWithImage && (
           <div className="itemimg">
