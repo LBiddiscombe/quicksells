@@ -260,6 +260,27 @@ li.listitem > .listitemlabel {
     margin: 0;
     grid-gap: 0;
   }
+
+  main {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 4;
+  }
+
+  .filter {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 310px;
+    z-index: 4;
+  }
+
   header {
     padding: 1.5rem 0.5rem;
   }

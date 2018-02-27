@@ -3,7 +3,7 @@ import React from 'react'
 class Filter extends React.Component {
   render() {
     return (
-      <div className="panel-block">
+      <div className="panel-block filter">
         <p className="control has-icons-left">
           <input
             className="input"
