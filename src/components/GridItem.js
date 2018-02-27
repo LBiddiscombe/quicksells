@@ -40,10 +40,6 @@ class GridItem extends React.Component {
     this.props.changeLayout(source, target.props.product)
   }
 
-  touchStart(ev) {
-    ev.preventDefault()
-  }
-
   touchMove(ev) {
     ev.preventDefault()
   }
@@ -73,14 +69,13 @@ class GridItem extends React.Component {
         ref={'Item' + product.seq}
         className={classNames.join(' ')}
         draggable={isFilled}
+        onClick={this.handleClick}
         onDragStartCapture={isFilled ? this.handleDragStart : null}
         onDragEnterCapture={this.handleDragEnter}
         onDragLeaveCapture={this.handleDragLeave}
         onDragOverCapture={this.handleDragOver}
         onDropCapture={e => this.handleDrop(e, this)}
-        onTouchStart={isFilled ? e => this.touchStart(e) : null}
         onTouchMove={isFilled ? e => this.touchMove(e) : null}
-        onClick={this.handleClick}
       >
         {isWithImage && (
           <div className="itemimg">
