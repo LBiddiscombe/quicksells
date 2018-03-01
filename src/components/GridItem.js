@@ -81,11 +81,13 @@ class GridItem extends React.Component {
         onDragOverCapture = { this.handleDragOver }
         onDropCapture = { e => this.handleDrop(e, this) }
         onTouchMove = { isFilled ? e => this.touchMove(e) : null }>
-        <div className="itemimg">
-          <img src = { product.image } alt = { product.label }/> 
-        </div>
-        {isFilled && <div className = "itemlabel"> { product.label } </div>}
-        {!isFilled && <div className = "itemlabel"><i className = "fas fa-4x fa-plus-circle" /></div>} 
+        {isWithImage && (
+          <div className="itemimg">
+            <img src = { product.image } alt = { product.label }/> 
+          </div>
+        )}
+        {isFilled && <div className="itemlabel"> { product.label } </div>}
+        {!isFilled && <div className="itemlabel"><i className="fas fa-4x fa-plus-circle" /></div>} 
       </div>
     )   
   }
