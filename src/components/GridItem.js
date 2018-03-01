@@ -70,26 +70,32 @@ class GridItem extends React.Component {
     if (isWithImage && this.state.flipped) classNames.push('flipped')
 
     return (
-      <div id = { 'Item' + product.seq }
-        ref={ 'Item' + product.seq }
-        className = { classNames.join(' ') }
-        draggable = { isFilled }
-        onClick = { this.handleClick }
-        onDragStartCapture = { isFilled ? this.handleDragStart : null }
-        onDragEnterCapture = { this.handleDragEnter }
-        onDragLeaveCapture = { this.handleDragLeave }
-        onDragOverCapture = { this.handleDragOver }
-        onDropCapture = { e => this.handleDrop(e, this) }
-        onTouchMove = { isFilled ? e => this.touchMove(e) : null }>
+      <div
+        id={'Item' + product.seq}
+        ref={'Item' + product.seq}
+        className={classNames.join(' ')}
+        draggable={isFilled}
+        onClick={this.handleClick}
+        onDragStartCapture={isFilled ? this.handleDragStart : null}
+        onDragEnterCapture={this.handleDragEnter}
+        onDragLeaveCapture={this.handleDragLeave}
+        onDragOverCapture={this.handleDragOver}
+        onDropCapture={e => this.handleDrop(e, this)}
+        onTouchMove={isFilled ? e => this.touchMove(e) : null}
+      >
         {isWithImage && (
           <div className="itemimg">
-            <img src = { product.image } alt = { product.label }/> 
+            <img src={product.image} alt={product.label} />
           </div>
         )}
-        {isFilled && <div className="itemlabel"> { product.label } </div>}
-        {!isFilled && <div className="itemlabel"><i className="fas fa-4x fa-plus-circle" /></div>} 
+        {isFilled && <div className="itemlabel"> {product.label} </div>}
+        {!isFilled && (
+          <div className="itemlabel">
+            <i className="fas fa-4x fa-plus-circle" />
+          </div>
+        )}
       </div>
-    )   
+    )
   }
 }
 

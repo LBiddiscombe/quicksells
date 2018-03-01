@@ -15,7 +15,9 @@ class Export extends React.Component {
 
   render() {
     return (
-      <a className="export" onClick={this.handleExport}>Export</a>
+      <a className="export" onClick={this.handleExport}>
+        Export
+      </a>
     )
   }
 }
@@ -24,17 +26,17 @@ class Main extends React.Component {
   constructor() {
     super()
     this.state = {
-      activegroup: '2',
-      activepage: '1'
+      activegroup: 2,
+      activepage: 1
     }
     this.handleTabChange = this.handleTabChange.bind(this)
   }
 
   handleTabChange(e) {
     if (e.target.value) {
-      this.setState({ [e.target.dataset.field]: e.target.value.toString() })
+      this.setState({ [e.target.dataset.field]: e.target.value })
       if (e.target.dataset.field === 'activegroup') {
-        this.setState({ activepage: '1' })
+        this.setState({ activepage: 1 })
       }
     }
   }

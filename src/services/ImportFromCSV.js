@@ -11,18 +11,18 @@ import csvJSON from './csvJSON'
 function ImportFromCSV() {
   return new Promise((resolve, reject) => {
     const groups = [
-      { id: '2', name: 'Produce' },
-      { id: '3', name: 'Bakery' },
-      { id: '56', name: 'Services' }
+      { id: 2, name: 'Produce' },
+      { id: 3, name: 'Bakery' },
+      { id: 56, name: 'Services' }
     ]
 
     const pages = [
-      { id: '1', name: 'Popular' },
-      { id: '2', name: 'A-E' },
-      { id: '3', name: 'F-J' },
-      { id: '4', name: 'K-O' },
-      { id: '5', name: 'P-T' },
-      { id: '6', name: 'U-Z' }
+      { id: 1, name: 'Popular' },
+      { id: 2, name: 'A-E' },
+      { id: 3, name: 'F-J' },
+      { id: 4, name: 'K-O' },
+      { id: 5, name: 'P-T' },
+      { id: 6, name: 'U-Z' }
     ]
 
     fetch('./data/QuickSellButtons.csv')
@@ -46,27 +46,28 @@ function ImportFromCSV() {
 function getUniqueProducts(products) {
   return products.reduce(
     (uniqueProducts, product) =>
-      uniqueProducts.findIndex(p => p.item === product.item) < 0 ? [...uniqueProducts, product] : uniqueProducts, []
+      uniqueProducts.findIndex(p => p.item === product.item) < 0
+        ? [...uniqueProducts, product]
+        : uniqueProducts,
+    []
   )
 }
 
 function getFilteredResults(groups, pages, results) {
   return results
     .filter(p => {
-      return (
-        groups.map(r => r.id).includes(p.MenuGroup) && pages.map(r => r.id).includes(p.Page)
-      )
+      return groups.map(r => r.id).includes(p.group) && pages.map(r => r.id).includes(p.page)
     })
     .map(p => {
       return {
-        item: p.ItemID,
-        label: p.Description,
-        image: p.Image !== 'NULL' ? '/images/' + p.Image : false,
-        group: p.MenuGroup,
-        page: p.Page,
-        seq: p.MenuOption,
-        top: p.Top,
-        left: p.Left
+        item: p.item,
+        label: p.label,
+        image: p.image !== 'NULL' ? p.image : false,
+        group: p.group,
+        page: p.page,
+        seq: p.seq,
+        top: p.top,
+        left: p.left
       }
     })
 }
@@ -89,7 +90,6 @@ function getLayoutPages(group, pages, filteredResults) {
       products: getLayoutProducts(group, page, filteredResults)
     }
   })
-
 }
 
 function getLayoutProducts(group, page, filteredResults) {
@@ -112,7 +112,6 @@ function getLayoutProducts(group, page, filteredResults) {
   })
 
   return layoutProducts
-
 }
 
 function getGridPosition(top, left) {
