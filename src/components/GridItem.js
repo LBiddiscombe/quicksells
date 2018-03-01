@@ -69,8 +69,8 @@ class GridItem extends React.Component {
       if (!isWithImage) classNames.push('noimage')
       if (isWithImage && this.state.flipped) classNames.push('flipped')
 
-      return ( <
-        div id = { 'Item' + product.seq }
+      return (
+        <div id = { 'Item' + product.seq }>
         ref = { 'Item' + product.seq }
         className = { classNames.join(' ') }
         draggable = { isFilled }
@@ -80,29 +80,15 @@ class GridItem extends React.Component {
         onDragLeaveCapture = { this.handleDragLeave }
         onDragOverCapture = { this.handleDragOver }
         onDropCapture = { e => this.handleDrop(e, this) }
-        onTouchMove = { isFilled ? e => this.touchMove(e) : null } >
-        {
-          isWithImage && ( <
-            div className = "itemimg" >
-            <
-            img src = { product.image }
-            alt = { product.label }
-            /> <
-            /div>
-          )
-        } {
-          isFilled && < div className = "itemlabel" > { product.label } < /div>} {
-              !isFilled && ( <
-                div className = "itemlabel" >
-                <
-                i className = "fas fa-4x fa-plus-circle" / >
-                <
-                /div>
-              )
-            } <
-            /div>
-        )
-      }
+        onTouchMove = { isFilled ? e => this.touchMove(e) : null }
+            <div className="itemimg">
+            <img src = { product.image } alt = { product.label }/> 
+            </div>
+          {isFilled && <div className = "itemlabel"> { product.label } </div>}
+          {!isFilled && <div className = "itemlabel"><i className = "fas fa-4x fa-plus-circle" /></div>} 
+          </div>
+      )   
     }
+  }
 
-    export default GridItem
+export default GridItem
