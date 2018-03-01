@@ -1,6 +1,24 @@
 import React from 'react'
 import Nav from './Nav'
 import GridItems from './GridItems'
+import ExportToCSV from '../services/ExportToCSV'
+
+class Export extends React.Component {
+  constructor() {
+    super()
+    this.handleExport = this.handleExport.bind(this)
+  }
+
+  handleExport() {
+    ExportToCSV(this.props.layout)
+  }
+
+  render() {
+    return (
+      <a className="export" onClick={this.handleExport}>Export</a>
+    )
+  }
+}
 
 class Main extends React.Component {
   constructor() {
@@ -33,6 +51,7 @@ class Main extends React.Component {
 
     return (
       <main id="main">
+        <Export layout={layout} />
         <Nav
           groups={this.props.groups}
           pages={this.props.pages}

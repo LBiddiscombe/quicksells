@@ -88,9 +88,9 @@ header {
 main {
   grid-area: main;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 50px;
   grid-template-rows: auto minmax(min-content, 1fr);
-  grid-template-areas: 'tabs' 'quicksells';
+  grid-template-areas: 'tabs right' 'quicksells quicksells';
   align-items: start;
   background-color: var(--header-bg);
   box-shadow: var(--shadow);
@@ -158,6 +158,13 @@ main {
   outline: 4px dashed var(--accent-color);
 }
 
+.export {
+  grid-area: right;
+  align-self: center;
+  justify-self: center;
+  
+}
+
 /*#endregion */
 
 
@@ -185,7 +192,8 @@ aside.left {
 /*#region Quicksell Tabs */
 
 .qsnav {
-  grid-area: tabs;
+  grid-column: 1 / -1;
+  grid-row: 1;
   justify-self: center;
   text-align: center;
 }
