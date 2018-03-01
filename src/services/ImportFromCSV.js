@@ -46,8 +46,7 @@ function ImportFromCSV() {
 function getUniqueProducts(products) {
   return products.reduce(
     (uniqueProducts, product) =>
-    uniqueProducts.findIndex(p => p.item === product.item) < 0 ? [...uniqueProducts, product] :
-    uniqueProducts, []
+      uniqueProducts.findIndex(p => p.item === product.item) < 0 ? [...uniqueProducts, product] : uniqueProducts, []
   )
 }
 
