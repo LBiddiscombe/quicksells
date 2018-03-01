@@ -1,8 +1,17 @@
 import React from 'react'
 
 class Filter extends React.Component {
+
+  componentDidUpdate() {
+    const main = document.getElementById('main')
+    const filterwrap = document.getElementById('filterwrap')
+    filterwrap.style.top = main.clientHeight + 'px'
+  }
+
   render() {
     return (
+      
+    <div id="filterwrap">
       <div className="panel-block filter">
         <p className="control has-icons-left">
           <input
@@ -16,6 +25,7 @@ class Filter extends React.Component {
           </span>
         </p>
       </div>
+    </div>
     )
   }
 }
