@@ -2,15 +2,52 @@ import React from 'react'
 import Nav from './Nav'
 import GridItems from './GridItems'
 import ExportToCSV from '../services/ExportToCSV'
+import ImportFromCSV from '../services/ImportFromCSV'
+
+let fileInput = null
 
 class Import extends React.Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleClick() {
+    fileInput.click()
+  }
+
+  handleChange() {
+    const fileImport = this.props.fileImport
+
+    const file = fileInput.files[0]
+    const reader = new FileReader()
+    reader.onload = function(e) {
+      ImportFromCSV(e.target.result).then(result => {
+        fileImport(result)
+      })
+    }
+    reader.readAsText(file)
+  }
+
   render() {
     return (
-      <a className="import">
-        <span>
-          <i class="fas fa-2x fa-upload" />
-        </span>
-      </a>
+      <div className="import">
+        <input
+          type="file"
+          accept=".csv"
+          ref={input => {
+            fileInput = input
+          }}
+          onChange={this.handleChange}
+          style={{ display: 'none' }}
+        />
+        <a className="import" onClick={this.handleClick}>
+          <span>
+            <i className="fas fa-2x fa-upload" />
+          </span>
+        </a>
+      </div>
     )
   }
 }
@@ -28,7 +65,7 @@ class Export extends React.Component {
   render() {
     return (
       <a className="export" onClick={this.handleExport}>
-        <i class="far fa-2x fa-save" />
+        <i className="far fa-2x fa-save" />
       </a>
     )
   }
@@ -65,7 +102,7 @@ class Main extends React.Component {
 
     return (
       <main id="main">
-        <Import />
+        <Import fileImport={this.props.fileImport} />
         <Export layout={layout} />
         <Nav
           groups={this.props.groups}

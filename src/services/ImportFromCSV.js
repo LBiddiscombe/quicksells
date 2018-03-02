@@ -9,27 +9,34 @@
 import csvJSON from './csvJSON'
 import settings from '../settings'
 
-function ImportFromCSV() {
+function ImportFromCSV(csvFile) {
   return new Promise((resolve, reject) => {
-    const groups = settings.importGroups
-    const pages = settings.importPages
-
-    fetch('./data/QuickSellButtons.csv')
-      .then(response => response.text())
-      .then(response => {
-        const results = csvJSON(response)
-        const filteredResults = getFilteredResults(groups, pages, results)
-        const products = getUniqueProducts(filteredResults)
-        const layout = { groups: getLayoutGroups(groups, pages, filteredResults) }
-
-        resolve({
-          groups,
-          pages,
-          products,
-          layout
+    if (csvFile) {
+      resolve(loadCSV(csvFile))
+    } else {
+      fetch('./data/QuickSellButtons.csv')
+        .then(response => response.text())
+        .then(response => {
+          resolve(loadCSV(response))
         })
-      })
+    }
   })
+}
+
+function loadCSV(response) {
+  const groups = settings.importGroups
+  const pages = settings.importPages
+  const results = csvJSON(response)
+  const filteredResults = getFilteredResults(groups, pages, results)
+  const products = getUniqueProducts(filteredResults)
+  const layout = { groups: getLayoutGroups(groups, pages, filteredResults) }
+
+  return {
+    groups,
+    pages,
+    products,
+    layout
+  }
 }
 
 function getUniqueProducts(products) {

@@ -17,6 +17,7 @@ class App extends React.Component {
     }
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleLayoutChange = this.handleLayoutChange.bind(this)
+    this.handleFileImport = this.handleFileImport.bind(this)
   }
 
   handleLayoutChange(source, target) {
@@ -38,6 +39,15 @@ class App extends React.Component {
 
     this.setState({
       layout: newLayout
+    })
+  }
+
+  handleFileImport(result) {
+    this.setState({
+      groups: result.groups,
+      pages: result.pages,
+      products: result.products,
+      layout: result.layout
     })
   }
 
@@ -67,6 +77,7 @@ class App extends React.Component {
           pages={this.state.pages}
           layout={this.state.layout}
           changeLayout={this.handleLayoutChange}
+          fileImport={this.handleFileImport}
         />
       </div>
     )
