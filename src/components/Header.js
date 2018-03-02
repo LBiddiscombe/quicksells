@@ -23,7 +23,6 @@ function Header() {
       <div className="headercenter">
         <p className="title is-4 has-text-light">Quicksell Builder</p>
       </div>
-      <div className="headerright" />
     </header>
   )
 }

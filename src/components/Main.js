@@ -3,6 +3,18 @@ import Nav from './Nav'
 import GridItems from './GridItems'
 import ExportToCSV from '../services/ExportToCSV'
 
+class Import extends React.Component {
+  render() {
+    return (
+      <a className="import">
+        <span>
+          <i class="fas fa-2x fa-upload" />
+        </span>
+      </a>
+    )
+  }
+}
+
 class Export extends React.Component {
   constructor() {
     super()
@@ -16,7 +28,7 @@ class Export extends React.Component {
   render() {
     return (
       <a className="export" onClick={this.handleExport}>
-        Export
+        <i class="far fa-2x fa-save" />
       </a>
     )
   }
@@ -53,6 +65,7 @@ class Main extends React.Component {
 
     return (
       <main id="main">
+        <Import />
         <Export layout={layout} />
         <Nav
           groups={this.props.groups}

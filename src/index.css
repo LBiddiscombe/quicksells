@@ -1,6 +1,5 @@
 /*#region Globals & Variables */
 
-
 /*
 http://coop-design-manual.herokuapp.com/styles/colours.html
 :root {
@@ -35,7 +34,6 @@ html {
 
 /*#endregion */
 
-
 /*#region App layout */
 
 .app {
@@ -48,7 +46,6 @@ html {
 }
 
 /*#endregion */
-
 
 /*#region Header */
 
@@ -82,15 +79,14 @@ header {
 
 /*#endregion */
 
-
 /*#region Main */
 
 main {
   grid-area: main;
   display: grid;
-  grid-template-columns: 1fr 50px;
+  grid-template-columns: 50px 1fr 50px;
   grid-template-rows: auto minmax(min-content, 1fr);
-  grid-template-areas: 'tabs right' 'quicksells quicksells';
+  grid-template-areas: 'left tabs right' 'quicksells quicksells quicksells';
   align-items: start;
   background-color: var(--header-bg);
   box-shadow: var(--shadow);
@@ -158,15 +154,31 @@ main {
   outline: 4px dashed var(--accent-color);
 }
 
+.import,
 .export {
-  grid-area: right;
   align-self: center;
   justify-self: center;
-  
+}
+
+.import {
+  grid-area: left;
+}
+
+.export {
+  grid-area: right;
+}
+
+a.import,
+a.export {
+  color: rgba(var(--a-color), 0.75);
+}
+
+a.import:hover,
+a.export:hover {
+  color: rgba(var(--a-color), 0.9);
 }
 
 /*#endregion */
-
 
 /*#region Aside */
 
@@ -179,15 +191,17 @@ aside.left {
 #resetfilter {
   margin-left: 0.5rem;
 }
-.panel-block, .panel-tabs {
+.panel-block,
+.panel-tabs {
   border: none;
 }
-.panel-heading:first-child, .panel-tabs:first-child, .panel-block:first-child {
+.panel-heading:first-child,
+.panel-tabs:first-child,
+.panel-block:first-child {
   border: none;
 }
 
 /*#endregion */
-
 
 /*#region Quicksell Tabs */
 
@@ -214,9 +228,10 @@ aside.left {
   color: var(--header-color);
   font-weight: bold;
 }
-
+.qsnav .qstabs li:hover {
+  color: rgba(var(--a-color), 0.9);
+}
 /*#endregion */
-
 
 /*#region List Items */
 
@@ -231,7 +246,7 @@ li.listitem {
   grid-gap: 0.25rem;
   align-items: center;
 }
-li.listitem>.listitemimg {
+li.listitem > .listitemimg {
   grid-area: image;
   pointer-events: none;
   height: 100%;
@@ -241,7 +256,7 @@ li.listitem>.listitemimg {
   width: 100%;
   object-fit: cover;
 }
-li.listitem>.listitemlabel {
+li.listitem > .listitemlabel {
   grid-area: label;
   font-weight: 600;
 }
@@ -252,7 +267,6 @@ li.listitem>.listitemlabel {
 }
 
 /*#endregion */
-
 
 /*#region Media queries */
 

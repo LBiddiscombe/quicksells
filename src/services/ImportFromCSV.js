@@ -86,11 +86,18 @@ function getLayoutProducts(group, page, filteredResults) {
   const gridLength = settings.grid.import.rows * settings.grid.import.columns
 
   for (let i = 0; i < gridLength; i++) {
+    const row = Math.floor(i / settings.grid.import.columns)
+    const col = i % settings.grid.import.columns
+    const top = settings.grid.import.offsetTop + row * settings.grid.import.height
+    const left = settings.grid.import.offsetLeft + col * settings.grid.import.width
+
     layoutProducts.push({
       page: page.id,
       group: group.id,
       seq: i + 1,
-      empty: true
+      empty: true,
+      top,
+      left
     })
   }
 

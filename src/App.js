@@ -26,9 +26,15 @@ class App extends React.Component {
       .find(g => g.id === source.group)
       .pages.find(p => p.id === source.page).products
 
-    const temp = source.seq
-    layoutPage[source.seq - 1].seq = layoutPage[target.seq - 1].seq
-    layoutPage[target.seq - 1].seq = temp
+    const temp = source
+    const layoutPageSource = layoutPage[source.seq - 1]
+    const layoutPageTarget = layoutPage[target.seq - 1]
+    layoutPageSource.seq = layoutPageTarget.seq
+    layoutPageSource.top = layoutPageTarget.top
+    layoutPageSource.left = layoutPageTarget.left
+    layoutPageTarget.seq = temp.seq
+    layoutPageTarget.top = temp.top
+    layoutPageTarget.left = temp.left
 
     this.setState({
       layout: newLayout
