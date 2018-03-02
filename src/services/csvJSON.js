@@ -1,4 +1,4 @@
-import fieldMap from './fieldMap'
+import settings from '../settings'
 
 function csvJSON(csv) {
   const lines = csv.split('\n')
@@ -10,27 +10,32 @@ function csvJSON(csv) {
     var currentline = lines[i].replace(/(\r\n|\n|\r|")/g, '').split(',')
 
     for (let j = 0; j < headers.length; j++) {
-      const mappedField = fieldMap.find(f => f.csvField === headers[j])
-      const property = mappedField ? mappedField.appField : headers[j]
+      const { mappedField, property } = getMappedField(headers, j)
 
       if (mappedField && mappedField.pad && mappedField.length) {
+        // numeric field with padding
         const str = new Array(mappedField.length + 1).join(mappedField.pad)
         obj[property] = (str + currentline[j]).slice(-mappedField.length)
+      } else if (mappedField && mappedField.prefix && currentline[j] !== 'NULL') {
+        // field with a prefix string, e.g. image path
+        obj[property] = mappedField.prefix + currentline[j]
+        //
       } else {
-        currentline[j] == Number(currentline[j])
+        !isNaN(currentline[j])
           ? (obj[property] = Number(currentline[j]))
           : (obj[property] = currentline[j])
-      }
-
-      if (mappedField && mappedField.prefix && currentline[j] != 'NULL') {
-        obj[property] = mappedField.prefix + currentline[j]
       }
     }
 
     result.push(obj)
   }
-
   return result
+}
+
+function getMappedField(headers, j) {
+  const mappedField = settings.importMapping.find(f => f.from === headers[j])
+  const property = mappedField ? mappedField.to : headers[j]
+  return { mappedField, property }
 }
 
 export default csvJSON

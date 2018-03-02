@@ -1,4 +1,17 @@
 const settings = {
+  importGroups : [
+    { id: 2, name: 'Produce' },
+    { id: 3, name: 'Bakery' },
+    { id: 56, name: 'Services' }
+  ],
+  importPages : [
+    { id: 1, name: 'Popular' },
+    { id: 2, name: 'A-E' },
+    { id: 3, name: 'F-J' },
+    { id: 4, name: 'K-O' },
+    { id: 5, name: 'P-T' },
+    { id: 6, name: 'U-Z' }
+  ],
   importMapping: [
     { from: 'ItemID', pad: '0', length: 13, to: 'item' },
     { from: 'Description', to: 'label' },

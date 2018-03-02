@@ -1,4 +1,4 @@
-import fieldMap from './fieldMap'
+import settings from '../settings'
 
 function JSONcsv(json) {
   const fields = Object.keys(json[0])
@@ -13,7 +13,7 @@ function JSONcsv(json) {
     }
     return fields
       .map(fieldName => {
-        const mappedField = fieldMap.find(f => f.appField === fieldName)
+        const mappedField = settings.exportMapping.find(f => f.from === fieldName)
         if (mappedField && mappedField.prefix) {
           row[fieldName] = row[fieldName]
             ? row[fieldName].toString().replace(mappedField.prefix, '')
@@ -25,8 +25,8 @@ function JSONcsv(json) {
   })
 
   const mappedFields = fields.map(field => {
-    const mappedField = fieldMap.find(f => f.appField === field)
-    return mappedField ? mappedField.csvField : field
+    const mappedField = settings.exportMapping.find(f => f.from === field)
+    return mappedField ? mappedField.to : field
   })
 
   csv.unshift(mappedFields.join(',')) // add header column at start
