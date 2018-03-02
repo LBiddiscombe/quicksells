@@ -7,23 +7,12 @@
   Filters on specific groups and pages
 */
 import csvJSON from './csvJSON'
+import settings from '../settings'
 
 function ImportFromCSV() {
   return new Promise((resolve, reject) => {
-    const groups = [
-      { id: 2, name: 'Produce' },
-      { id: 3, name: 'Bakery' },
-      { id: 56, name: 'Services' }
-    ]
-
-    const pages = [
-      { id: 1, name: 'Popular' },
-      { id: 2, name: 'A-E' },
-      { id: 3, name: 'F-J' },
-      { id: 4, name: 'K-O' },
-      { id: 5, name: 'P-T' },
-      { id: 6, name: 'U-Z' }
-    ]
+    const groups = settings.importGroups
+    const pages = settings.importPages
 
     fetch('./data/QuickSellButtons.csv')
       .then(response => response.text())
@@ -94,7 +83,7 @@ function getLayoutPages(group, pages, filteredResults) {
 
 function getLayoutProducts(group, page, filteredResults) {
   var layoutProducts = []
-  const gridLength = 28 // TODO: set as grid size
+  const gridLength = settings.grid.import.rows * settings.grid.import.columns
 
   for (let i = 0; i < gridLength; i++) {
     layoutProducts.push({
@@ -115,11 +104,11 @@ function getLayoutProducts(group, page, filteredResults) {
 }
 
 function getGridPosition(top, left) {
-  const height = 107
-  const width = 100
-  const offsetLeft = 90
-  const offsetTop = 52
-  const cols = 7
+  const height = settings.grid.import.height
+  const width = settings.grid.import.width
+  const offsetLeft = settings.grid.import.offsetLeft
+  const offsetTop = settings.grid.import.offsetTop
+  const cols = settings.grid.import.columns
 
   let row = (top - offsetTop) / height
   let col = (left - offsetLeft) / width

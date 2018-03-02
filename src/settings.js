@@ -1,10 +1,10 @@
 const settings = {
-  importGroups : [
+  importGroups: [
     { id: 2, name: 'Produce' },
     { id: 3, name: 'Bakery' },
     { id: 56, name: 'Services' }
   ],
-  importPages : [
+  importPages: [
     { id: 1, name: 'Popular' },
     { id: 2, name: 'A-E' },
     { id: 3, name: 'F-J' },
@@ -33,15 +33,17 @@ const settings = {
     { from: 'left', to: 'Left' }
   ],
   grid: {
-    rows: 4,
-    columns: 7,
     import: {
+      rows: 4,
+      columns: 7,
       height: 107,
       width: 100,
       offsetLeft: 90,
       offsetTop: 52
     },
     export: {
+      rows: 4,
+      columns: 7,
       height: 107,
       width: 100,
       offsetLeft: 90,
