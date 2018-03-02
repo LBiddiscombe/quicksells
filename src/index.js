@@ -11,7 +11,7 @@ registerServiceWorker()
 polyfill()
 setItemGridHeight()
 
-window.onresize = function(event) {
+window.onresize = function() {
   setItemGridHeight()
 }
 
