@@ -14,11 +14,19 @@ function ImportFromCSV(csvFile) {
     if (csvFile) {
       resolve(loadCSV(csvFile))
     } else {
+      resolve({
+        groups: [],
+        pages: [],
+        products: [],
+        layout: {}
+      })
+      /*
       fetch('./data/QuickSellButtons.csv')
         .then(response => response.text())
         .then(response => {
           resolve(loadCSV(response))
         })
+      */
     }
   })
 }

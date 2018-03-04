@@ -9,13 +9,3 @@ ReactDOM.render(<App />, document.getElementById('root'))
 registerServiceWorker()
 
 polyfill()
-setItemGridHeight()
-
-window.onresize = function() {
-  setItemGridHeight()
-}
-
-function setItemGridHeight() {
-  const items = document.getElementById('items')
-  if (items !== null) items.style.height = items.clientWidth * 4 / 7 + 'px'
-}

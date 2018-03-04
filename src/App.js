@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Filter from './components/Filter'
 import Aside from './components/Aside'
 import Main from './components/Main'
-import ImportFromCSV from './services/ImportFromCSV'
+//import ImportFromCSV from './services/ImportFromCSV'
 
 class App extends React.Component {
   constructor() {
@@ -56,6 +56,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    /*
     ImportFromCSV().then(result => {
       this.setState({
         groups: result.groups,
@@ -64,14 +65,17 @@ class App extends React.Component {
         layout: result.layout
       })
     })
+    */
   }
 
   render() {
+    const fileLoaded = this.state.products.length > 0
+
     return (
       <div className="app">
         <Header />
-        <Filter handleFilterChange={this.handleFilterChange} />
-        <Aside products={this.state.products} filter={this.state.filter} />
+        {fileLoaded > 0 && <Filter handleFilterChange={this.handleFilterChange} />}
+        {fileLoaded > 0 && <Aside products={this.state.products} filter={this.state.filter} />}
         <Main
           groups={this.state.groups}
           pages={this.state.pages}

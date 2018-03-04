@@ -1,6 +1,7 @@
 import React from 'react'
 import Nav from './Nav'
 import GridItems from './GridItems'
+import LandingPage from './LandingPage'
 import ExportToCSV from '../services/ExportToCSV'
 import ImportFromCSV from '../services/ImportFromCSV'
 
@@ -10,11 +11,20 @@ class Import extends React.Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)
+    this.handleReset = this.handleReset.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   handleClick() {
     fileInput.click()
+  }
+
+  handleReset(ev) {
+    ev.preventDefault()
+    const fileImport = this.props.fileImport
+    ImportFromCSV().then(result => {
+      fileImport(result)
+    })
   }
 
   handleChange(ev) {
@@ -25,6 +35,7 @@ class Import extends React.Component {
     reader.onload = function(e) {
       ImportFromCSV(e.target.result).then(result => {
         fileImport(result)
+        setItemGridHeight()
       })
     }
     reader.readAsText(file)
@@ -33,7 +44,7 @@ class Import extends React.Component {
 
   render() {
     return (
-      <div className="import">
+      <form className="import">
         <input
           type="file"
           accept=".csv"
@@ -44,14 +55,17 @@ class Import extends React.Component {
           style={{ display: 'none' }}
         />
         <a className="import" onClick={this.handleClick}>
-          <span>
-            <i className="fas fa-2x fa-upload" />
-          </span>
+          <i className="fas fa-2x fa-upload" />
         </a>
-      </div>
+      </form>
     )
   }
 }
+/*
+<a className="reset" onClick={this.handleReset}>
+          <i className="fas fa-2x fa-window-close" />
+        </a>
+*/
 
 class Export extends React.Component {
   constructor() {
@@ -104,7 +118,7 @@ class Main extends React.Component {
     return (
       <main id="main">
         <Import fileImport={this.props.fileImport} />
-        <Export layout={layout} />
+        {layout.groups && <Export layout={layout} />}
         <Nav
           groups={this.props.groups}
           pages={this.props.pages}
@@ -112,10 +126,20 @@ class Main extends React.Component {
           activepage={this.state.activepage}
           handleTabChange={this.handleTabChange}
         />
-        <GridItems products={products} changeLayout={this.props.changeLayout} />
+        {layout.groups && <GridItems products={products} changeLayout={this.props.changeLayout} />}
+        {!layout.groups && <LandingPage />}
       </main>
     )
   }
+}
+
+window.onresize = function() {
+  setItemGridHeight()
+}
+
+function setItemGridHeight() {
+  const items = document.getElementById('items')
+  if (items !== null) items.style.height = items.clientWidth * 4 / 7 + 'px'
 }
 
 export default Main

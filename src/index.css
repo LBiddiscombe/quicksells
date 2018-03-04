@@ -85,7 +85,7 @@ main {
   grid-area: main;
   display: grid;
   grid-template-columns: 50px 1fr 50px;
-  grid-template-rows: auto minmax(min-content, 1fr);
+  grid-template-rows: minmax(105px, auto) minmax(min-content, 1fr);
   grid-template-areas: 'left tabs right' 'quicksells quicksells quicksells';
   align-items: start;
   background-color: var(--header-bg);
@@ -176,6 +176,13 @@ a.export {
 a.import:hover,
 a.export:hover {
   color: rgba(var(--a-color), 0.9);
+}
+
+.landing {
+  grid-area: quicksells;
+  align-self: center;
+  justify-self: center;
+  color: var(--header-color);
 }
 
 /*#endregion */
