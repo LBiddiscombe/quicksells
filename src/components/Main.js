@@ -17,7 +17,7 @@ class Import extends React.Component {
     fileInput.click()
   }
 
-  handleChange() {
+  handleChange(ev) {
     const fileImport = this.props.fileImport
 
     const file = fileInput.files[0]
@@ -28,6 +28,7 @@ class Import extends React.Component {
       })
     }
     reader.readAsText(file)
+    ev.target.value = null
   }
 
   render() {
