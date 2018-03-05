@@ -73,7 +73,7 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Header />
+        <Header fileImport={this.handleFileImport} />
         {fileLoaded > 0 && <Filter handleFilterChange={this.handleFilterChange} />}
         {fileLoaded > 0 && <Aside products={this.state.products} filter={this.state.filter} />}
         <Main
@@ -81,7 +81,6 @@ class App extends React.Component {
           pages={this.state.pages}
           layout={this.state.layout}
           changeLayout={this.handleLayoutChange}
-          fileImport={this.handleFileImport}
         />
       </div>
     )

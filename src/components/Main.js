@@ -1,6 +1,5 @@
 import React from 'react'
 import Nav from './Nav'
-import ImportFile from './ImportFile'
 import ExportFile from './ExportFile'
 import GridItems from './Grid/GridItems'
 import LandingPage from './LandingPage'
@@ -41,7 +40,6 @@ class Main extends React.Component {
 
     return (
       <main id="main">
-        <ImportFile fileImport={this.props.fileImport} />
         {layout.groups && <ExportFile layout={layout} />}
         <Nav
           groups={this.props.groups}

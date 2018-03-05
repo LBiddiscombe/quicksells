@@ -179,7 +179,8 @@ a.export:hover {
 }
 
 .landing {
-  grid-area: quicksells;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
   align-self: center;
   justify-self: center;
   color: var(--header-color);
@@ -301,7 +302,14 @@ li.listitem > .listitemlabel {
     position: sticky;
     top: 0px;
     z-index: 4;
+    min-height: calc(100vh - 82px);
   }
+
+  .landing {
+    padding-top: 10vh;
+    align-self: start;
+  }
+
   #filterwrap {
     position: -webkit-sticky;
     position: -moz-sticky;
