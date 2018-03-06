@@ -188,13 +188,15 @@ a.export:hover {
 
 /*#region Landing */
 .landing {
-  grid-row: 2/-1;
+  grid-row: 1/-1;
   grid-column: 1/-1;
-  align-self: start;
+  align-self: center;
   justify-self: center;
+  display: grid;
+  grid-auto-rows: 100px 250px;
+  grid-template-areas: 'title' 'steps';
   color: var(--header-color);
   width: 50%;
-  height: 200px;
   margin: 2rem;
 }
 
@@ -206,36 +208,8 @@ a.export:hover {
   height: 90%;
 }
 
-/* http://www.cssarrowplease.com/ */
-.arrow_box {
-  position: relative;
-  background: var(--header-bg);
-  border: 4px solid var(--aside-bg);
-}
-.arrow_box:after,
-.arrow_box:before {
-  left: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: ' ';
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-}
+/* if i want to add arrows... http://www.cssarrowplease.com/ */
 
-.arrow_box:after {
-  border-color: rgba(136, 183, 213, 0);
-  border-left-color: var(--header-bg);
-  border-width: 30px;
-  margin-top: -30px;
-}
-.arrow_box:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-left-color: var(--aside-bg);
-  border-width: 36px;
-  margin-top: -36px;
-}
 /*#endregion */
 
 /*#region Aside */
@@ -356,7 +330,6 @@ li.listitem > .listitemlabel {
 
   .landing {
     grid-row: 2/-1;
-    z-index: 10;
     min-height: calc(100vh - 82px);
     align-self: start;
   }

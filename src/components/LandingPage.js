@@ -6,6 +6,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing">
+        <p className="title is-2 has-text-centered">Let's get started...</p>
         <div className="landingsteps">
           <LandingStep zindex="3" arrow={false} leftBorder={true}>
             <i className="fas fa-5x fa-upload" />

@@ -35,15 +35,6 @@ class Main extends React.Component {
       products = layout.groups
         .find(g => g.id === this.state.activegroup)
         .pages.find(p => p.id === this.state.activepage).products
-    } else {
-      const gridLength = settings.grid.import.rows * settings.grid.import.columns
-
-      for (let i = 0; i < gridLength; i++) {
-        products.push({
-          seq: i + 1,
-          placeholder: true
-        })
-      }
     }
 
     return (

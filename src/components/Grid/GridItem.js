@@ -62,9 +62,8 @@ class GridItem extends React.Component {
 
   render() {
     const product = this.props.product
-    const isFilled = !product.empty && !product.placeholder
+    const isFilled = !product.empty
     const isWithImage = Boolean(product.image)
-    const isPlaceholder = product.placeholder
     var classNames = ['item']
     classNames.push(isFilled ? 'filled' : 'empty')
     if (!isWithImage) classNames.push('noimage')
@@ -90,13 +89,11 @@ class GridItem extends React.Component {
           </div>
         )}
         {isFilled && <div className="itemlabel"> {product.label} </div>}
-        {!isFilled &&
-          !isPlaceholder && (
-            <div className="itemlabel">
-              <i className="fas fa-4x fa-plus-circle" />
-            </div>
-          )}
-        {isPlaceholder && <div />}
+        {!isFilled && (
+          <div className="itemlabel">
+            <i className="fas fa-4x fa-plus-circle" />
+          </div>
+        )}
       </div>
     )
   }
