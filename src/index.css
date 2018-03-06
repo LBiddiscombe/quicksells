@@ -196,7 +196,7 @@ a.export:hover {
   grid-auto-rows: 100px 250px;
   grid-template-areas: 'title' 'steps';
   color: var(--header-color);
-  width: 50%;
+  min-width: 900px;
   margin: 2rem;
 }
 
@@ -331,7 +331,20 @@ li.listitem > .listitemlabel {
   .landing {
     grid-row: 2/-1;
     min-height: calc(100vh - 82px);
+    min-width: 75%;
     align-self: start;
+  }
+
+  .landing > .title {
+    font-size: 2rem;
+  }
+
+  .landingsteps {
+    grid-gap: 0;
+  }
+
+  .landingstep {
+    padding-top: 1rem;
   }
 
   #filterwrap {

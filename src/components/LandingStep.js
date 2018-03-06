@@ -6,8 +6,10 @@ class LandingStep extends React.Component {
       display: 'grid',
       gridTemplateRows: '2fr 1fr',
       justifyItems: 'center',
+      justifySelf: 'center',
       alignItems: 'center',
       width: '100%',
+      maxWidth: '300px',
       height: '100%',
       zIndex: this.props.zindex,
       border: '4px solid var(--aside-bg)',
@@ -18,7 +20,7 @@ class LandingStep extends React.Component {
     const arrowClass = this.props.arrow ? 'arrow_box' : ''
 
     return (
-      <div className={arrowClass} style={{ ...style }}>
+      <div className="landingstep" style={{ ...style }}>
         {this.props.children}
       </div>
     )
