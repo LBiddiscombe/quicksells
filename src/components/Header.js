@@ -1,5 +1,4 @@
 import React from 'react'
-import ImportFile from './ImportFile'
 import ExportFile from './ExportFile'
 import Logo from './Logo'
 
@@ -15,11 +14,6 @@ class Header extends React.Component {
         <div className="headercenter">
           <p className="title is-4 has-text-light">Quicksell Builder</p>
         </div>
-        {fullwidth && (
-          <div className="headerright">
-            <ImportFile fileImport={this.props.fileImport} />
-          </div>
-        )}
         {!fullwidth &&
           layout.groups && (
             <div className="headerright">

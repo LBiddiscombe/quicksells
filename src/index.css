@@ -88,14 +88,6 @@ header.fullwidth {
   justify-self: center;
 }
 
-.import {
-  grid-area: left;
-}
-
-.export {
-  grid-area: right;
-}
-
 a.import,
 a.export {
   color: rgba(var(--a-color), 0.75);
@@ -207,6 +199,10 @@ main {
   grid-gap: 2rem;
   align-items: center;
   height: 90%;
+}
+
+.landingicon {
+  color: rgba(var(--a-color), 0.75);
 }
 
 /* if i want to add arrows... http://www.cssarrowplease.com/ */

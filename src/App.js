@@ -60,14 +60,10 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Header
-          fileImport={this.handleFileImport}
-          layout={this.state.layout}
-          fullwidth={!fileLoaded}
-        />
+        <Header layout={this.state.layout} fullwidth={!fileLoaded} />
         {fileLoaded && <Filter handleFilterChange={this.handleFilterChange} />}
         {fileLoaded && <Aside products={this.state.products} filter={this.state.filter} />}
-        {!fileLoaded && <LandingPage />}
+        {!fileLoaded && <LandingPage fileImport={this.handleFileImport} />}
         {fileLoaded && (
           <Main
             groups={this.state.groups}

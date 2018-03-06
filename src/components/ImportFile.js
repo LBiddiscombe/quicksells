@@ -38,6 +38,7 @@ class ImportFile extends React.Component {
   }
 
   render() {
+    const iconsize = this.props.iconsize ? this.props.iconsize : 'fa-2x'
     return (
       <form className="import">
         <input
@@ -50,7 +51,7 @@ class ImportFile extends React.Component {
           style={{ display: 'none' }}
         />
         <a className="import" onClick={this.handleClick}>
-          <i className="fas fa-2x fa-upload" />
+          <i className={'fas fa-upload ' + iconsize} />
         </a>
       </form>
     )
