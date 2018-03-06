@@ -60,13 +60,17 @@ function getUniqueProducts(products) {
 function getFilteredResults(groups, pages, results) {
   return results
     .filter(p => {
-      return groups.map(r => r.id).includes(p.group) && pages.map(r => r.id).includes(p.page)
+      return (
+        groups.map(r => r.id).includes(p.group) &&
+        pages.map(r => r.id).includes(p.page) &&
+        p.Action === 'ADD'
+      )
     })
     .map(p => {
       return {
         item: p.item,
         label: p.label,
-        image: p.image !== 'NULL' ? p.image : false,
+        image: p.image && p.image !== 'NULL' ? p.image : false,
         group: p.group,
         page: p.page,
         seq: p.seq,
@@ -116,10 +120,10 @@ function getLayoutProducts(group, page, filteredResults) {
     })
   }
 
-  filteredResults.filter(r => r.group === group.id && r.page === page.id).forEach(p => {
+  filteredResults.filter(r => r.group === group.id && r.page === page.id).forEach((p, index) => {
     const pos = getGridPosition(p.top, p.left)
-    p.seq = pos + 1
-    layoutProducts[pos] = p
+    p.seq = pos !== -1 ? pos + 1 : index + 1
+    layoutProducts[p.seq - 1] = p
   })
 
   return layoutProducts
@@ -131,6 +135,10 @@ function getGridPosition(top, left) {
   const offsetLeft = settings.grid.import.offsetLeft
   const offsetTop = settings.grid.import.offsetTop
   const cols = settings.grid.import.columns
+
+  if (!top || !left || isNaN(top) || isNaN(left)) {
+    return -1
+  }
 
   let row = (top - offsetTop) / height
   let col = (left - offsetLeft) / width

@@ -16,7 +16,7 @@ function csvJSON(csv) {
         // numeric field with padding
         const str = new Array(mappedField.length + 1).join(mappedField.pad)
         obj[property] = (str + currentline[j]).slice(-mappedField.length)
-      } else if (mappedField && mappedField.prefix && currentline[j] !== 'NULL') {
+      } else if (mappedField && mappedField.prefix && currentline[j] && currentline[j] !== 'NULL') {
         // field with a prefix string, e.g. image path
         obj[property] = mappedField.prefix + currentline[j]
         //
