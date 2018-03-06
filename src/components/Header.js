@@ -4,17 +4,20 @@ import Logo from './Logo'
 
 class Header extends React.Component {
   render() {
+    const fullwidth = this.props.fullwidth ? 'fullwidth' : ''
     return (
-      <header>
+      <header className={fullwidth}>
         <div className="headerleft">
           <Logo />
         </div>
         <div className="headercenter">
           <p className="title is-4 has-text-light">Quicksell Builder</p>
         </div>
-        <div className="headerright">
-          <ImportFile fileImport={this.props.fileImport} />
-        </div>
+        {fullwidth && (
+          <div className="headerright">
+            <ImportFile fileImport={this.props.fileImport} />
+          </div>
+        )}
       </header>
     )
   }

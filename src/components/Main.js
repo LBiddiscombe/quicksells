@@ -2,7 +2,6 @@ import React from 'react'
 import Nav from './Nav'
 import ExportFile from './ExportFile'
 import GridItems from './Grid/GridItems'
-import LandingPage from './LandingPage'
 import settings from '../settings'
 
 class Main extends React.Component {
@@ -15,7 +14,7 @@ class Main extends React.Component {
     this.handleTabChange = this.handleTabChange.bind(this)
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     setItemGridHeight()
   }
 
@@ -36,6 +35,15 @@ class Main extends React.Component {
       products = layout.groups
         .find(g => g.id === this.state.activegroup)
         .pages.find(p => p.id === this.state.activepage).products
+    } else {
+      const gridLength = settings.grid.import.rows * settings.grid.import.columns
+
+      for (let i = 0; i < gridLength; i++) {
+        products.push({
+          seq: i + 1,
+          placeholder: true
+        })
+      }
     }
 
     return (
@@ -48,8 +56,7 @@ class Main extends React.Component {
           activepage={this.state.activepage}
           handleTabChange={this.handleTabChange}
         />
-        {layout.groups && <GridItems products={products} changeLayout={this.props.changeLayout} />}
-        {!layout.groups && <LandingPage />}
+        <GridItems products={products} changeLayout={this.props.changeLayout} />
       </main>
     )
   }
