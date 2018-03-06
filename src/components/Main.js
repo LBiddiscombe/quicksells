@@ -1,6 +1,5 @@
 import React from 'react'
 import Nav from './Nav'
-import ExportFile from './ExportFile'
 import GridItems from './Grid/GridItems'
 import settings from '../settings'
 
@@ -39,7 +38,6 @@ class Main extends React.Component {
 
     return (
       <main id="main">
-        {layout.groups && <ExportFile layout={layout} />}
         <Nav
           groups={this.props.groups}
           pages={this.props.pages}

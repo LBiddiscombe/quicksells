@@ -1,10 +1,12 @@
 import React from 'react'
 import ImportFile from './ImportFile'
+import ExportFile from './ExportFile'
 import Logo from './Logo'
 
 class Header extends React.Component {
   render() {
     const fullwidth = this.props.fullwidth ? 'fullwidth' : ''
+    const layout = this.props.layout
     return (
       <header className={fullwidth}>
         <div className="headerleft">
@@ -18,6 +20,12 @@ class Header extends React.Component {
             <ImportFile fileImport={this.props.fileImport} />
           </div>
         )}
+        {!fullwidth &&
+          layout.groups && (
+            <div className="headerright">
+              <ExportFile layout={layout} />
+            </div>
+          )}
       </header>
     )
   }

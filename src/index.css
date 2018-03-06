@@ -52,7 +52,7 @@ html {
 header {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  grid-template-areas: 'logo title import';
+  grid-template-areas: 'logo title action';
   grid-gap: 0.5rem;
   align-items: center;
   justify-content: center;
@@ -76,10 +76,34 @@ header.fullwidth {
   grid-area: title;
 }
 .headerright {
-  grid-area: import;
+  grid-area: action;
 }
 .headerright a {
   color: rgba(var(--a-color), 0.75);
+}
+
+.import,
+.export {
+  align-self: center;
+  justify-self: center;
+}
+
+.import {
+  grid-area: left;
+}
+
+.export {
+  grid-area: right;
+}
+
+a.import,
+a.export {
+  color: rgba(var(--a-color), 0.75);
+}
+
+a.import:hover,
+a.export:hover {
+  color: rgba(var(--a-color), 0.9);
 }
 
 /*#endregion */
@@ -160,30 +184,6 @@ main {
   outline: 4px dashed var(--accent-color);
 }
 
-.import,
-.export {
-  align-self: center;
-  justify-self: center;
-}
-
-.import {
-  grid-area: left;
-}
-
-.export {
-  grid-area: right;
-}
-
-a.import,
-a.export {
-  color: rgba(var(--a-color), 0.75);
-}
-
-a.import:hover,
-a.export:hover {
-  color: rgba(var(--a-color), 0.9);
-}
-
 /*#endregion */
 
 /*#region Landing */
@@ -202,7 +202,7 @@ a.export:hover {
 
 .landingsteps {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, 275px);
   grid-gap: 2rem;
   align-items: center;
   height: 90%;
@@ -340,7 +340,7 @@ li.listitem > .listitemlabel {
   }
 
   .landingsteps {
-    grid-gap: 0;
+    grid-gap: 0.5rem;
   }
 
   .landingstep {
