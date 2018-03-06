@@ -1,4 +1,5 @@
 import React from 'react'
+import ProductImage from '../ProductImage'
 
 class GridItem extends React.Component {
   constructor() {
@@ -83,11 +84,7 @@ class GridItem extends React.Component {
         onDropCapture={e => this.handleDrop(e, this)}
         onTouchMove={isFilled ? e => this.touchMove(e) : null}
       >
-        {isWithImage && (
-          <div className="itemimg">
-            <img src={product.image} alt={product.label} />
-          </div>
-        )}
+        {isWithImage && <ProductImage product={product} />}
         {isFilled && <div className="itemlabel"> {product.label} </div>}
         {!isFilled && (
           <div className="itemlabel">
