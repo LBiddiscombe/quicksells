@@ -1,5 +1,4 @@
 import React from 'react'
-import Logo from './Logo'
 import ImportFile from './ImportFile'
 import LandingStep from './LandingStep'
 

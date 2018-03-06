@@ -14,10 +14,8 @@ class LandingStep extends React.Component {
       zIndex: this.props.zindex,
       border: '4px solid var(--aside-bg)',
       borderTop: !this.props.leftBorder && 'none',
-      backgroundColor: !this.props.arrow && 'var(--header-bg)'
+      backgroundColor: 'var(--header-bg)'
     }
-
-    const arrowClass = this.props.arrow ? 'arrow_box' : ''
 
     return (
       <div className="landingstep" style={{ ...style }}>
