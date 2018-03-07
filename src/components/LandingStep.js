@@ -13,7 +13,8 @@ class LandingStep extends React.Component {
       height: '100%',
       zIndex: this.props.zindex,
       border: '4px solid var(--aside-bg)',
-      backgroundColor: 'rgba(255, 255, 255, 0.2)'
+      borderRadius: '10px',
+      boxShadow: 'var(--shadow)'
     }
 
     return (

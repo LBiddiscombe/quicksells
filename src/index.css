@@ -60,7 +60,7 @@ header {
   color: var(--header-color);
   grid-area: header;
   padding: 0.5rem 1rem;
-  box-shadow: var(--shadow);
+  outline: 2px solid var(--aside-bg);
   z-index: 1;
 }
 
