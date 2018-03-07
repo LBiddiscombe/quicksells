@@ -6,7 +6,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing">
-        <p className="title is-2 has-text-centered">Let's get started...</p>
+        <p className="title is-2 has-text-centered has-text-light">Let's get started...</p>
         <div className="landingsteps">
           <LandingStep zindex="3" arrow={false} leftBorder={true}>
             <ImportFile iconsize="fa-5x" fileImport={this.props.fileImport} />

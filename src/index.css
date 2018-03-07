@@ -61,6 +61,7 @@ header {
   grid-area: header;
   padding: 0.5rem 1rem;
   box-shadow: var(--shadow);
+  z-index: 1;
 }
 
 header.fullwidth {
@@ -184,13 +185,17 @@ main {
   grid-column: 1/-1;
   align-self: center;
   justify-self: center;
+  align-content: center;
   display: grid;
   grid-template-rows: 100px 250px;
   grid-template-areas: 'title' 'steps';
   color: var(--header-color);
   width: 100%;
-  max-width: 900px;
+  height: 100%;
   margin: 2rem;
+  background-image: url('/images/landing.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .landingsteps {
@@ -198,7 +203,9 @@ main {
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 2rem;
   align-items: center;
+  justify-self: center;
   height: 90%;
+  max-width: 900px;
 }
 
 .landingicon {
@@ -326,19 +333,24 @@ li.listitem > .listitemlabel {
   }
 
   .landing {
-    grid-row: 2/-1;
+    grid-row: 1/-1;
     grid-template-rows: 75px 250px;
     min-height: calc(100vh - 82px);
     min-width: 75%;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas: 'title' 'steps';
     align-self: start;
   }
 
   .landing > p.title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    grid-area: title;
+    align-self: end;
   }
 
   .landingsteps {
+    grid-area: steps;
     grid-gap: 0.5rem;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;

@@ -9,12 +9,11 @@ class LandingStep extends React.Component {
       justifySelf: 'center',
       alignItems: 'center',
       width: '100%',
-      maxWidth: '300px',
+      minWidth: '220px',
       height: '100%',
       zIndex: this.props.zindex,
       border: '4px solid var(--aside-bg)',
-      borderTop: !this.props.leftBorder && 'none',
-      backgroundColor: 'var(--header-bg)'
+      backgroundColor: 'rgba(255, 255, 255, 0.2)'
     }
 
     return (
