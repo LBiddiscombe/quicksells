@@ -1,28 +1,49 @@
 import React from 'react'
 import ProductImage from '../ProductImage'
+import Modal from '../Modal'
 
 class GridItem extends React.Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)
     this.state = {
-      flipped: false
+      flipped: false,
+      isModalOpen: false
     }
   }
 
-  handleClick() {
+  handleClick(e) {
+    if (!e.target.id) {
+      return
+    }
+
     const product = this.props.data
     const isWithImage = Boolean(product.image)
-    if (isWithImage) {
+    const isFilled = !product.empty
+
+    if (isFilled) {
+      if (isWithImage) {
+        this.setState({
+          flipped: !this.state.flipped
+        })
+      }
+    } else {
       this.setState({
-        flipped: !this.state.flipped
+        isModalOpen: true
       })
     }
   }
 
+  closeModal() {
+    this.setState({
+      isModalOpen: false
+    })
+  }
+
   componentWillReceiveProps() {
     this.setState({
-      flipped: false
+      flipped: false,
+      isModalOpen: false
     })
   }
 
@@ -51,6 +72,15 @@ class GridItem extends React.Component {
             <i className="fas fa-4x fa-plus-circle" />
           </div>
         )}
+        <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+          <p className="title is-4 has-text-centered">Add Product</p>
+          <ul>
+            <li>Possibly, but maybe not?!</li>
+            <li>Select from items not currently assigned? Need a way to add these in aside</li>
+            <li>Create new item here? Maybe better in the aside</li>
+            <li>Consider using just the aside for CRUD, drag item onto grid to add to layout</li>
+          </ul>
+        </Modal>
       </div>
     )
   }

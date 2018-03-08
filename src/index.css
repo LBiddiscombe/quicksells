@@ -22,7 +22,7 @@ http://coop-design-manual.herokuapp.com/styles/colours.html
   --header-color: white;
   --main-bg: #f3fbfe;
   --aside-bg: #f3fbfe;
-  --item-bg: white;
+  --item-bg: #f3fbfe;
   --a-color: 240, 240, 240;
   --item-empty-bg: rgba(255, 255, 255, 0.05);
   --item-hover-bg: rgba(255, 255, 255, 0.1);
@@ -98,7 +98,8 @@ a.close {
 }
 
 a.import:hover,
-a.export:hover {
+a.export:hover,
+a.close:hover {
   color: rgba(var(--a-color), 0.9);
 }
 
