@@ -45,7 +45,7 @@ class GridItem extends React.Component {
         onClick={this.handleClick}
       >
         {isWithImage && <ProductImage product={product} />}
-        {isFilled && <div className="itemlabel"> {product.label} </div>}
+        {isFilled && <div className="itemlabel"> {product.label.replace('�', '£')} </div>}
         {!isFilled && (
           <div className="itemlabel">
             <i className="fas fa-4x fa-plus-circle" />
