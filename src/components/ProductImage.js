@@ -11,7 +11,7 @@ class ProductImage extends React.Component {
     const product = this.props.product
     return (
       <div className="itemimg">
-        <img src={product.image} alt={product.label} />
+        <img src={product.image} alt="" />
       </div>
     )
   }
