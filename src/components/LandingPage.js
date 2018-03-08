@@ -1,5 +1,5 @@
 import React from 'react'
-import ImportFile from './ImportFile'
+import ImportFile from './File/ImportFile'
 import LandingStep from './LandingStep'
 
 class LandingPage extends React.Component {

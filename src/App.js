@@ -18,6 +18,7 @@ class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleLayoutChange = this.handleLayoutChange.bind(this)
     this.handleFileImport = this.handleFileImport.bind(this)
+    this.handleFileClose = this.handleFileClose.bind(this)
   }
 
   handleLayoutChange(source, target) {
@@ -79,6 +80,26 @@ class App extends React.Component {
     })
   }
 
+  handleFileClose() {
+    localStorage.setItem(
+      'state',
+      JSON.stringify({
+        groups: [],
+        pages: [],
+        products: [],
+        layout: {}
+      })
+    )
+
+    this.setState({
+      groups: [],
+      pages: [],
+      products: [],
+      layout: {},
+      filter: ''
+    })
+  }
+
   handleFilterChange(e) {
     this.setState({ filter: e.target.value })
   }
@@ -95,7 +116,11 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <Header layout={this.state.layout} fullwidth={!fileLoaded} />
+        <Header
+          layout={this.state.layout}
+          fullwidth={!fileLoaded}
+          handleFileClose={this.handleFileClose}
+        />
         {fileLoaded && <Filter handleFilterChange={this.handleFilterChange} />}
         {fileLoaded && <Aside products={this.state.products} filter={this.state.filter} />}
         {!fileLoaded && <LandingPage fileImport={this.handleFileImport} />}

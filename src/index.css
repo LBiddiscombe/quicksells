@@ -60,7 +60,7 @@ header {
   color: var(--header-color);
   grid-area: header;
   padding: 0.5rem 1rem;
-  outline: 2px solid var(--aside-bg);
+  outline: 4px solid var(--aside-bg);
   z-index: 1;
 }
 
@@ -84,13 +84,16 @@ header.fullwidth {
 }
 
 .import,
-.export {
+.export,
+a.close {
   align-self: center;
   justify-self: center;
 }
 
 a.import,
-a.export {
+a.export,
+a.close {
+  padding-left: 0.5rem;
   color: rgba(var(--a-color), 0.75);
 }
 
@@ -113,6 +116,12 @@ main {
   background-color: var(--header-bg);
   box-shadow: var(--shadow);
 }
+
+main .export {
+  grid-area: right;
+  padding-right: 1rem;
+}
+
 .items {
   grid-area: quicksells;
   display: grid;
@@ -317,10 +326,10 @@ li.listitem > .listitemlabel {
 @media (max-width: 768px) {
   .app {
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 75px 1fr auto;
     grid-template-areas: 'header' 'main' 'filter' 'aside';
     margin: 0;
-    grid-gap: 0;
+    grid-gap: 3px;
   }
   main {
     position: -webkit-sticky;
@@ -330,6 +339,11 @@ li.listitem > .listitemlabel {
     position: sticky;
     top: 0px;
     z-index: 4;
+  }
+
+  main .export {
+    padding: 1rem;
+    align-self: start;
   }
 
   .landing {
@@ -371,10 +385,10 @@ li.listitem > .listitemlabel {
     background-color: var(--aside-bg);
   }
   header {
-    padding: 1.5rem 0.5rem;
+    padding: 1rem 0.5rem;
   }
   .headercenter {
-    margin-left: -3rem;
+    grid-column: 1/-1;
     text-align: center;
   }
   .qsnav .qstabs li {

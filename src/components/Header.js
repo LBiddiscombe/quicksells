@@ -1,5 +1,5 @@
 import React from 'react'
-import ExportFile from './ExportFile'
+import CloseFile from './File/CloseFile'
 import Logo from './Logo'
 
 class Header extends React.Component {
@@ -17,7 +17,7 @@ class Header extends React.Component {
         {!fullwidth &&
           layout.groups && (
             <div className="headerright">
-              <ExportFile layout={layout} />
+              <CloseFile handleFileClose={this.props.handleFileClose} />
             </div>
           )}
       </header>
