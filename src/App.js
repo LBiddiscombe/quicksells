@@ -40,9 +40,37 @@ class App extends React.Component {
     this.setState({
       layout: newLayout
     })
+
+    localStorage.setItem(
+      'state',
+      JSON.stringify(
+        {
+          groups: this.state.groups,
+          pages: this.state.pages,
+          products: this.state.products,
+          layout: newLayout
+        },
+        null,
+        2
+      )
+    )
   }
 
   handleFileImport(result) {
+    localStorage.setItem(
+      'state',
+      JSON.stringify(
+        {
+          groups: result.groups,
+          pages: result.pages,
+          products: result.products,
+          layout: result.layout
+        },
+        null,
+        2
+      )
+    )
+
     this.setState({
       groups: result.groups,
       pages: result.pages,
@@ -53,6 +81,13 @@ class App extends React.Component {
 
   handleFilterChange(e) {
     this.setState({ filter: e.target.value })
+  }
+
+  componentDidMount() {
+    const localState = localStorage.getItem('state')
+    if (localStorage) {
+      this.setState(JSON.parse(localState))
+    }
   }
 
   render() {
