@@ -19,6 +19,7 @@ class App extends React.Component {
     this.handleLayoutChange = this.handleLayoutChange.bind(this)
     this.handleFileImport = this.handleFileImport.bind(this)
     this.handleFileClose = this.handleFileClose.bind(this)
+    this.handleProductEdit = this.handleProductEdit.bind(this)
   }
 
   handleLayoutChange(source, target) {
@@ -104,6 +105,37 @@ class App extends React.Component {
     this.setState({ filter: e.target.value })
   }
 
+  handleProductEdit(oldProduct, newProduct) {
+    const newLayout = JSON.parse(JSON.stringify(this.state.layout))
+    const newProducts = JSON.parse(JSON.stringify(this.state.products))
+
+    if (newLayout) {
+      newLayout.groups.forEach((group, gi) => {
+        group.pages.forEach((page, gpi) => {
+          const product = page.products.find(
+            p => p.item === oldProduct.item && p.label === oldProduct.label
+          )
+          if (product) {
+            product.label = newProduct.label
+          }
+        })
+      })
+      this.setState({
+        layout: newLayout
+      })
+    }
+
+    const product = newProducts.find(
+      p => p.item === oldProduct.item && p.label === oldProduct.label
+    )
+    if (product) {
+      product.label = newProduct.label
+    }
+    this.setState({
+      products: newProducts
+    })
+  }
+
   componentDidMount() {
     const localState = localStorage.getItem('state')
     if (localStorage) {
@@ -122,7 +154,13 @@ class App extends React.Component {
           handleFileClose={this.handleFileClose}
         />
         {fileLoaded && <Filter handleFilterChange={this.handleFilterChange} />}
-        {fileLoaded && <Aside products={this.state.products} filter={this.state.filter} />}
+        {fileLoaded && (
+          <Aside
+            products={this.state.products}
+            filter={this.state.filter}
+            handleProductEdit={this.handleProductEdit}
+          />
+        )}
         {!fileLoaded && <LandingPage fileImport={this.handleFileImport} />}
         {fileLoaded && (
           <Main

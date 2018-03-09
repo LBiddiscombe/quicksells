@@ -28,7 +28,7 @@ class Main extends React.Component {
   }
 
   render() {
-    var products = []
+    let products = []
 
     const layout = this.props.layout
     if (layout.groups) {

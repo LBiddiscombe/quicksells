@@ -6,7 +6,11 @@ class Aside extends React.Component {
     return (
       <aside className="left">
         <nav className="panel">
-          <ListItems products={this.props.products} filter={this.props.filter} />
+          <ListItems
+            products={this.props.products}
+            filter={this.props.filter}
+            handleProductEdit={this.props.handleProductEdit}
+          />
         </nav>
       </aside>
     )

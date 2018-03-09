@@ -50,7 +50,7 @@ function loadCSV(response) {
 function getUniqueProducts(products) {
   return products.reduce(
     (uniqueProducts, product) =>
-      uniqueProducts.findIndex(p => p.item === product.item) < 0
+      uniqueProducts.findIndex(p => p.item === product.item && p.label === product.label) < 0
         ? [...uniqueProducts, product]
         : uniqueProducts,
     []

@@ -25,7 +25,9 @@ class ListItems extends React.Component {
           )
           lastGroup = product.group
         }
-        rows.push(<ListItem key={i} product={product} />)
+        rows.push(
+          <ListItem key={i} product={product} handleProductEdit={this.props.handleProductEdit} />
+        )
       })
 
     return (
