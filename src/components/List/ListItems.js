@@ -13,7 +13,6 @@ class ListItems extends React.Component {
   }
 
   handleActionClick(e, index, newProduct) {
-    console.log('handle action')
     if (this.state.inEditIndex !== null) {
       if (newProduct) {
         this.props.handleProductEdit(this.props.products[index], newProduct)

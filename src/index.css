@@ -334,9 +334,14 @@ li.listitem > .listitemlabel {
 }
 
 li.listitem > .listitemaction {
+  display: none;
   grid-area: action;
   justify-self: center;
   font-size: 1.5rem;
+}
+
+li.listitem:hover .listitemaction {
+  display: block;
 }
 
 span.hidden {
@@ -405,6 +410,9 @@ span.hidden {
   }
   li.listcategory:not(:first-child) {
     margin-top: 0.5rem;
+  }
+  li.listitem .listitemaction {
+    display: block;
   }
   #filterwrap {
     position: -webkit-sticky;
