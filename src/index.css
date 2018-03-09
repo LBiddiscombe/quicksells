@@ -290,7 +290,7 @@ ul.listitems {
 }
 li.listitem {
   display: grid;
-  grid-template-columns: 48px 1fr 32px;
+  grid-template-columns: 48px 1fr auto;
   grid-template-areas: 'image label action';
   grid-auto-rows: 48px;
   grid-gap: 0.25rem;
@@ -336,7 +336,7 @@ li.listitem > .listitemlabel {
 li.listitem > .listitemaction {
   grid-area: action;
   justify-self: center;
-  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 span.hidden {
