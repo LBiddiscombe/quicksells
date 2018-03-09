@@ -24,6 +24,7 @@ http://coop-design-manual.herokuapp.com/styles/colours.html
   --aside-bg: #f3fbfe;
   --item-bg: #f3fbfe;
   --a-color: 240, 240, 240;
+  --a-color-dark: 80, 80, 80;
   --item-empty-bg: rgba(255, 255, 255, 0.05);
   --item-hover-bg: rgba(255, 255, 255, 0.1);
   --shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
@@ -90,17 +91,21 @@ a.close {
   justify-self: center;
 }
 
-a.import,
-a.export,
-a.close {
+a {
   padding-left: 0.5rem;
   color: rgba(var(--a-color), 0.75);
 }
 
-a.import:hover,
-a.export:hover,
-a.close:hover {
+a.dark {
+  color: rgba(var(--a-color-dark), 0.75);
+}
+
+a:hover {
   color: rgba(var(--a-color), 0.9);
+}
+
+a.dark:hover {
+  color: rgba(var(--a-color-dark), 0.9);
 }
 
 /*#endregion */
@@ -115,14 +120,23 @@ main {
   grid-template-areas: 'left tabs right' 'quicksells quicksells quicksells';
   align-items: start;
   background-color: var(--header-bg);
+  background: -webkit-linear-gradient(
+    to bottom,
+    var(--header-bg),
+    #122736
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    var(--header-bg),
+    #122736
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   box-shadow: var(--shadow);
 }
-
 main .export {
   grid-area: right;
   padding-right: 1rem;
 }
-
 .items {
   grid-area: quicksells;
   display: grid;
@@ -133,7 +147,6 @@ main .export {
   min-height: 0;
   padding: 0.25rem 0.5rem;
 }
-
 .item {
   display: grid;
   grid-template-columns: 1fr;
@@ -186,10 +199,8 @@ main .export {
 .item.dragover {
   outline: 4px dashed var(--accent-color);
 }
-
-/*#endregion */
-
-/*#region Landing */
+/* #endregion */
+/* #region Landing */
 .landing {
   grid-row: 1/-1;
   grid-column: 1/-1;
@@ -207,7 +218,6 @@ main .export {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .landingsteps {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -217,17 +227,12 @@ main .export {
   height: 90%;
   max-width: 900px;
 }
-
 .landingicon {
   color: rgba(var(--a-color), 0.75);
 }
-
 /* if i want to add arrows... http://www.cssarrowplease.com/ */
-
-/*#endregion */
-
-/*#region Aside */
-
+/* #endregion */
+/* #region Aside */
 aside.left {
   grid-area: aside;
   overflow-y: scroll;
@@ -246,11 +251,8 @@ aside.left {
 .panel-block:first-child {
   border: none;
 }
-
-/*#endregion */
-
-/*#region Quicksell Tabs */
-
+/* #endregion */
+/* #region Quicksell Tabs */
 .qsnav {
   grid-column: 1 / -1;
   grid-row: 1;
@@ -277,22 +279,21 @@ aside.left {
 .qsnav .qstabs li:hover {
   color: rgba(var(--a-color), 0.9);
 }
-/*#endregion */
-
-/*#region List Items */
-
+/* #endregion */
+/* #region List Items */
 ul.listitems {
   width: 100%;
 }
 li.listitem {
   display: grid;
-  grid-template-columns: 48px 1fr;
-  grid-template-areas: 'image label';
+  grid-template-columns: 48px 1fr 32px;
+  grid-template-areas: 'image label action';
   grid-auto-rows: 48px;
   grid-gap: 0.25rem;
   align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: solid 2px rgba(var(--a-color), 1);
 }
-
 li.listcategory {
   font-size: 1.2rem;
   font-weight: bold;
@@ -308,7 +309,6 @@ li.listcategory {
 li.listcategory:not(:first-child) {
   margin-top: 1rem;
 }
-
 li.listitem > .listitemimg {
   grid-area: image;
   pointer-events: none;
@@ -329,10 +329,18 @@ li.listitem > .listitemlabel {
   color: #aaa;
 }
 
-/*#endregion */
+li.listitem > .listitemaction {
+  grid-area: action;
+  justify-self: center;
+  font-weight: 600;
+}
 
-/*#region Media queries */
+span.hidden {
+  display: none;
+}
 
+/* #endregion */
+/* #region Media queries */
 @media (min-width: 769px) and (max-width: 1200px) {
   .items {
     grid-gap: 0.25rem;
@@ -359,12 +367,10 @@ li.listitem > .listitemlabel {
     top: 0px;
     z-index: 4;
   }
-
   main .export {
     padding: 1rem;
     align-self: start;
   }
-
   .landing {
     grid-row: 1/-1;
     grid-template-rows: 75px 250px;
@@ -374,25 +380,21 @@ li.listitem > .listitemlabel {
     grid-template-areas: 'title' 'steps';
     align-self: start;
   }
-
   .landing > p.title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
     grid-area: title;
     align-self: end;
   }
-
   .landingsteps {
     grid-area: steps;
     grid-gap: 0.5rem;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
   }
-
   .landingstep {
     padding-top: 1rem;
   }
-
   li.listcategory {
     font-size: 1rem;
     top: 12px;
@@ -400,7 +402,6 @@ li.listitem > .listitemlabel {
   li.listcategory:not(:first-child) {
     margin-top: 0.5rem;
   }
-
   #filterwrap {
     position: -webkit-sticky;
     position: -moz-sticky;
@@ -458,5 +459,4 @@ li.listitem > .listitemlabel {
     outline: 2px dashed var(--accent-color);
   }
 }
-
-/*#endregion */
+/* #endregion */
