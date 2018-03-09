@@ -1,4 +1,5 @@
 import React from 'react'
+import ProductImage from '../Shared/ProductImage'
 
 class ListItem extends React.Component {
   constructor() {
@@ -46,7 +47,7 @@ class ListItem extends React.Component {
     return (
       <li className="listitem">
         <div className="listitemimg">
-          <img src={product.image || 'https://via.placeholder.com/84x64'} alt="" />
+          <ProductImage product={product} />
         </div>
         <div className="listitemlabel">
           {inEdit && (

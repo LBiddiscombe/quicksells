@@ -309,12 +309,12 @@ li.listcategory {
 li.listcategory:not(:first-child) {
   margin-top: 1rem;
 }
-li.listitem > .listitemimg {
+li.listitem > .itemimg {
   grid-area: image;
   pointer-events: none;
   height: 100%;
 }
-.listitemimg img {
+li.listitem > .itemimg img {
   height: 100%;
   width: 100%;
   object-fit: cover;
