@@ -11,7 +11,6 @@ class App extends React.Component {
     this.state = {
       groups: [],
       pages: [],
-      products: [],
       allRows: [],
       filter: ''
     }
@@ -45,7 +44,6 @@ class App extends React.Component {
         {
           groups: this.state.groups,
           pages: this.state.pages,
-          products: this.state.products,
           allRows: newRows
         },
         null,
@@ -61,7 +59,6 @@ class App extends React.Component {
         {
           groups: result.groups,
           pages: result.pages,
-          products: result.products,
           allRows: result.allRows
         },
         null,
@@ -72,7 +69,6 @@ class App extends React.Component {
     this.setState({
       groups: result.groups,
       pages: result.pages,
-      products: result.products,
       allRows: result.allRows
     })
   }
@@ -83,7 +79,6 @@ class App extends React.Component {
       JSON.stringify({
         groups: [],
         pages: [],
-        products: [],
         allRows: []
       })
     )
@@ -91,7 +86,6 @@ class App extends React.Component {
     this.setState({
       groups: [],
       pages: [],
-      products: [],
       allRows: [],
       filter: ''
     })
@@ -103,7 +97,6 @@ class App extends React.Component {
 
   handleProductEdit(oldProduct, newProduct) {
     const newRows = JSON.parse(JSON.stringify(this.state.allRows))
-    const newProducts = JSON.parse(JSON.stringify(this.state.products))
 
     if (newRows) {
       newRows
@@ -115,17 +108,6 @@ class App extends React.Component {
         allRows: newRows
       })
     }
-
-    const product = newProducts.find(
-      p => p.item === oldProduct.item && p.label === oldProduct.label
-    )
-
-    if (product) {
-      product.label = newProduct.label
-    }
-    this.setState({
-      products: newProducts
-    })
   }
 
   componentDidMount() {
@@ -136,7 +118,7 @@ class App extends React.Component {
   }
 
   render() {
-    const fileLoaded = this.state.products.length > 0
+    const fileLoaded = this.state.allRows.length > 0
 
     return (
       <div className="app">
@@ -148,7 +130,7 @@ class App extends React.Component {
         {fileLoaded && <Filter handleFilterChange={this.handleFilterChange} />}
         {fileLoaded && (
           <Aside
-            products={this.state.products}
+            allRows={this.state.allRows}
             filter={this.state.filter}
             handleProductEdit={this.handleProductEdit}
           />

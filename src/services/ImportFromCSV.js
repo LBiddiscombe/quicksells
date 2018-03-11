@@ -17,7 +17,6 @@ function ImportFromCSV(csvFile) {
       resolve({
         groups: [],
         pages: [],
-        products: [],
         allRows: []
       })
     }
@@ -29,25 +28,13 @@ function loadCSV(response) {
   const pages = settings.importPages
   const results = csvJSON(response)
   const filteredResults = getFilteredResults(groups, pages, results)
-  const products = getUniqueProducts(filteredResults)
   const allRows = getAllRows(filteredResults)
 
   return {
     groups,
     pages,
-    products,
     allRows
   }
-}
-
-function getUniqueProducts(products) {
-  return products.reduce(
-    (uniqueProducts, product) =>
-      uniqueProducts.findIndex(p => p.item === product.item && p.label === product.label) < 0
-        ? [...uniqueProducts, product]
-        : uniqueProducts,
-    []
-  )
 }
 
 function getFilteredResults(groups, pages, results) {

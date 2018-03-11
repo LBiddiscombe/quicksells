@@ -18,7 +18,7 @@ class ListItem extends React.Component {
   onActionClick(e) {
     let newProduct = JSON.parse(JSON.stringify(this.props.product))
     newProduct.label = this.labelInput.value
-    this.props.handleActionClick(e, this.props.index, newProduct)
+    this.props.handleActionClick(e, this.props.index, this.props.product, newProduct)
   }
 
   onCancel(e) {

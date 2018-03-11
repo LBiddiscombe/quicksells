@@ -12,10 +12,10 @@ class ListItems extends React.Component {
     }
   }
 
-  handleActionClick(e, index, newProduct) {
+  handleActionClick(e, index, oldProduct, newProduct) {
     if (this.state.inEditIndex !== null) {
       if (newProduct) {
-        this.props.handleProductEdit(this.props.products[index], newProduct)
+        this.props.handleProductEdit(oldProduct, newProduct)
       }
       this.setState({
         inEditIndex: null
@@ -28,7 +28,8 @@ class ListItems extends React.Component {
   }
 
   render() {
-    const products = this.props.products
+    const products = getUniqueProducts(this.props.allRows)
+
     let lastGroup = null
     const rows = []
 
@@ -81,6 +82,18 @@ class ListItems extends React.Component {
       </div>
     )
   }
+}
+
+function getUniqueProducts(products) {
+  return products
+    .filter(p => !p.empty)
+    .reduce(
+      (uniqueProducts, product) =>
+        uniqueProducts.findIndex(p => p.item === product.item && p.label === product.label) < 0
+          ? [...uniqueProducts, product]
+          : uniqueProducts,
+      []
+    )
 }
 
 export default ListItems
