@@ -96,7 +96,7 @@ class App extends React.Component {
   }
 
   handleProductEdit(oldProduct, newProduct) {
-    const newProducts = JSON.parse(JSON.stringify(this.state.products))
+    const newProducts = this.state.products.slice()
 
     if (newProducts) {
       newProducts
