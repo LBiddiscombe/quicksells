@@ -1,6 +1,6 @@
 import React from 'react'
 import GridItem from './GridItem'
-import DragDrop from '../../services/DragDrop'
+import DragDrop from '../Shared/DragDrop'
 
 const DraggableGridItem = DragDrop(GridItem)
 
