@@ -11,7 +11,7 @@ class App extends React.Component {
     this.state = {
       groups: [],
       pages: [],
-      allRows: [],
+      products: [],
       filter: ''
     }
     this.handleFilterChange = this.handleFilterChange.bind(this)
@@ -22,20 +22,20 @@ class App extends React.Component {
   }
 
   handleLayoutChange(source, target) {
-    const newRows = this.state.allRows
-    const newRowSource = newRows.find(r => JSON.stringify(r) === JSON.stringify(source))
-    const newRowTarget = newRows.find(r => JSON.stringify(r) === JSON.stringify(target))
-    const temp = JSON.parse(JSON.stringify(newRowSource))
+    const newProducts = this.state.products.slice()
+    const sourceProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(source))
+    const targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
+    const temp = JSON.parse(JSON.stringify(sourceProduct))
 
-    newRowSource.seq = newRowTarget.seq
-    newRowSource.top = newRowTarget.top
-    newRowSource.left = newRowTarget.left
-    newRowTarget.seq = temp.seq
-    newRowTarget.top = temp.top
-    newRowTarget.left = temp.left
+    sourceProduct.seq = targetProduct.seq
+    sourceProduct.top = targetProduct.top
+    sourceProduct.left = targetProduct.left
+    targetProduct.seq = temp.seq
+    targetProduct.top = temp.top
+    targetProduct.left = temp.left
 
     this.setState({
-      allRows: newRows
+      products: newProducts
     })
 
     localStorage.setItem(
@@ -44,7 +44,7 @@ class App extends React.Component {
         {
           groups: this.state.groups,
           pages: this.state.pages,
-          allRows: newRows
+          products: newProducts
         },
         null,
         2
@@ -59,7 +59,7 @@ class App extends React.Component {
         {
           groups: result.groups,
           pages: result.pages,
-          allRows: result.allRows
+          products: result.products
         },
         null,
         2
@@ -69,7 +69,7 @@ class App extends React.Component {
     this.setState({
       groups: result.groups,
       pages: result.pages,
-      allRows: result.allRows
+      products: result.products
     })
   }
 
@@ -79,14 +79,14 @@ class App extends React.Component {
       JSON.stringify({
         groups: [],
         pages: [],
-        allRows: []
+        products: []
       })
     )
 
     this.setState({
       groups: [],
       pages: [],
-      allRows: [],
+      products: [],
       filter: ''
     })
   }
@@ -96,16 +96,16 @@ class App extends React.Component {
   }
 
   handleProductEdit(oldProduct, newProduct) {
-    const newRows = JSON.parse(JSON.stringify(this.state.allRows))
+    const newProducts = JSON.parse(JSON.stringify(this.state.products))
 
-    if (newRows) {
-      newRows
+    if (newProducts) {
+      newProducts
         .filter(row => row.item === oldProduct.item && row.label === oldProduct.label)
         .forEach(row => {
           row.label = newProduct.label
         })
       this.setState({
-        allRows: newRows
+        products: newProducts
       })
     }
   }
@@ -118,19 +118,19 @@ class App extends React.Component {
   }
 
   render() {
-    const fileLoaded = this.state.allRows.length > 0
+    const fileLoaded = this.state.products.length > 0
 
     return (
       <div className="app">
         <Header
-          allRows={this.state.allRows}
+          products={this.state.products}
           fullwidth={!fileLoaded}
           handleFileClose={this.handleFileClose}
         />
         {fileLoaded && <Filter handleFilterChange={this.handleFilterChange} />}
         {fileLoaded && (
           <Aside
-            allRows={this.state.allRows}
+            products={this.state.products}
             filter={this.state.filter}
             handleProductEdit={this.handleProductEdit}
           />
@@ -140,7 +140,7 @@ class App extends React.Component {
           <Main
             groups={this.state.groups}
             pages={this.state.pages}
-            allRows={this.state.allRows}
+            products={this.state.products}
             changeLayout={this.handleLayoutChange}
           />
         )}

@@ -28,18 +28,18 @@ class Main extends React.Component {
   }
 
   render() {
-    let products = []
+    let gridProducts = []
 
-    const allRows = this.props.allRows
-    if (allRows) {
-      products = allRows.filter(
+    const products = this.props.products
+    if (products) {
+      gridProducts = products.filter(
         r => r.group === this.state.activegroup && r.page === this.state.activepage
       )
     }
 
     return (
       <main id="main">
-        <ExportFile allRows={allRows} />
+        <ExportFile products={products} />
         <Nav
           groups={this.props.groups}
           pages={this.props.pages}
@@ -47,7 +47,7 @@ class Main extends React.Component {
           activepage={this.state.activepage}
           handleTabChange={this.handleTabChange}
         />
-        <GridItems products={products} changeLayout={this.props.changeLayout} />
+        <GridItems products={gridProducts} changeLayout={this.props.changeLayout} />
       </main>
     )
   }

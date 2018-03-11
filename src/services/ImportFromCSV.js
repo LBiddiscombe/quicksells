@@ -17,7 +17,7 @@ function ImportFromCSV(csvFile) {
       resolve({
         groups: [],
         pages: [],
-        allRows: []
+        products: []
       })
     }
   })
@@ -28,12 +28,12 @@ function loadCSV(response) {
   const pages = settings.importPages
   const results = csvJSON(response)
   const filteredResults = getFilteredResults(groups, pages, results)
-  const allRows = getAllRows(filteredResults)
+  const products = getAllRows(filteredResults)
 
   return {
     groups,
     pages,
-    allRows
+    products
   }
 }
 
@@ -46,7 +46,6 @@ function getFilteredResults(groups, pages, results) {
         p.Action === 'ADD'
       )
     })
-    .sort((a, b) => a.group - b.group || a.label.localeCompare(b.label) || a.page - b.page)
     .map(p => {
       return {
         item: p.item,
@@ -64,14 +63,14 @@ function getFilteredResults(groups, pages, results) {
 function getAllRows(filteredResults) {
   const groups = settings.importGroups
   const pages = settings.importPages
-  let allRows = []
+  let products = []
   groups.forEach(group => {
     pages.forEach(page => {
-      allRows.push(...getProductsByGroupByPage(group, page, filteredResults))
+      products.push(...getProductsByGroupByPage(group, page, filteredResults))
     })
   })
 
-  return allRows
+  return products
 }
 
 function getProductsByGroupByPage(group, page, filteredResults) {

@@ -8,7 +8,7 @@ class ExportFile extends React.Component {
   }
 
   handleExport() {
-    ExportToCSV(this.props.allRows)
+    ExportToCSV(this.props.products)
   }
 
   render() {

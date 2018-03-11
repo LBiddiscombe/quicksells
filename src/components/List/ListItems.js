@@ -28,7 +28,7 @@ class ListItems extends React.Component {
   }
 
   render() {
-    const products = getUniqueProducts(this.props.allRows)
+    const products = getUniqueProducts(this.props.products)
 
     let lastGroup = null
     const rows = []

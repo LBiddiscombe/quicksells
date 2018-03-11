@@ -7,7 +7,7 @@ class Aside extends React.Component {
       <aside className="left">
         <nav className="panel">
           <ListItems
-            allRows={this.props.allRows}
+            products={this.props.products}
             filter={this.props.filter}
             handleProductEdit={this.props.handleProductEdit}
           />

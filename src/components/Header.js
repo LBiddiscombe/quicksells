@@ -5,7 +5,7 @@ import Logo from './Logo'
 class Header extends React.Component {
   render() {
     const fullwidth = this.props.fullwidth ? 'fullwidth' : ''
-    const allRows = this.props.allRows
+    const products = this.props.products
     return (
       <header className={fullwidth}>
         <div className="headerleft">
@@ -15,7 +15,7 @@ class Header extends React.Component {
           <p className="title is-4 has-text-light">Quicksell Builder</p>
         </div>
         {!fullwidth &&
-          allRows && (
+          products && (
             <div className="headerright">
               <CloseFile handleFileClose={this.props.handleFileClose} />
             </div>
