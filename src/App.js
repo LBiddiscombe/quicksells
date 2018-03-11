@@ -12,7 +12,7 @@ class App extends React.Component {
       groups: [],
       pages: [],
       products: [],
-      layout: {},
+      allRows: [],
       filter: ''
     }
     this.handleFilterChange = this.handleFilterChange.bind(this)
@@ -23,24 +23,20 @@ class App extends React.Component {
   }
 
   handleLayoutChange(source, target) {
-    const newLayout = this.state.layout
+    const newRows = this.state.allRows
+    const newRowSource = newRows.find(r => JSON.stringify(r) === JSON.stringify(source))
+    const newRowTarget = newRows.find(r => JSON.stringify(r) === JSON.stringify(target))
+    const temp = JSON.parse(JSON.stringify(newRowSource))
 
-    const layoutPage = newLayout.groups
-      .find(g => g.id === source.group)
-      .pages.find(p => p.id === source.page).products
-
-    const temp = source
-    const layoutPageSource = layoutPage[source.seq - 1]
-    const layoutPageTarget = layoutPage[target.seq - 1]
-    layoutPageSource.seq = layoutPageTarget.seq
-    layoutPageSource.top = layoutPageTarget.top
-    layoutPageSource.left = layoutPageTarget.left
-    layoutPageTarget.seq = temp.seq
-    layoutPageTarget.top = temp.top
-    layoutPageTarget.left = temp.left
+    newRowSource.seq = newRowTarget.seq
+    newRowSource.top = newRowTarget.top
+    newRowSource.left = newRowTarget.left
+    newRowTarget.seq = temp.seq
+    newRowTarget.top = temp.top
+    newRowTarget.left = temp.left
 
     this.setState({
-      layout: newLayout
+      allRows: newRows
     })
 
     localStorage.setItem(
@@ -50,7 +46,7 @@ class App extends React.Component {
           groups: this.state.groups,
           pages: this.state.pages,
           products: this.state.products,
-          layout: newLayout
+          allRows: newRows
         },
         null,
         2
@@ -66,7 +62,7 @@ class App extends React.Component {
           groups: result.groups,
           pages: result.pages,
           products: result.products,
-          layout: result.layout
+          allRows: result.allRows
         },
         null,
         2
@@ -77,7 +73,7 @@ class App extends React.Component {
       groups: result.groups,
       pages: result.pages,
       products: result.products,
-      layout: result.layout
+      allRows: result.allRows
     })
   }
 
@@ -88,7 +84,7 @@ class App extends React.Component {
         groups: [],
         pages: [],
         products: [],
-        layout: {}
+        allRows: []
       })
     )
 
@@ -96,7 +92,7 @@ class App extends React.Component {
       groups: [],
       pages: [],
       products: [],
-      layout: {},
+      allRows: [],
       filter: ''
     })
   }
@@ -106,28 +102,24 @@ class App extends React.Component {
   }
 
   handleProductEdit(oldProduct, newProduct) {
-    const newLayout = JSON.parse(JSON.stringify(this.state.layout))
+    const newRows = JSON.parse(JSON.stringify(this.state.allRows))
     const newProducts = JSON.parse(JSON.stringify(this.state.products))
 
-    if (newLayout) {
-      newLayout.groups.forEach((group, gi) => {
-        group.pages.forEach((page, gpi) => {
-          const product = page.products.find(
-            p => p.item === oldProduct.item && p.label === oldProduct.label
-          )
-          if (product) {
-            product.label = newProduct.label
-          }
+    if (newRows) {
+      newRows
+        .filter(row => row.item === oldProduct.item && row.label === oldProduct.label)
+        .forEach(row => {
+          row.label = newProduct.label
         })
-      })
       this.setState({
-        layout: newLayout
+        allRows: newRows
       })
     }
 
     const product = newProducts.find(
       p => p.item === oldProduct.item && p.label === oldProduct.label
     )
+
     if (product) {
       product.label = newProduct.label
     }
@@ -149,7 +141,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header
-          layout={this.state.layout}
+          allRows={this.state.allRows}
           fullwidth={!fileLoaded}
           handleFileClose={this.handleFileClose}
         />
@@ -166,7 +158,7 @@ class App extends React.Component {
           <Main
             groups={this.state.groups}
             pages={this.state.pages}
-            layout={this.state.layout}
+            allRows={this.state.allRows}
             changeLayout={this.handleLayoutChange}
           />
         )}

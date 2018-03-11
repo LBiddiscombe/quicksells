@@ -30,16 +30,16 @@ class Main extends React.Component {
   render() {
     let products = []
 
-    const layout = this.props.layout
-    if (layout.groups) {
-      products = layout.groups
-        .find(g => g.id === this.state.activegroup)
-        .pages.find(p => p.id === this.state.activepage).products
+    const allRows = this.props.allRows
+    if (allRows) {
+      products = allRows.filter(
+        r => r.group === this.state.activegroup && r.page === this.state.activepage
+      )
     }
 
     return (
       <main id="main">
-        <ExportFile layout={layout} />
+        <ExportFile allRows={allRows} />
         <Nav
           groups={this.props.groups}
           pages={this.props.pages}

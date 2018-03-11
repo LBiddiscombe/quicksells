@@ -18,15 +18,8 @@ function ImportFromCSV(csvFile) {
         groups: [],
         pages: [],
         products: [],
-        layout: {}
+        allRows: []
       })
-      /*
-      fetch('./data/QuickSellButtons.csv')
-        .then(response => response.text())
-        .then(response => {
-          resolve(loadCSV(response))
-        })
-      */
     }
   })
 }
@@ -37,13 +30,13 @@ function loadCSV(response) {
   const results = csvJSON(response)
   const filteredResults = getFilteredResults(groups, pages, results)
   const products = getUniqueProducts(filteredResults)
-  const layout = { groups: getLayoutGroups(groups, pages, filteredResults) }
+  const allRows = getAllRows(filteredResults)
 
   return {
     groups,
     pages,
     products,
-    layout
+    allRows
   }
 }
 
@@ -66,6 +59,7 @@ function getFilteredResults(groups, pages, results) {
         p.Action === 'ADD'
       )
     })
+    .sort((a, b) => a.group - b.group || a.label.localeCompare(b.label) || a.page - b.page)
     .map(p => {
       return {
         item: p.item,
@@ -80,28 +74,21 @@ function getFilteredResults(groups, pages, results) {
     })
 }
 
-function getLayoutGroups(groups, pages, filteredResults) {
-  return groups.map(group => {
-    return {
-      id: group.id,
-      name: group.name,
-      pages: getLayoutPages(group, pages, filteredResults)
-    }
+function getAllRows(filteredResults) {
+  const groups = settings.importGroups
+  const pages = settings.importPages
+  let allRows = []
+  groups.forEach(group => {
+    pages.forEach(page => {
+      allRows.push(...getProductsByGroupByPage(group, page, filteredResults))
+    })
   })
+
+  return allRows
 }
 
-function getLayoutPages(group, pages, filteredResults) {
-  return pages.map(page => {
-    return {
-      id: page.id,
-      name: page.name,
-      products: getLayoutProducts(group, page, filteredResults)
-    }
-  })
-}
-
-function getLayoutProducts(group, page, filteredResults) {
-  var layoutProducts = []
+function getProductsByGroupByPage(group, page, filteredResults) {
+  var products = []
   const gridLength = settings.grid.import.rows * settings.grid.import.columns
 
   for (let i = 0; i < gridLength; i++) {
@@ -110,7 +97,7 @@ function getLayoutProducts(group, page, filteredResults) {
     const top = settings.grid.import.offsetTop + row * settings.grid.import.height
     const left = settings.grid.import.offsetLeft + col * settings.grid.import.width
 
-    layoutProducts.push({
+    products.push({
       page: page.id,
       group: group.id,
       seq: i + 1,
@@ -123,10 +110,10 @@ function getLayoutProducts(group, page, filteredResults) {
   filteredResults.filter(r => r.group === group.id && r.page === page.id).forEach((p, index) => {
     const pos = getGridPosition(p.top, p.left)
     p.seq = pos !== -1 ? pos + 1 : index + 1
-    layoutProducts[p.seq - 1] = p
+    products[p.seq - 1] = p
   })
 
-  return layoutProducts
+  return products
 }
 
 function getGridPosition(top, left) {

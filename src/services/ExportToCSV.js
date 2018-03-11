@@ -1,17 +1,7 @@
 import JSONcsv from './JSONcsv'
 
-function ExportToCSV(layout) {
-  //flatten layout
-  let flattenedLayout = []
-  layout.groups.forEach(group => {
-    group.pages.forEach(page => {
-      page.products.forEach(product => {
-        if (!product.empty) flattenedLayout.push(product)
-      })
-    })
-  })
-
-  const csv = JSONcsv(flattenedLayout)
+function ExportToCSV(allRows) {
+  const csv = JSONcsv(allRows.filter(r => !r.empty))
 
   download(csv, 'quicksell.csv', 'text/plain')
 }
