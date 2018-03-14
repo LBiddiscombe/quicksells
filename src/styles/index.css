@@ -1,42 +1,32 @@
-/* #region Fonts */
+/*#region Fonts */
 @font-face {
   font-family: 'AvenirNextLTW01-Regular';
-  src: url('fonts/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2') format('woff2'),
-    url('fonts/1e9892c0-6927-4412-9874-1b82801ba47a.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  src: url('../fonts/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2') format('woff2'),
+    url('../fonts/1e9892c0-6927-4412-9874-1b82801ba47a.woff') format('woff');
 }
 
 @font-face {
   font-family: 'AvenirNextLTW01-Medium';
-  src: url('fonts/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2') format('woff2'),
-    url('fonts/f26faddb-86cc-4477-a253-1e1287684336.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
+  src: url('../fonts/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2') format('woff2'),
+    url('../fonts/f26faddb-86cc-4477-a253-1e1287684336.woff') format('woff');
 }
 
 @font-face {
   font-family: 'AvenirNextLTW01-Italic';
-  src: url('fonts/7377dbe6-f11a-4a05-b33c-bc8ce1f60f84.woff2') format('woff2'),
-    url('fonts/92b66dbd-4201-4ac2-a605-4d4ffc8705cc.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
+  src: url('../fonts/7377dbe6-f11a-4a05-b33c-bc8ce1f60f84.woff2') format('woff2'),
+    url('../fonts/92b66dbd-4201-4ac2-a605-4d4ffc8705cc.woff') format('woff');
 }
 
 @font-face {
   font-family: 'AvenirNextLTW01-Demi';
-  src: url('fonts/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2') format('woff2'),
-    url('fonts/91b50bbb-9aa1-4d54-9159-ec6f19d14a7c.woff') format('woff');
-  font-weight: bolder;
-  font-style: normal;
+  src: url('../fonts/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2') format('woff2'),
+    url('../fonts/91b50bbb-9aa1-4d54-9159-ec6f19d14a7c.woff') format('woff');
 }
 
 @font-face {
   font-family: 'AvenirNextLTW01-DemiIta';
-  src: url('fonts/687932cb-145b-4690-a21d-ed1243db9e36.woff2') format('woff2'),
-    url('fonts/bc350df4-3100-4ce1-84ce-4a5363dbccfa.woff') format('woff');
-  font-weight: bolder;
-  font-style: italic;
+  src: url('../fonts/687932cb-145b-4690-a21d-ed1243db9e36.woff2') format('woff2'),
+    url('../fonts/bc350df4-3100-4ce1-84ce-4a5363dbccfa.woff') format('woff');
 }
 /*#endregion */
 
@@ -74,6 +64,7 @@ http://coop-design-manual.herokuapp.com/styles/colours.html
 html {
   background-color: var(--main-bg);
   font-family: 'AvenirNextLTW01-Regular';
+  font-size: 16px;
 }
 
 input {
@@ -240,13 +231,14 @@ main .export {
 .item .itemlabel {
   grid-area: label;
   padding: 0.25rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   pointer-events: none;
 }
 .item.dragover {
   outline: 4px dashed var(--accent-color);
 }
 /* #endregion */
+
 /* #region Landing */
 .landing {
   grid-row: 1/-1;
@@ -279,6 +271,7 @@ main .export {
 }
 /* if i want to add arrows... http://www.cssarrowplease.com/ */
 /* #endregion */
+
 /* #region Aside */
 aside.left {
   grid-area: aside;
@@ -299,6 +292,7 @@ aside.left {
   border: none;
 }
 /* #endregion */
+
 /* #region Quicksell Tabs */
 .qsnav {
   grid-column: 1 / -1;
@@ -321,12 +315,13 @@ aside.left {
 .qsnav .qstabs li.is-active {
   border-bottom: 2px solid var(--accent-color);
   color: var(--header-color);
-  font-weight: bold;
+  font-family: 'AvenirNextLTW01-Medium';
 }
 .qsnav .qstabs li:hover {
   color: rgba(var(--a-color), 0.9);
 }
 /* #endregion */
+
 /* #region List Items */
 ul.listitems {
   width: 100%;
@@ -343,7 +338,7 @@ li.listitem {
 }
 li.listcategory {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-family: 'AvenirNextLTW01-Medium';
   border-bottom: 2px solid var(--accent-color);
   background-color: var(--aside-bg);
   position: -webkit-sticky;
@@ -368,11 +363,10 @@ li.listitem > .itemimg img {
 }
 li.listitem > .listitemlabel {
   grid-area: label;
-  font-weight: 600;
 }
 .listitemcode {
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-family: 'AvenirNextLTW01-Demi';
   color: #aaa;
 }
 
@@ -392,13 +386,14 @@ span.hidden {
 }
 
 /* #endregion */
+
 /* #region Media queries */
 @media (min-width: 769px) and (max-width: 1200px) {
   .items {
     grid-gap: 0.25rem;
   }
   .item .itemlabel {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 }
 @media (max-width: 768px) {
@@ -513,5 +508,21 @@ span.hidden {
   .item.dragover {
     outline: 2px dashed var(--accent-color);
   }
+}
+/* #endregion */
+
+/* #region Temporary Bulma replacement */
+.title {
+  font-family: 'AvenirNextLTW01-Demi';
+  line-height: 1.125;
+}
+.title.is-2 {
+  font-size: 2.5rem;
+}
+.title.is-4 {
+  font-size: 1.5rem;
+}
+.has-text-centered {
+  text-align: center !important;
 }
 /* #endregion */
