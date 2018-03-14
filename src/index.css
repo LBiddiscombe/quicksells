@@ -1,3 +1,45 @@
+/* #region Fonts */
+@font-face {
+  font-family: 'AvenirNextLTW01-Regular';
+  src: url('fonts/2cd55546-ec00-4af9-aeca-4a3cd186da53.woff2') format('woff2'),
+    url('fonts/1e9892c0-6927-4412-9874-1b82801ba47a.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvenirNextLTW01-Medium';
+  src: url('fonts/627fbb5a-3bae-4cd9-b617-2f923e29d55e.woff2') format('woff2'),
+    url('fonts/f26faddb-86cc-4477-a253-1e1287684336.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvenirNextLTW01-Italic';
+  src: url('fonts/7377dbe6-f11a-4a05-b33c-bc8ce1f60f84.woff2') format('woff2'),
+    url('fonts/92b66dbd-4201-4ac2-a605-4d4ffc8705cc.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'AvenirNextLTW01-Demi';
+  src: url('fonts/aad99a1f-7917-4dd6-bbb5-b07cedbff64f.woff2') format('woff2'),
+    url('fonts/91b50bbb-9aa1-4d54-9159-ec6f19d14a7c.woff') format('woff');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AvenirNextLTW01-DemiIta';
+  src: url('fonts/687932cb-145b-4690-a21d-ed1243db9e36.woff2') format('woff2'),
+    url('fonts/bc350df4-3100-4ce1-84ce-4a5363dbccfa.woff') format('woff');
+  font-weight: bolder;
+  font-style: italic;
+}
+/*#endregion */
+
 /*#region Globals & Variables */
 
 /*
@@ -31,6 +73,7 @@ http://coop-design-manual.herokuapp.com/styles/colours.html
 }
 html {
   background-color: var(--main-bg);
+  font-family: 'AvenirNextLTW01-Regular';
 }
 
 input {
