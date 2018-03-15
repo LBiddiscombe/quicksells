@@ -3,11 +3,18 @@ import ProductImage from '../Shared/ProductImage'
 
 class ListItem extends React.Component {
   render() {
-    const product = this.props.product
-    const inEdit = this.props.inEdit
+    const product = this.props.data
+    const {
+      changeLayout,
+      inEdit,
+      handleProductEdit,
+      handleActionClick,
+      droptarget,
+      ...rest
+    } = this.props
 
     return (
-      <li className="listitem">
+      <li {...rest} className="listitem">
         <div className="listitemimg">
           <ProductImage product={product} />
         </div>

@@ -14,6 +14,7 @@ class GridItems extends React.Component {
           key={p.seq}
           data={p}
           draggable={!p.empty}
+          droptarget={true}
         />
       )
     })

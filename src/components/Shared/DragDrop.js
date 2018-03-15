@@ -35,7 +35,7 @@ const DragDrop = WrappedComponent => {
       ev.stopPropagation()
       ev.target.classList.remove('dragover')
       let source = JSON.parse(ev.dataTransfer.getData('text'))
-      this.props.changeLayout(source, target.props.data, ev)
+      this.props.changeLayout(source, target.props.data)
     }
 
     touchMove(ev) {
@@ -50,8 +50,8 @@ const DragDrop = WrappedComponent => {
           onDragStart={this.props.draggable ? this.handleDragStart : null}
           onDragEnter={this.handleDragEnter}
           onDragLeave={this.handleDragLeave}
-          onDragOver={this.handleDragOver}
-          onDrop={e => this.handleDrop(e, this)}
+          onDragOver={this.props.droptarget ? this.handleDragOver : null}
+          onDrop={this.props.droptarget ? e => this.handleDrop(e, this) : null}
           onTouchMoveCapture={this.props.draggable ? e => this.touchMove(e) : null}
           className={this.props.className}
         />

@@ -24,32 +24,29 @@ class App extends React.Component {
     this.handleProductEdit = this.handleProductEdit.bind(this)
   }
 
-  handleLayoutChange(source, target, ev) {
+  handleLayoutChange(source, target) {
     const newProducts = this.state.products.slice()
     const sourceProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(source))
 
     if (!target) {
-      let sourceProductIndex = newProducts.findIndex(
-        r => JSON.stringify(r) === JSON.stringify(source)
-      )
-      newProducts[sourceProductIndex] = {
-        page: sourceProduct.page,
-        group: sourceProduct.group,
-        seq: sourceProduct.seq,
-        empty: true,
-        top: sourceProduct.top,
-        left: sourceProduct.left
-      }
+      this.removeFromGrid(newProducts, source, sourceProduct)
     } else {
-      const targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
-      const temp = JSON.parse(JSON.stringify(sourceProduct))
+      if (sourceProduct) {
+        this.swapGridPositions(newProducts, target, sourceProduct)
+      } else {
+        let targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
+        const targetProductIndex = newProducts.findIndex(
+          r => JSON.stringify(r) === JSON.stringify(target)
+        )
+        if (targetProduct) {
+          this.removeFromGrid(newProducts, targetProduct, targetProduct)
 
-      sourceProduct.seq = targetProduct.seq
-      sourceProduct.top = targetProduct.top
-      sourceProduct.left = targetProduct.left
-      targetProduct.seq = temp.seq
-      targetProduct.top = temp.top
-      targetProduct.left = temp.left
+          newProducts[targetProductIndex].image = source.image
+          newProducts[targetProductIndex].item = source.item
+          newProducts[targetProductIndex].label = source.label
+          newProducts[targetProductIndex].empty = false
+        }
+      }
     }
 
     this.setState({
@@ -68,6 +65,31 @@ class App extends React.Component {
         2
       )
     )
+  }
+
+  swapGridPositions(newProducts, target, sourceProduct) {
+    const targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
+    const temp = JSON.parse(JSON.stringify(sourceProduct))
+    sourceProduct.seq = targetProduct.seq
+    sourceProduct.top = targetProduct.top
+    sourceProduct.left = targetProduct.left
+    targetProduct.seq = temp.seq
+    targetProduct.top = temp.top
+    targetProduct.left = temp.left
+  }
+
+  removeFromGrid(newProducts, source, sourceProduct) {
+    let sourceProductIndex = newProducts.findIndex(
+      r => JSON.stringify(r) === JSON.stringify(source)
+    )
+    newProducts[sourceProductIndex] = {
+      page: sourceProduct.page,
+      group: sourceProduct.group,
+      seq: sourceProduct.seq,
+      empty: true,
+      top: sourceProduct.top,
+      left: sourceProduct.left
+    }
   }
 
   handleFileImport(result) {
@@ -161,6 +183,7 @@ class App extends React.Component {
             products={this.state.products}
             changeLayout={this.handleLayoutChange}
             draggable={false}
+            droptarget={true}
           />
         )}
       </div>

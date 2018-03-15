@@ -2,6 +2,9 @@ import React from 'react'
 import ListItem from './ListItem'
 import ListItemEdit from './ListItemEdit'
 import settings from '../../settings'
+import DragDrop from '../Shared/DragDrop'
+
+const DraggableListItem = DragDrop(ListItem)
 
 class ListItems extends React.Component {
   constructor() {
@@ -64,13 +67,15 @@ class ListItems extends React.Component {
           )
         } else {
           rows.push(
-            <ListItem
+            <DraggableListItem
               key={i}
               index={i}
               inEdit={inEdit}
-              product={product}
+              data={product}
               handleProductEdit={this.props.handleProductEdit}
               handleActionClick={this.handleActionClick}
+              draggable={true}
+              droptarget={false}
             />
           )
         }
@@ -81,7 +86,8 @@ class ListItems extends React.Component {
 }
 
 function getUniqueProducts(products) {
-  return products
+  const tempProducts = JSON.parse(JSON.stringify(products))
+  const unique = tempProducts
     .filter(p => !p.empty)
     .reduce(
       (uniqueProducts, product) =>
@@ -90,6 +96,11 @@ function getUniqueProducts(products) {
           : uniqueProducts,
       []
     )
+
+  return unique.map(p => {
+    delete p.page
+    return p
+  })
 }
 
 export default ListItems

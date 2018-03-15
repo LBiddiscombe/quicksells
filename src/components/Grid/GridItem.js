@@ -48,7 +48,7 @@ class GridItem extends React.Component {
   }
 
   render() {
-    const { changeLayout, ...rest } = this.props // disard chnageLayout from props for DOM use below
+    const { changeLayout, droptarget, ...rest } = this.props // disard chnageLayout from props for DOM use below
     const product = this.props.data
     const isFilled = !product.empty
     const isWithImage = Boolean(product.image)
