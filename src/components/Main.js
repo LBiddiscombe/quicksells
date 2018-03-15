@@ -29,6 +29,7 @@ class Main extends React.Component {
 
   render() {
     let gridProducts = []
+    const { changeLayout, ...rest } = this.props
 
     const products = this.props.products
     if (products) {
@@ -38,7 +39,7 @@ class Main extends React.Component {
     }
 
     return (
-      <main id="main">
+      <main id="main" {...rest}>
         <ExportFile products={products} />
         <Nav
           groups={this.props.groups}

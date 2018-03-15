@@ -100,7 +100,7 @@ header {
   color: var(--header-color);
   grid-area: header;
   padding: 0.5rem 1rem;
-  outline: 4px solid var(--aside-bg);
+  xoutline: 4px solid var(--aside-bg);
   z-index: 1;
 }
 
@@ -172,6 +172,11 @@ main {
 
   box-shadow: var(--shadow);
 }
+
+main.dragover {
+  outline: 6px dashed tomato;
+}
+
 main .export {
   grid-area: right;
   padding-right: 1rem;

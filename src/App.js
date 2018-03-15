@@ -4,6 +4,9 @@ import Filter from './components/Filter'
 import Aside from './components/Aside'
 import Main from './components/Main'
 import LandingPage from './components/LandingPage'
+import DragDrop from './components/Shared/DragDrop'
+
+const DraggableMain = DragDrop(Main)
 
 class App extends React.Component {
   constructor() {
@@ -21,18 +24,33 @@ class App extends React.Component {
     this.handleProductEdit = this.handleProductEdit.bind(this)
   }
 
-  handleLayoutChange(source, target) {
+  handleLayoutChange(source, target, ev) {
     const newProducts = this.state.products.slice()
     const sourceProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(source))
-    const targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
-    const temp = JSON.parse(JSON.stringify(sourceProduct))
 
-    sourceProduct.seq = targetProduct.seq
-    sourceProduct.top = targetProduct.top
-    sourceProduct.left = targetProduct.left
-    targetProduct.seq = temp.seq
-    targetProduct.top = temp.top
-    targetProduct.left = temp.left
+    if (!target) {
+      let sourceProductIndex = newProducts.findIndex(
+        r => JSON.stringify(r) === JSON.stringify(source)
+      )
+      newProducts[sourceProductIndex] = {
+        page: sourceProduct.page,
+        group: sourceProduct.group,
+        seq: sourceProduct.seq,
+        empty: true,
+        top: sourceProduct.top,
+        left: sourceProduct.left
+      }
+    } else {
+      const targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
+      const temp = JSON.parse(JSON.stringify(sourceProduct))
+
+      sourceProduct.seq = targetProduct.seq
+      sourceProduct.top = targetProduct.top
+      sourceProduct.left = targetProduct.left
+      targetProduct.seq = temp.seq
+      targetProduct.top = temp.top
+      targetProduct.left = temp.left
+    }
 
     this.setState({
       products: newProducts
@@ -137,11 +155,12 @@ class App extends React.Component {
         )}
         {!fileLoaded && <LandingPage fileImport={this.handleFileImport} />}
         {fileLoaded && (
-          <Main
+          <DraggableMain
             groups={this.state.groups}
             pages={this.state.pages}
             products={this.state.products}
             changeLayout={this.handleLayoutChange}
+            draggable={false}
           />
         )}
       </div>
