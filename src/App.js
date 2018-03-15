@@ -31,21 +31,10 @@ class App extends React.Component {
     if (!target) {
       this.removeFromGrid(newProducts, source, sourceProduct)
     } else {
-      if (sourceProduct) {
+      if (sourceProduct && target) {
         this.swapGridPositions(newProducts, target, sourceProduct)
       } else {
-        let targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
-        const targetProductIndex = newProducts.findIndex(
-          r => JSON.stringify(r) === JSON.stringify(target)
-        )
-        if (targetProduct) {
-          this.removeFromGrid(newProducts, targetProduct, targetProduct)
-
-          newProducts[targetProductIndex].image = source.image
-          newProducts[targetProductIndex].item = source.item
-          newProducts[targetProductIndex].label = source.label
-          newProducts[targetProductIndex].empty = false
-        }
+        this.addToGrid(newProducts, target, source)
       }
     }
 
@@ -67,6 +56,33 @@ class App extends React.Component {
     )
   }
 
+  addToGrid(newProducts, target, source) {
+    const isSourceInGrid =
+      newProducts.findIndex(p => {
+        const parsedSource = JSON.parse(JSON.stringify(source))
+        return (
+          p.item === parsedSource.item &&
+          p.label === parsedSource.label &&
+          p.group === target.group &&
+          p.page === target.page
+        )
+      }) > -1
+
+    if (isSourceInGrid) return
+
+    let targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
+    const targetProductIndex = newProducts.findIndex(
+      r => JSON.stringify(r) === JSON.stringify(target)
+    )
+    if (targetProduct) {
+      this.removeFromGrid(newProducts, targetProduct, targetProduct)
+      newProducts[targetProductIndex].image = source.image
+      newProducts[targetProductIndex].item = source.item
+      newProducts[targetProductIndex].label = source.label
+      newProducts[targetProductIndex].empty = false
+    }
+  }
+
   swapGridPositions(newProducts, target, sourceProduct) {
     const targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
     const temp = JSON.parse(JSON.stringify(sourceProduct))
@@ -82,13 +98,16 @@ class App extends React.Component {
     let sourceProductIndex = newProducts.findIndex(
       r => JSON.stringify(r) === JSON.stringify(source)
     )
-    newProducts[sourceProductIndex] = {
-      page: sourceProduct.page,
-      group: sourceProduct.group,
-      seq: sourceProduct.seq,
-      empty: true,
-      top: sourceProduct.top,
-      left: sourceProduct.left
+
+    if (sourceProductIndex > -1) {
+      newProducts[sourceProductIndex] = {
+        page: sourceProduct.page,
+        group: sourceProduct.group,
+        seq: sourceProduct.seq,
+        empty: true,
+        top: sourceProduct.top,
+        left: sourceProduct.left
+      }
     }
   }
 
