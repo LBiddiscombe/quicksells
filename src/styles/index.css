@@ -67,7 +67,8 @@ html {
   font-size: 16px;
 }
 
-input {
+input[type='text'] {
+  font-family: 'AvenirNextLTW01-Regular';
   font-size: 16px;
 }
 
@@ -282,15 +283,21 @@ aside.left {
 #resetfilter {
   margin-left: 0.5rem;
 }
-.panel-block,
-.panel-tabs {
-  border: none;
+
+#filterwrap {
+  grid-area: filter;
+  display: grid;
+  align-items: center;
+  width: 100%;
+  background-color: var(--aside-bg);
 }
-.panel-heading:first-child,
-.panel-tabs:first-child,
-.panel-block:first-child {
-  border: none;
+
+#filterwrap > input {
+  width: 100%;
+  padding: 0.25rem;
+  height: 2.5rem;
 }
+
 /* #endregion */
 
 /* #region Quicksell Tabs */
@@ -402,7 +409,7 @@ span.hidden {
     grid-template-rows: 75px 1fr 52px 1fr;
     grid-template-areas: 'header' 'main' 'filter' 'aside';
     margin: 0;
-    grid-gap: 3px;
+    grid-gap: 0px;
     max-height: calc(100vh + 100px);
   }
   main {
