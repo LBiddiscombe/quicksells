@@ -76,11 +76,7 @@ class ListItems extends React.Component {
         }
       })
 
-    return (
-      <div className="panel-block">
-        <ul className="listitems">{rows}</ul>
-      </div>
-    )
+    return <ul className="listitems">{rows}</ul>
   }
 }
 
