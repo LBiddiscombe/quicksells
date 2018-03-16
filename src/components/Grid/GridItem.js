@@ -1,6 +1,5 @@
 import React from 'react'
 import ProductImage from '../Shared/ProductImage'
-import Modal from '../Modal'
 
 class GridItem extends React.Component {
   constructor() {
@@ -67,20 +66,6 @@ class GridItem extends React.Component {
       >
         {isWithImage && <ProductImage product={product} />}
         {isFilled && <div className="itemlabel"> {product.label.replace('�', '£')} </div>}
-        {!isFilled && (
-          <div className="itemlabel">
-            <i className="fas fa-4x fa-plus-circle" />
-          </div>
-        )}
-        <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
-          <p className="title is-4 has-text-centered">Add Product</p>
-          <ul>
-            <li>Possibly, but maybe not?!</li>
-            <li>Select from items not currently assigned? Need a way to add these in aside</li>
-            <li>Create new item here? Maybe better in the aside</li>
-            <li>Consider using just the aside for CRUD, drag item onto grid to add to layout</li>
-          </ul>
-        </Modal>
       </div>
     )
   }
