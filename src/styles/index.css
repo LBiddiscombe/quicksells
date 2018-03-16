@@ -29,7 +29,6 @@
     url('../fonts/bc350df4-3100-4ce1-84ce-4a5363dbccfa.woff') format('woff');
 }
 /*#endregion */
-
 /*#region Globals & Variables */
 
 /*
@@ -53,7 +52,9 @@ http://coop-design-manual.herokuapp.com/styles/colours.html
   --header-bg: #193549;
   --header-color: white;
   --main-bg: #f3fbfe;
+  --main-color: #282729;
   --aside-bg: #f3fbfe;
+  --aside-color: #282729;
   --item-bg: #f3fbfe;
   --a-color: 240, 240, 240;
   --a-color-dark: 80, 80, 80;
@@ -73,7 +74,6 @@ input[type='text'] {
 }
 
 /*#endregion */
-
 /*#region App layout */
 
 .app {
@@ -86,7 +86,6 @@ input[type='text'] {
 }
 
 /*#endregion */
-
 /*#region Header */
 
 header {
@@ -148,7 +147,6 @@ a.dark:hover {
 }
 
 /*#endregion */
-
 /*#region Main */
 
 main {
@@ -211,18 +209,12 @@ main .export {
   background-color: var(--item-empty-bg);
   color: rgba(var(--a-color), 0.2);
 }
-.item.empty svg {
-  visibility: hidden;
-}
 .item.noimage {
   grid-template-rows: 1fr;
   grid-template-areas: 'label';
 }
 .item.empty:hover {
   background-color: var(--item-hover-bg);
-}
-.item.empty:hover svg {
-  visibility: visible;
 }
 .item .itemimg {
   grid-area: image;
@@ -244,7 +236,34 @@ main .export {
   outline: 4px dashed var(--accent-color);
 }
 /* #endregion */
-
+/* #region Quicksell Tabs */
+.qsnav {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  justify-self: center;
+  text-align: center;
+}
+.qsnav ul {
+  margin: 1rem 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.qsnav .qstabs li {
+  display: inline;
+  font-size: 1.2rem;
+  padding: 0.2em 0.5em 0.2em;
+  color: rgba(var(--a-color), 0.75);
+  border-bottom: 3px solid var(--header-bg);
+}
+.qsnav .qstabs li.is-active {
+  border-bottom: 2px solid var(--accent-color);
+  color: var(--header-color);
+  font-family: 'AvenirNextLTW01-Medium';
+}
+.qsnav .qstabs li:hover {
+  color: rgba(var(--a-color), 0.9);
+}
+/* #endregion */
 /* #region Landing */
 .landing {
   grid-row: 1/-1;
@@ -277,7 +296,6 @@ main .export {
 }
 /* if i want to add arrows... http://www.cssarrowplease.com/ */
 /* #endregion */
-
 /* #region Aside */
 aside.left {
   grid-area: aside;
@@ -295,6 +313,7 @@ aside.left {
   align-items: center;
   width: 100%;
   background-color: var(--aside-bg);
+  padding: 0 0.5rem 0 0;
 }
 
 #filterwrap > input {
@@ -303,37 +322,23 @@ aside.left {
   height: 2.5rem;
 }
 
-/* #endregion */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
 
-/* #region Quicksell Tabs */
-.qsnav {
-  grid-column: 1 / -1;
-  grid-row: 1;
-  justify-self: center;
-  text-align: center;
+::-webkit-scrollbar-track {
+  background: var(--aside-bg);
 }
-.qsnav ul {
-  margin: 1rem 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.qsnav .qstabs li {
-  display: inline;
-  font-size: 1.2rem;
-  padding: 0.2em 0.5em 0.2em;
-  color: rgba(var(--a-color), 0.75);
-  border-bottom: 3px solid var(--header-bg);
-}
-.qsnav .qstabs li.is-active {
-  border-bottom: 2px solid var(--accent-color);
-  color: var(--header-color);
-  font-family: 'AvenirNextLTW01-Medium';
-}
-.qsnav .qstabs li:hover {
-  color: rgba(var(--a-color), 0.9);
-}
-/* #endregion */
 
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--a-color-dark), 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* #endregion */
 /* #region List Items */
 ul.listitems {
   width: 100%;
@@ -398,7 +403,6 @@ span.hidden {
 }
 
 /* #endregion */
-
 /* #region Media queries */
 @media (min-width: 769px) and (max-width: 1200px) {
   .items {
@@ -522,7 +526,6 @@ span.hidden {
   }
 }
 /* #endregion */
-
 /* #region Temporary Bulma replacement */
 .title {
   font-family: 'AvenirNextLTW01-Demi';
