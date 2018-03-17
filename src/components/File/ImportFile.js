@@ -1,5 +1,5 @@
 import React from 'react'
-import ImportFromCSV from '../../services/ImportFromCSV'
+import ImportFromCSV from '../../modules/ImportFromCSV'
 
 let fileInput = null
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ExportToCSV from '../../services/ExportToCSV'
+import ExportToCSV from '../../modules/ExportToCSV'
 
 class ExportFile extends React.Component {
   constructor() {
