@@ -5,6 +5,7 @@ import Aside from './components/Aside'
 import Main from './components/Main'
 import LandingPage from './components/LandingPage'
 import DragDrop from './components/Shared/DragDrop'
+import { ToastContainer, toast } from 'react-toastify'
 
 const DraggableMain = DragDrop(Main)
 
@@ -81,6 +82,13 @@ class App extends React.Component {
       newProducts[targetProductIndex].label = source.label
       newProducts[targetProductIndex].empty = false
     }
+
+    if (source.label) {
+      toast.success('Added ' + source.label, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000
+      })
+    }
   }
 
   swapGridPositions(newProducts, target, sourceProduct) {
@@ -108,6 +116,12 @@ class App extends React.Component {
         top: sourceProduct.top,
         left: sourceProduct.left
       }
+    }
+    if (sourceProduct.label) {
+      toast.error('Removed ' + sourceProduct.label, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000
+      })
     }
   }
 
@@ -205,6 +219,7 @@ class App extends React.Component {
             droptarget={true}
           />
         )}
+        <ToastContainer />
       </div>
     )
   }
