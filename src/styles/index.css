@@ -299,10 +299,15 @@ main .export {
 /* #region Aside */
 aside.left {
   grid-area: aside;
-  overflow-y: scroll;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   background-color: var(--aside-bg);
 }
+
+aside.left:hover {
+  overflow-y: auto;
+}
+
 #resetfilter {
   margin-left: 0.5rem;
 }
@@ -331,7 +336,7 @@ aside.left {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(var(--a-color-dark), 0.1);
+  background: rgba(var(--a-color-dark), 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -433,6 +438,9 @@ span.hidden {
   main .export {
     padding: 1rem;
     align-self: start;
+  }
+  aside.left {
+    overflow-y: auto;
   }
   .landing {
     grid-row: 1/-1;
