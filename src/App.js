@@ -69,7 +69,13 @@ class App extends React.Component {
         )
       }) > -1
 
-    if (isSourceInGrid) return
+    if (isSourceInGrid) {
+      toast.warn(source.label + ' already on this page', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000
+      })
+      return
+    }
 
     let targetProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(target))
     const targetProductIndex = newProducts.findIndex(
@@ -116,8 +122,13 @@ class App extends React.Component {
         top: sourceProduct.top,
         left: sourceProduct.left
       }
+
+      // now ensure the removed item still appears on the aside list
+      sourceProduct.page = 0
+      newProducts.push(sourceProduct)
     }
-    if (sourceProduct.label) {
+
+    if (sourceProduct && sourceProduct.label) {
       toast.error('Removed ' + sourceProduct.label, {
         position: toast.POSITION.BOTTOM_RIGHT,
         autoClose: 3000
