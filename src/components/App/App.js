@@ -7,7 +7,7 @@ import LandingPage from '../LandingPage'
 import DragDrop from '../Shared/DragDrop'
 import Modal from '../Shared/Modal'
 import { ToastContainer } from 'react-toastify'
-import * as app from './appLogic'
+import * as app from './App.logic'
 
 const DraggableMain = DragDrop(Main)
 
