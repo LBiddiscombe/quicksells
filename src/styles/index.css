@@ -333,7 +333,6 @@ aside.left:hover {
 
 #filterwrap {
   grid-area: filter;
-  display: grid;
   align-items: center;
   width: 100%;
   background-color: var(--aside-bg);
@@ -344,6 +343,15 @@ aside.left:hover {
   width: 100%;
   padding: 0.25rem;
   height: 2.5rem;
+}
+
+#filterwrap > .filterreset {
+  display: none;
+}
+
+#filterwrap:hover > .filterreset {
+  display: inline-block;
+  margin: -2rem;
 }
 
 ::-webkit-scrollbar {

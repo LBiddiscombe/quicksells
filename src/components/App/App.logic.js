@@ -87,7 +87,8 @@ function handleLayoutChange(source, target) {
 }
 
 function handleFilterChange(e) {
-  this.setState({ filter: e.target.value })
+  const filter = e ? e.target.value : ''
+  this.setState({ filter })
 }
 
 function handleProductEdit(oldProduct, newProduct) {
