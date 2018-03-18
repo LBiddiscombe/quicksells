@@ -9,7 +9,7 @@ import Modal from '../Shared/Modal'
 import { ToastContainer } from 'react-toastify'
 import * as app from './App.logic'
 
-const DraggableMain = DragDrop(Main)
+const DragDropMain = DragDrop(Main)
 
 class App extends React.Component {
   constructor() {
@@ -68,7 +68,7 @@ class App extends React.Component {
         )}
         {!fileLoaded && <LandingPage fileImport={this.handleFileImport} />}
         {fileLoaded && (
-          <DraggableMain
+          <DragDropMain
             groups={this.state.groups}
             pages={this.state.pages}
             products={this.state.products}

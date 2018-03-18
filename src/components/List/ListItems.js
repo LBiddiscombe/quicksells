@@ -4,7 +4,7 @@ import ListItemEdit from './ListItemEdit'
 import settings from '../../settings'
 import DragDrop from '../Shared/DragDrop'
 
-const DraggableListItem = DragDrop(ListItem)
+const DragDropListItem = DragDrop(ListItem)
 
 class ListItems extends React.Component {
   constructor() {
@@ -67,7 +67,7 @@ class ListItems extends React.Component {
           )
         } else {
           rows.push(
-            <DraggableListItem
+            <DragDropListItem
               key={i}
               index={i}
               inEdit={inEdit}
