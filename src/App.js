@@ -5,6 +5,8 @@ import Aside from './components/Aside'
 import Main from './components/Main'
 import LandingPage from './components/LandingPage'
 import DragDrop from './components/Shared/DragDrop'
+import ExportToCSV from './modules/ExportToCSV'
+import Modal from './components/Shared/Modal'
 import { ToastContainer, toast } from 'react-toastify'
 
 const DraggableMain = DragDrop(Main)
@@ -16,11 +18,14 @@ class App extends React.Component {
       groups: [],
       pages: [],
       products: [],
-      filter: ''
+      filter: '',
+      hasUnexportedChanges: false,
+      isModalOpen: false
     }
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleLayoutChange = this.handleLayoutChange.bind(this)
     this.handleFileImport = this.handleFileImport.bind(this)
+    this.handleFileExport = this.handleFileExport.bind(this)
     this.handleFileClose = this.handleFileClose.bind(this)
     this.handleProductEdit = this.handleProductEdit.bind(this)
   }
@@ -40,7 +45,8 @@ class App extends React.Component {
     }
 
     this.setState({
-      products: newProducts
+      products: newProducts,
+      hasUnexportedChanges: true
     })
 
     localStorage.setItem(
@@ -157,7 +163,22 @@ class App extends React.Component {
     })
   }
 
-  handleFileClose() {
+  handleFileExport() {
+    ExportToCSV(this.state.products)
+    this.setState({
+      hasUnexportedChanges: false
+    })
+  }
+
+  handleFileClose(e, confirmed) {
+    console.log(confirmed, this.state.hasUnexportedChanges)
+
+    if (this.state.hasUnexportedChanges && !confirmed) {
+      this.setState({
+        isModalOpen: true
+      })
+      return
+    }
     localStorage.setItem(
       'state',
       JSON.stringify({
@@ -173,6 +194,17 @@ class App extends React.Component {
       products: [],
       filter: ''
     })
+  }
+
+  closeModal(response) {
+    this.setState({
+      isModalOpen: false,
+      hasUnexportedChanges: !response
+    })
+
+    if (response) {
+      this.handleFileClose(null, true)
+    }
   }
 
   handleFilterChange(e) {
@@ -226,11 +258,26 @@ class App extends React.Component {
             pages={this.state.pages}
             products={this.state.products}
             changeLayout={this.handleLayoutChange}
+            handleFileExport={this.handleFileExport}
             draggable={false}
             droptarget={true}
           />
         )}
         <ToastContainer />
+        <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+          <p className="title is-4 has-text-centered">Unsaved Changes</p>
+          <p className="modalmessage">
+            You have unexported chnages, do you want to close without exporting?
+          </p>
+          <p className="has-text-centered">
+            <button className="green" onClick={() => this.closeModal(true)}>
+              Yes
+            </button>
+            <button className="red" onClick={() => this.closeModal(false)}>
+              No
+            </button>
+          </p>
+        </Modal>
       </div>
     )
   }

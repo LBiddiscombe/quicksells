@@ -1,19 +1,9 @@
 import React from 'react'
-import ExportToCSV from '../../modules/ExportToCSV'
 
 class ExportFile extends React.Component {
-  constructor() {
-    super()
-    this.handleExport = this.handleExport.bind(this)
-  }
-
-  handleExport() {
-    ExportToCSV(this.props.products)
-  }
-
   render() {
     return (
-      <a className="export" onClick={this.handleExport}>
+      <a className="export" onClick={this.props.handleFileExport}>
         <i className="far fa-2x fa-save" />
       </a>
     )

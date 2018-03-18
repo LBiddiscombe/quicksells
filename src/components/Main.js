@@ -29,7 +29,7 @@ class Main extends React.Component {
 
   render() {
     let gridProducts = []
-    const { changeLayout, droptarget, ...rest } = this.props
+    const { handleFileExport, changeLayout, droptarget, ...rest } = this.props
 
     const products = this.props.products
     if (products) {
@@ -40,7 +40,7 @@ class Main extends React.Component {
 
     return (
       <main {...rest} id="main">
-        <ExportFile products={products} />
+        <ExportFile products={products} handleFileExport={this.props.handleFileExport} />
         <Nav
           groups={this.props.groups}
           pages={this.props.pages}
