@@ -1,6 +1,8 @@
 import React from 'react'
 import ProductImage from '../Shared/ProductImage'
 
+const Popular = () => <i className="fas fa-heart" style={{ color: 'tomato' }} />
+
 class ListItem extends React.Component {
   render() {
     const product = this.props.data
@@ -19,7 +21,11 @@ class ListItem extends React.Component {
           <ProductImage product={product} />
         </div>
         <div className="listitemlabel">
-          {product.isPopular && <i className="fas fa-heart" style={{ color: 'tomato' }} />}
+          {product.isPopular && (
+            <span>
+              <Popular />
+            </span>
+          )}
           {' ' + product.label}
 
           <div className="listitemcode">
