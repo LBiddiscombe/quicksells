@@ -98,7 +98,12 @@ function getUniqueProducts(products) {
     )
 
   return unique.map(p => {
+    const isPopular =
+      products.findIndex(
+        pr => pr.item === p.item && pr.label === p.label && pr.group === p.group && pr.page === 1
+      ) >= 0
     delete p.page
+    p.isPopular = isPopular
     return p
   })
 }

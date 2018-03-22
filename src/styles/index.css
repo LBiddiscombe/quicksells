@@ -377,13 +377,14 @@ ul.listitems {
 }
 li.listitem {
   display: grid;
-  grid-template-columns: 48px 1fr auto;
+  grid-template-columns: 84px 1fr auto;
   grid-template-areas: 'image label action';
-  grid-auto-rows: 2rem;
+  grid-auto-rows: 64px;
   grid-gap: 0.25rem;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem 0.25rem;
 }
+
 li.listitem:hover {
   background-color: rgba(var(--a-color), 1);
 }
@@ -445,6 +446,10 @@ span.hidden {
   .item .itemlabel {
     font-size: 0.7rem;
   }
+  li.listitem {
+    grid-template-columns: 64px 1fr auto;
+    grid-auto-rows: 48px;
+  }
 }
 @media (max-width: 768px) {
   .app {
@@ -494,6 +499,10 @@ span.hidden {
   }
   .landingstep {
     padding-top: 1rem;
+  }
+  li.listitem {
+    grid-template-columns: 42px 1fr auto;
+    grid-auto-rows: 32px;
   }
   li.listcategory {
     font-size: 1rem;
