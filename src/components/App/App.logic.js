@@ -1,5 +1,6 @@
 import ExportToCSV from '../../modules/ExportToCSV'
 import { toast } from 'react-toastify'
+import settings from '../../settings'
 
 function handleFileImport(result) {
   localStorage.setItem(
@@ -54,7 +55,7 @@ function handleFileClose(e, confirmed) {
 }
 
 function handleLayoutChange(source, target) {
-  const newProducts = [...this.state.products]
+  const newProducts = this.state.products
   const sourceProduct = newProducts.find(r => JSON.stringify(r) === JSON.stringify(source))
 
   if (!target) {
@@ -107,6 +108,25 @@ function handleProductEdit(oldProduct, newProduct) {
 }
 
 const addToGrid = (newProducts, target, source) => {
+  if (source.group !== target.group) {
+    toast.warn(source.label + ' does not match group', {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 3000
+    })
+    return
+  }
+
+  const page = settings.importPages.find(s => s.id === target.page)
+  if (page.match) {
+    if (!RegExp(`${page.match}`).test(source.label.charAt(0))) {
+      toast.warn(source.label + ' does not match alphabetical page', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 3000
+      })
+      return
+    }
+  }
+
   const isSourceInGrid =
     newProducts.findIndex(p => {
       const parsedSource = JSON.parse(JSON.stringify(source))

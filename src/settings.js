@@ -6,11 +6,11 @@ const settings = {
   ],
   importPages: [
     { id: 1, name: 'Popular' },
-    { id: 2, name: 'A-E' },
-    { id: 3, name: 'F-J' },
-    { id: 4, name: 'K-O' },
-    { id: 5, name: 'P-T' },
-    { id: 6, name: 'U-Z' }
+    { id: 2, name: 'A-E', match: '^[a-eA-E]*$' },
+    { id: 3, name: 'F-J', match: '^[f-jF-J]*$' },
+    { id: 4, name: 'K-O', match: '^[k-oK-O]*$' },
+    { id: 5, name: 'P-T', match: '^[p-tP-T]*$' },
+    { id: 6, name: 'U-Z', match: '^[u-zU-Z]*$' }
   ],
   importMapping: [
     { from: 'ItemID', pad: '0', length: 13, to: 'item' },
