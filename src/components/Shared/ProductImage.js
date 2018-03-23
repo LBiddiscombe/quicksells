@@ -19,7 +19,11 @@ class ProductImage extends React.Component {
     return (
       <div className="itemimg">
         <img src={product.image ? product.image : undefined} alt="" />
-        {product.isPopular && <Popular />}
+        {product.isPopular && (
+          <span>
+            <Popular />
+          </span>
+        )}
       </div>
     )
   }
