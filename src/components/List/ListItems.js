@@ -3,6 +3,7 @@ import ListItem from './ListItem'
 import ListItemEdit from './ListItemEdit'
 import settings from '../../settings'
 import DragDrop from '../Shared/DragDrop'
+import { AutoSizer, List } from 'react-virtualized'
 
 const DragDropListItem = DragDrop(ListItem)
 
@@ -47,14 +48,6 @@ class ListItems extends React.Component {
       })
       .sort((a, b) => a.group - b.group || a.label.localeCompare(b.label))
       .forEach((product, i) => {
-        if (product.group !== lastGroup) {
-          rows.push(
-            <li className="listcategory" key={'cat' + i}>
-              {settings.importGroups.find(g => g.id === product.group).name}
-            </li>
-          )
-          lastGroup = product.group
-        }
         if (i === this.state.inEditIndex) {
           rows.push(
             <ListItemEdit
@@ -81,7 +74,32 @@ class ListItems extends React.Component {
         }
       })
 
-    return <ul className="listitems">{rows}</ul>
+    function rowRenderer({
+      index, // Index of row within collection
+      key, // Unique key within array of rows
+      style // Style object to be applied to row (to position it)
+    }) {
+      return (
+        <div key={key} style={style}>
+          {rows[index]}
+        </div>
+      )
+    }
+
+    return (
+      <AutoSizer>
+        {({ height, width }) => (
+          <List
+            height={height}
+            rowCount={rows.length}
+            rowHeight={64}
+            rowRenderer={rowRenderer}
+            width={width}
+            className="listitems"
+          />
+        )}
+      </AutoSizer>
+    )
   }
 }
 
