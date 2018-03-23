@@ -399,11 +399,13 @@ li.listcategory {
   position: -o-sticky;
   position: sticky;
   top: 0px;
+  z-index: 2;
 }
 li.listcategory:not(:first-child) {
   margin-top: 1rem;
 }
-li.listitem > .itemimg {
+li.listitem > .listitemimg .itemimg {
+  position: relative;
   grid-area: image;
   pointer-events: none;
   height: 100%;
