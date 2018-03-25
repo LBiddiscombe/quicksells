@@ -2,7 +2,8 @@ import JSONcsv from './JSONcsv'
 
 function ExportToCSV(products, ignored) {
   const allRows = products.concat(ignored)
-  const csv = JSONcsv(allRows.filter(r => !r.empty))
+
+  const csv = JSONcsv(allRows.filter(r => !r.empty)).replace(/\\\\/g, '\\') //replace multi \ with single
 
   download(csv, 'quicksell.csv', 'text/plain')
 }
