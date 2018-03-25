@@ -17,7 +17,8 @@ function ImportFromCSV(csvFile) {
       resolve({
         groups: [],
         pages: [],
-        products: []
+        products: [],
+        ignored: []
       })
     }
   })
@@ -27,37 +28,49 @@ function loadCSV(response) {
   const groups = settings.importGroups
   const pages = settings.importPages
   const results = csvJSON(response)
-  const filteredResults = getFilteredResults(groups, pages, results)
+  const [filteredResults, ignored] = getFilteredResults(groups, pages, results)
   const products = getAllRows(filteredResults)
 
   return {
     groups,
     pages,
-    products
+    products,
+    ignored
   }
 }
 
 function getFilteredResults(groups, pages, results) {
-  return results
-    .filter(p => {
-      return (
-        groups.map(r => r.id).includes(p.group) &&
-        pages.map(r => r.id).includes(p.page) &&
-        p.Action === 'ADD'
-      )
-    })
-    .map(p => {
-      return {
-        item: p.item,
-        label: p.label,
-        image: p.image && p.image !== 'NULL' ? p.image : false,
-        group: p.group,
-        page: p.page,
-        seq: p.seq,
-        top: p.top,
-        left: p.left
-      }
-    })
+  const ignored = results.filter(p => {
+    return (
+      !groups.map(r => r.id).includes(p.group) ||
+      !pages.map(r => r.id).includes(p.page) ||
+      p.Action !== 'ADD'
+    )
+  })
+
+  return [
+    results
+      .filter(p => {
+        return (
+          groups.map(r => r.id).includes(p.group) &&
+          pages.map(r => r.id).includes(p.page) &&
+          p.Action === 'ADD'
+        )
+      })
+      .map(p => {
+        return {
+          item: p.item,
+          label: p.label,
+          image: p.image && p.image !== 'NULL' ? p.image : false,
+          group: p.group,
+          page: p.page,
+          seq: p.seq,
+          top: p.top,
+          left: p.left
+        }
+      }),
+    ignored
+  ]
 }
 
 function getAllRows(filteredResults) {

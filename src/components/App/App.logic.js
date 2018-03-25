@@ -9,7 +9,8 @@ function handleFileImport(result) {
       {
         groups: result.groups,
         pages: result.pages,
-        products: result.products
+        products: result.products,
+        ignored: result.ignored
       },
       null,
       2
@@ -19,12 +20,13 @@ function handleFileImport(result) {
   this.setState({
     groups: result.groups,
     pages: result.pages,
-    products: result.products
+    products: result.products,
+    ignored: result.ignored
   })
 }
 
 function handleFileExport() {
-  ExportToCSV(this.state.products)
+  ExportToCSV(this.state.products, this.state.ignored)
   this.setState({
     hasUnexportedChanges: false
   })
@@ -42,7 +44,8 @@ function handleFileClose(e, confirmed) {
     JSON.stringify({
       groups: [],
       pages: [],
-      products: []
+      products: [],
+      ignored: []
     })
   )
 
@@ -50,6 +53,7 @@ function handleFileClose(e, confirmed) {
     groups: [],
     pages: [],
     products: [],
+    ignored: [],
     filter: ''
   })
 }

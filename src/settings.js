@@ -22,15 +22,17 @@ const settings = {
     { from: 'Top', to: 'top' },
     { from: 'Left', to: 'left' }
   ],
+
+  //Action,Page,Menu Group,Menu Option,Description,Image,ItemID,Top,Left
   exportMapping: [
-    { from: 'item', to: 'ItemID', pad: '0', length: 13 },
-    { from: 'label', to: 'Description' },
-    { from: 'image', to: 'Image', prefix: '/images' },
-    { from: 'group', to: 'Menu Group' },
-    { from: 'page', to: 'Page' },
-    { from: 'seq', to: 'Menu Option' },
-    { from: 'top', to: 'Top' },
-    { from: 'left', to: 'Left' }
+    { column: 1, from: 'page', to: 'Page' },
+    { column: 2, from: 'group', to: 'Menu Group' },
+    { column: 3, from: 'seq', to: 'Menu Option' },
+    { column: 4, from: 'label', to: 'Description' },
+    { column: 5, from: 'image', to: 'Image', prefix: '/images' },
+    { column: 6, from: 'item', to: 'ItemID', pad: '0', length: 13 },
+    { column: 7, from: 'top', to: 'Top' },
+    { column: 8, from: 'left', to: 'Left' }
   ],
   grid: {
     import: {

@@ -1,7 +1,8 @@
 import JSONcsv from './JSONcsv'
 
-function ExportToCSV(products) {
-  const csv = JSONcsv(products.filter(r => !r.empty))
+function ExportToCSV(products, ignored) {
+  const allRows = products.concat(ignored)
+  const csv = JSONcsv(allRows.filter(r => !r.empty))
 
   download(csv, 'quicksell.csv', 'text/plain')
 }
