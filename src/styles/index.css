@@ -255,34 +255,6 @@ main .export {
   outline: 4px dashed var(--accent-color);
 }
 /* #endregion */
-/* #region Quicksell Tabs */
-.qsnav {
-  grid-column: 1 / -1;
-  grid-row: 1;
-  justify-self: center;
-  text-align: center;
-}
-.qsnav ul {
-  margin: 1rem 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.qsnav .qstabs li {
-  display: inline;
-  font-size: 1.2rem;
-  padding: 0.2em 0.5em 0.2em;
-  color: rgba(var(--a-color), 0.75);
-  border-bottom: 3px solid var(--header-bg);
-}
-.qsnav .qstabs li.is-active {
-  border-bottom: 2px solid var(--accent-color);
-  color: var(--header-color);
-  font-family: 'AvenirNextLTW01-Medium';
-}
-.qsnav .qstabs li:hover {
-  color: rgba(var(--a-color), 0.9);
-}
-/* #endregion */
 /* #region Landing */
 .landing {
   grid-row: 1/-1;

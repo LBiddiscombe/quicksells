@@ -1,16 +1,12 @@
 import React from 'react'
+import Tab from './Tab'
+import styled from 'styled-components'
 
-function Tab(props) {
-  return (
-    <li
-      className={props.tab.id === props.activeId ? 'is-active' : ''}
-      value={props.tab.id}
-      data-field={props.controlField}
-    >
-      {props.tab.name}
-    </li>
-  )
-}
+const UL = styled.ul`
+  margin: 1rem 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+`
 
 class Tabs extends React.Component {
   render() {
@@ -22,7 +18,7 @@ class Tabs extends React.Component {
         activeId={this.props.activeId}
       />
     ))
-    return <ul className="qstabs">{tabs}</ul>
+    return <UL>{tabs}</UL>
   }
 }
 
