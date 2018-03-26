@@ -1,5 +1,6 @@
 import React from 'react'
-import Nav from './Nav'
+import Navbar from './Navbar'
+import Tabs from './Tabs'
 import GridItems from './Grid/GridItems'
 import ExportFile from './File/ExportFile'
 import settings from '../settings'
@@ -41,13 +42,22 @@ class Main extends React.Component {
     return (
       <main {...rest} id="main">
         <ExportFile products={products} handleFileExport={this.props.handleFileExport} />
-        <Nav
+        <Navbar
           groups={this.props.groups}
           pages={this.props.pages}
-          activegroup={this.state.activegroup}
-          activepage={this.state.activepage}
           handleTabChange={this.handleTabChange}
-        />
+        >
+          <Tabs
+            tabs={this.props.groups}
+            controlField="activegroup"
+            activeId={this.state.activegroup}
+          />
+          <Tabs
+            tabs={this.props.pages}
+            controlField="activepage"
+            activeId={this.state.activepage}
+          />
+        </Navbar>
         <GridItems products={gridProducts} changeLayout={this.props.changeLayout} />
       </main>
     )
