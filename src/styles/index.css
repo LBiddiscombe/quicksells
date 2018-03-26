@@ -374,6 +374,7 @@ aside.left:hover {
 /* #region List Items */
 ul.listitems {
   width: 100%;
+  height: 100%;
 }
 li.listitem {
   display: grid;
@@ -385,8 +386,14 @@ li.listitem {
   padding: 0.5rem 0.5rem 0.25rem;
 }
 
+li.listitem.edit {
+  height: 100%;
+}
 li.listitem:hover {
   background-color: rgba(var(--a-color), 1);
+}
+li.listitem.edit:hover {
+  background-color: var(--aside-bg);
 }
 li.listcategory {
   font-size: 1.2rem;

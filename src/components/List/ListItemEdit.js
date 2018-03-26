@@ -34,7 +34,7 @@ class ListItem extends React.Component {
     const product = this.props.product
 
     return (
-      <li className="listitem">
+      <li className="listitem edit">
         <div className="listitemimg">
           <ProductImage product={product} />
         </div>

@@ -14,7 +14,13 @@ class ListItem extends React.Component {
     } = this.props
 
     return (
-      <li {...rest} className="listitem">
+      <li
+        {...rest}
+        className="listitem"
+        style={{
+          display: !this.props.inEdit ? 'grid' : 'none'
+        }}
+      >
         <div className="listitemimg">
           <ProductImage product={product} />
         </div>

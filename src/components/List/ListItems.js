@@ -47,7 +47,7 @@ class ListItems extends React.Component {
       })
       .sort((a, b) => a.group - b.group || a.label.localeCompare(b.label))
       .forEach((product, i) => {
-        if (product.group !== lastGroup) {
+        if (!inEdit && product.group !== lastGroup) {
           rows.push(
             <li className="listcategory" key={'cat' + i}>
               {settings.importGroups.find(g => g.id === product.group).name}
