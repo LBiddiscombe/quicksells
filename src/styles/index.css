@@ -367,22 +367,6 @@ li.listitem:hover {
 li.listitem.edit:hover {
   background-color: var(--aside-bg);
 }
-li.listcategory {
-  font-size: 1.2rem;
-  font-family: 'AvenirNextLTW01-Medium';
-  border-bottom: 2px solid var(--accent-color);
-  background-color: var(--aside-bg);
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  position: sticky;
-  top: 0px;
-  z-index: 2;
-}
-li.listcategory:not(:first-child) {
-  margin-top: 1rem;
-}
 li.listitem > .listitemimg .itemimg {
   position: relative;
   grid-area: image;

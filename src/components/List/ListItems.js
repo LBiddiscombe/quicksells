@@ -1,7 +1,7 @@
 import React from 'react'
 import ListItem from './ListItem'
 import ListItemEdit from './ListItemEdit'
-import settings from '../../settings'
+import ListSubtitle from './ListSubtitle'
 import DragDrop from '../Shared/DragDrop'
 
 const DragDropListItem = DragDrop(ListItem)
@@ -48,11 +48,7 @@ class ListItems extends React.Component {
       .sort((a, b) => a.group - b.group || a.label.localeCompare(b.label))
       .forEach((product, i) => {
         if (!inEdit && product.group !== lastGroup) {
-          rows.push(
-            <li className="listcategory" key={'cat' + i}>
-              {settings.importGroups.find(g => g.id === product.group).name}
-            </li>
-          )
+          rows.push(<ListSubtitle key={'cat' + i} group={product.group} />)
           lastGroup = product.group
         }
         if (i === this.state.inEditIndex) {
