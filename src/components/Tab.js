@@ -8,24 +8,22 @@ const Li = styled.li`
     padding: 0.2em 0.5em 0.2em;
     color: rgba(var(--a-color), 0.75);
     border-bottom: 3px solid var(--header-bg);
-    &.is-active {
-      border-bottom: 2px solid var(--accent-color);
-      color: var(--header-color);
-      font-family: 'AvenirNextLTW01-Medium';
-    }
     &:hover {
       color: rgba(var(--a-color), 0.9);
     }
+    ${props =>
+    props.tab.id === props.activeId &&
+      `
+        border-bottom: 2px solid var(--accent-color);
+        color: var(--header-color);
+        font-family: 'AvenirNextLTW01-Medium';
+      `};
   }
 `
 
 function Tab(props) {
   return (
-    <Li
-      className={props.tab.id === props.activeId ? 'is-active' : ''}
-      value={props.tab.id}
-      data-field={props.controlField}
-    >
+    <Li {...props} value={props.tab.id} data-field={props.controlField}>
       {props.tab.name}
     </Li>
   )
