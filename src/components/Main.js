@@ -42,11 +42,7 @@ class Main extends React.Component {
     return (
       <main {...rest} id="main">
         <ExportFile products={products} handleFileExport={this.props.handleFileExport} />
-        <Navbar
-          groups={this.props.groups}
-          pages={this.props.pages}
-          handleTabChange={this.handleTabChange}
-        >
+        <Navbar handleTabChange={this.handleTabChange}>
           <Tabs
             tabs={this.props.groups}
             controlField="activegroup"

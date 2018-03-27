@@ -132,8 +132,8 @@ a.dark:hover {
 .app {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 100px 50px minmax(100px, calc(100vh - 150px - 1.5rem));
-  grid-template-areas: 'header main' 'filter main' 'aside main';
+  grid-template-rows: 100px minmax(100px, calc(100vh - 100px - 1.5rem));
+  grid-template-areas: 'header main' 'aside main';
   grid-gap: 0.25rem;
   margin: 0.5rem;
 }
@@ -250,14 +250,13 @@ main .export {
 /* #region Aside */
 aside.left {
   grid-area: aside;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 'filter' 'list';
   background-color: var(--aside-bg);
 }
 
-aside.left:hover {
-  overflow-y: auto;
-}
 /* #endregion */
 /* #region Media queries */
 @media (min-width: 769px) and (max-width: 1200px) {
@@ -334,16 +333,6 @@ aside.left:hover {
   }
   li.listitem .listitemaction {
     display: block;
-  }
-  #filterwrap {
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
-    position: sticky;
-    top: 320px;
-    z-index: 4;
-    background-color: var(--aside-bg);
   }
   header {
     padding: 1rem 0.5rem;

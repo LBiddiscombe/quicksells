@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from '../Header'
-import Filter from '../Filter'
 import Aside from '../Aside'
 import Main from '../Main'
 import LandingPage from '../LandingPage'
@@ -18,11 +17,9 @@ class App extends React.Component {
       groups: [],
       pages: [],
       products: [],
-      filter: '',
       hasUnexportedChanges: false,
       isModalOpen: false
     }
-    this.handleFilterChange = app.handleFilterChange.bind(this)
     this.handleLayoutChange = app.handleLayoutChange.bind(this)
     this.handleFileImport = app.handleFileImport.bind(this)
     this.handleFileExport = app.handleFileExport.bind(this)
@@ -58,11 +55,10 @@ class App extends React.Component {
           fullwidth={!fileLoaded}
           handleFileClose={this.handleFileClose}
         />
-        {fileLoaded && <Filter handleFilterChange={this.handleFilterChange} />}
         {fileLoaded && (
           <Aside
+            groups={this.state.groups}
             products={this.state.products}
-            filter={this.state.filter}
             handleProductEdit={this.handleProductEdit}
           />
         )}

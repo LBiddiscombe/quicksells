@@ -7,13 +7,6 @@ import styled from 'styled-components'
 
 const DragDropListItem = DragDrop(ListItem)
 
-const Ul = styled.ul`
-   {
-    width: 100%;
-    ${props => (props.inEdit ? 'height: 100%;' : '')};
-  }
-`
-
 class ListItems extends React.Component {
   constructor() {
     super()
@@ -49,8 +42,9 @@ class ListItems extends React.Component {
     products
       .filter(product => {
         return (
-          product.label.toLowerCase().indexOf(this.props.filter.toLowerCase()) !== -1 ||
-          product.item.indexOf(this.props.filter) !== -1
+          (this.props.filtergroup === -1 || product.group === this.props.filtergroup) &&
+          (product.label.toLowerCase().indexOf(this.props.filtertext.toLowerCase()) !== -1 ||
+            product.item.indexOf(this.props.filtertext) !== -1)
         )
       })
       .sort((a, b) => a.group - b.group || a.label.localeCompare(b.label))
@@ -85,7 +79,11 @@ class ListItems extends React.Component {
         }
       })
 
-    return <Ul inEdit={inEdit}>{rows}</Ul>
+    return (
+      <Wrapper>
+        <Ul inEdit={inEdit}>{rows}</Ul>
+      </Wrapper>
+    )
   }
 }
 
@@ -111,5 +109,17 @@ function getUniqueProducts(products) {
     return p
   })
 }
+
+const Wrapper = styled.div`
+  grid-area: list;
+  overflow-y: scroll;
+`
+
+const Ul = styled.ul`
+   {
+    width: 100%;
+    ${props => (props.inEdit ? 'height: 100%;' : '')};
+  }
+`
 
 export default ListItems

@@ -53,8 +53,7 @@ function handleFileClose(e, confirmed) {
     groups: [],
     pages: [],
     products: [],
-    ignored: [],
-    filter: ''
+    ignored: []
   })
 }
 
@@ -89,11 +88,6 @@ function handleLayoutChange(source, target) {
       2
     )
   )
-}
-
-function handleFilterChange(e) {
-  const filter = e ? e.target.value : ''
-  this.setState({ filter })
 }
 
 function handleProductEdit(oldProduct, newProduct) {
@@ -212,6 +206,5 @@ export {
   handleFileExport,
   handleFileClose,
   handleLayoutChange,
-  handleFilterChange,
   handleProductEdit
 }
