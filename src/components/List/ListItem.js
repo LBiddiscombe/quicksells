@@ -1,5 +1,6 @@
 import React from 'react'
 import ProductImage from '../Shared/ProductImage'
+import styled from 'styled-components'
 
 class ListItem extends React.Component {
   render() {
@@ -13,33 +14,64 @@ class ListItem extends React.Component {
       ...rest
     } = this.props
 
+    if (inEdit) return null
     return (
-      <li
-        {...rest}
-        className="listitem"
-        style={{
-          display: !this.props.inEdit ? 'grid' : 'none'
-        }}
-      >
-        <div className="listitemimg">
-          <ProductImage product={product} />
-        </div>
-        <div className="listitemlabel">
+      <Li {...rest}>
+        <ProductImage product={product} />
+        <Label>
           {product.label}
-          <div className="listitemcode">
-            <sup>{product.item}</sup>
-          </div>
-        </div>
-        <div className="listitemaction">
-          {!inEdit && (
-            <a className="dark" onClick={e => this.props.handleActionClick(e, this.props.index)}>
-              <i className="far fa-edit" />
-            </a>
-          )}
-        </div>
-      </li>
+          <Sup>{product.item}</Sup>
+        </Label>
+        <Actions>
+          <a className="dark" onClick={e => this.props.handleActionClick(e, this.props.index)}>
+            <i className="far fa-edit" />
+          </a>
+        </Actions>
+      </Li>
     )
   }
 }
+
+const Li = styled.li`
+   {
+    display: ${props => (!props.inEdit ? 'grid' : 'none')}
+    grid-template-columns: 84px 1fr auto;
+    grid-template-areas: 'image label action';
+    grid-auto-rows: 64px;
+    grid-gap: 0.25rem;
+    align-items: center;
+    padding: 0.5rem 0.5rem 0.25rem;
+    &:hover {
+      background-color: rgba(var(--a-color), 1);
+    }
+  }
+`
+
+const Label = styled.div`
+   {
+    grid-area: label;
+  }
+`
+
+const Sup = styled.sup`
+   {
+    display: block;
+    font-size: 0.8rem;
+    font-family: 'AvenirNextLTW01-Demi';
+    color: #aaa;
+  }
+`
+
+const Actions = styled.div`
+   {
+    display: none;
+    grid-area: action;
+    justify-self: center;
+    font-size: 1.5rem;
+    ${Li}:hover & {
+      display: block;
+    }
+  }
+`
 
 export default ListItem
