@@ -93,6 +93,39 @@ p.modalmessage {
   margin: 1rem 0;
 }
 
+a {
+  padding-left: 0.5rem;
+  color: rgba(var(--a-color), 0.75);
+}
+
+a.dark {
+  color: rgba(var(--a-color-dark), 0.75);
+}
+
+a:hover {
+  color: rgba(var(--a-color), 0.9);
+}
+
+a.dark:hover {
+  color: rgba(var(--a-color-dark), 0.9);
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--aside-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--a-color-dark), 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 /*#endregion */
 /*#region App layout */
 
@@ -147,24 +180,6 @@ a.close {
   align-self: center;
   justify-self: center;
 }
-
-a {
-  padding-left: 0.5rem;
-  color: rgba(var(--a-color), 0.75);
-}
-
-a.dark {
-  color: rgba(var(--a-color-dark), 0.75);
-}
-
-a:hover {
-  color: rgba(var(--a-color), 0.9);
-}
-
-a.dark:hover {
-  color: rgba(var(--a-color-dark), 0.9);
-}
-
 /*#endregion */
 /*#region Main */
 
@@ -198,62 +213,7 @@ main .export {
   grid-area: right;
   padding-right: 1rem;
 }
-.items {
-  grid-area: quicksells;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-gap: 0.5rem;
-  overflow: hidden;
-  min-height: 0;
-  padding: 0.25rem 0.5rem;
-}
-.item {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: minmax(40%, 60%) minmax(auto, 40%);
-  grid-template-areas: 'image' 'label';
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-top: 0.25rem;
-  overflow: hidden;
-  min-width: 0;
-}
-.item.filled {
-  background-color: var(--item-bg);
-  cursor: move;
-}
-.item.empty {
-  background-color: var(--item-empty-bg);
-  color: rgba(var(--a-color), 0.2);
-}
-.item.noimage {
-  grid-template-rows: 1fr;
-  grid-template-areas: 'label';
-}
-.item.empty:hover {
-  background-color: var(--item-hover-bg);
-}
-.item .itemimg {
-  grid-area: image;
-  pointer-events: none;
-  height: 100%;
-}
-.item .itemimg img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.item .itemlabel {
-  grid-area: label;
-  padding: 0.25rem;
-  font-size: 0.8rem;
-  pointer-events: none;
-}
-.item.dragover {
-  outline: 4px dashed var(--accent-color);
-}
+
 /* #endregion */
 /* #region Landing */
 .landing {
@@ -324,78 +284,6 @@ aside.left:hover {
 #filterwrap:hover > .filterreset {
   display: inline-block;
   margin: -2rem;
-}
-
-::-webkit-scrollbar {
-  width: 0.5rem;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--aside-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(var(--a-color-dark), 0.2);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* #endregion */
-/* #region List Items */
-li.listitem {
-  display: grid;
-  grid-template-columns: 84px 1fr auto;
-  grid-template-areas: 'image label action';
-  grid-auto-rows: 64px;
-  grid-gap: 0.25rem;
-  align-items: center;
-  padding: 0.5rem 0.5rem 0.25rem;
-}
-
-li.listitem.edit {
-  height: 100%;
-}
-li.listitem:hover {
-  background-color: rgba(var(--a-color), 1);
-}
-li.listitem.edit:hover {
-  background-color: var(--aside-bg);
-}
-li.listitem > .listitemimg .itemimg {
-  position: relative;
-  grid-area: image;
-  pointer-events: none;
-  height: 100%;
-}
-li.listitem > .itemimg img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-li.listitem > .listitemlabel {
-  grid-area: label;
-}
-.listitemcode {
-  font-size: 0.8rem;
-  font-family: 'AvenirNextLTW01-Demi';
-  color: #aaa;
-}
-
-li.listitem > .listitemaction {
-  display: none;
-  grid-area: action;
-  justify-self: center;
-  font-size: 1.5rem;
-}
-
-li.listitem:hover .listitemaction {
-  display: block;
-}
-
-span.hidden {
-  display: none;
 }
 
 /* #endregion */
