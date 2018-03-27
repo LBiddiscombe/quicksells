@@ -258,34 +258,6 @@ aside.left {
 aside.left:hover {
   overflow-y: auto;
 }
-
-#resetfilter {
-  margin-left: 0.5rem;
-}
-
-#filterwrap {
-  grid-area: filter;
-  align-items: center;
-  width: 100%;
-  background-color: var(--aside-bg);
-  padding: 0 0.5rem 0 0;
-}
-
-#filterwrap > input {
-  width: 100%;
-  padding: 0.25rem;
-  height: 2.5rem;
-}
-
-#filterwrap > .filterreset {
-  display: none;
-}
-
-#filterwrap:hover > .filterreset {
-  display: inline-block;
-  margin: -2rem;
-}
-
 /* #endregion */
 /* #region Media queries */
 @media (min-width: 769px) and (max-width: 1200px) {

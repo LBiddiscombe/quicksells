@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 
 class Filter extends React.Component {
   constructor() {
@@ -25,21 +26,48 @@ class Filter extends React.Component {
 
   render() {
     return (
-      <div id="filterwrap">
-        <input
-          className="input"
+      <Wrapper id="filterwrap">
+        <Input
           type="text"
-          ref={input => (this.filterInput = input)}
+          innerRef={input => (this.filterInput = input)}
           placeholder="search name or code"
           onChange={this.props.handleFilterChange}
           onDrop={e => this.handleDrop(e, this)}
         />
-        <a className="filterreset dark" onClick={this.handleResetFilter}>
+        <A className="dark" onClick={this.handleResetFilter}>
           <i className="fas fa-times-circle" />
-        </a>
-      </div>
+        </A>
+      </Wrapper>
     )
   }
 }
+
+const Wrapper = styled.div`
+   {
+    grid-area: filter;
+    align-self: center;
+    width: 100%;
+    background-color: var(--aside-bg);
+    padding: 0 0.5rem 0 0;
+  }
+`
+
+const Input = styled.input`
+   {
+    width: 100%;
+    padding: 0.25rem;
+    height: 2.5rem;
+  }
+`
+
+const A = styled.a`
+   {
+    display: none;
+    ${Wrapper}:hover & {
+      display: inline-block;
+      margin: -2rem;
+    }
+  }
+`
 
 export default Filter
