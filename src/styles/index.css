@@ -274,8 +274,8 @@ aside.left {
 @media (max-width: 768px) {
   .app {
     grid-template-columns: 1fr;
-    grid-template-rows: 75px 1fr 52px 1fr;
-    grid-template-areas: 'header' 'main' 'filter' 'aside';
+    grid-template-rows: 75px 1fr 1fr;
+    grid-template-areas: 'header' 'main' 'aside';
     margin: 0;
     grid-gap: 0px;
     max-height: calc(100vh + 100px);
