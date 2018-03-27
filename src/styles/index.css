@@ -346,7 +346,6 @@ aside.left:hover {
 /* #region List Items */
 ul.listitems {
   width: 100%;
-  height: 100%;
 }
 li.listitem {
   display: grid;
