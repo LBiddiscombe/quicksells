@@ -3,8 +3,16 @@ import ListItem from './ListItem'
 import ListItemEdit from './ListItemEdit'
 import ListSubtitle from './ListSubtitle'
 import DragDrop from '../Shared/DragDrop'
+import styled from 'styled-components'
 
 const DragDropListItem = DragDrop(ListItem)
+
+const Ul = styled.ul`
+   {
+    width: 100%;
+    ${props => (props.inEdit ? 'height: 100%;' : '')};
+  }
+`
 
 class ListItems extends React.Component {
   constructor() {
@@ -77,7 +85,7 @@ class ListItems extends React.Component {
         }
       })
 
-    return <ul className="listitems">{rows}</ul>
+    return <Ul inEdit={inEdit}>{rows}</Ul>
   }
 }
 

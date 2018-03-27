@@ -344,9 +344,6 @@ aside.left:hover {
 
 /* #endregion */
 /* #region List Items */
-ul.listitems {
-  width: 100%;
-}
 li.listitem {
   display: grid;
   grid-template-columns: 84px 1fr auto;
