@@ -64,13 +64,9 @@ const Sup = styled.sup`
 
 const Actions = styled.div`
    {
-    display: none;
     grid-area: action;
     justify-self: center;
     font-size: 1.5rem;
-    ${Li}:hover & {
-      display: block;
-    }
   }
 `
 
