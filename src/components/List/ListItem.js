@@ -16,17 +16,12 @@ class ListItem extends React.Component {
 
     if (inEdit) return null
     return (
-      <Li {...rest}>
+      <Li {...rest} onClick={e => this.props.handleActionClick(e, this.props.index)}>
         <ProductImage product={product} />
         <Label>
           {product.label}
           <Sup>{product.item}</Sup>
         </Label>
-        <Actions>
-          <a className="dark" onClick={e => this.props.handleActionClick(e, this.props.index)}>
-            <i className="far fa-edit" />
-          </a>
-        </Actions>
       </Li>
     )
   }

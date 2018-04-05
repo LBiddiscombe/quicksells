@@ -191,17 +191,6 @@ main {
   grid-template-areas: 'left tabs right' 'quicksells quicksells quicksells';
   align-items: start;
   background-color: var(--header-bg);
-  background: -webkit-linear-gradient(
-    to bottom,
-    var(--header-bg),
-    #122736
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    var(--header-bg),
-    #122736
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   box-shadow: var(--shadow);
 }
 
