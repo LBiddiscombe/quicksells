@@ -15,7 +15,12 @@ const settings = {
   importMapping: [
     { from: 'ItemID', pad: '0', length: 13, to: 'item', typeof: 'string' },
     { from: 'Description', to: 'label', typeof: 'string' },
-    { from: 'Image', prefix: '/images', to: 'image', typeof: 'string' },
+    {
+      from: 'Image',
+      prefix: 'https://quicksells.blob.core.windows.net/images/',
+      to: 'image',
+      typeof: 'string'
+    },
     { from: 'Menu Group', to: 'group', typeof: 'number' },
     { from: 'Page', to: 'page', typeof: 'number' },
     { from: 'Menu Option', to: 'seq', typeof: 'number' },
