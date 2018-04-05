@@ -34,7 +34,12 @@ const settings = {
     { column: 2, from: 'group', to: 'Menu Group' },
     { column: 3, from: 'seq', to: 'Menu Option' },
     { column: 4, from: 'label', to: 'Description' },
-    { column: 5, from: 'image', to: 'Image', prefix: '/images' },
+    {
+      column: 5,
+      from: 'image',
+      to: 'Image',
+      prefix: 'https://quicksells.blob.core.windows.net/images/'
+    },
     { column: 6, from: 'item', to: 'ItemID', pad: '0', length: 13 },
     { column: 7, from: 'top', to: 'Top' },
     { column: 8, from: 'left', to: 'Left' }
