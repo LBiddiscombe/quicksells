@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "azure-storage": "^2.8.1",
     "mobile-drag-drop": "^2.3.0-rc.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
