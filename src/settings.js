@@ -17,7 +17,7 @@ const settings = {
     { from: 'Description', to: 'label', typeof: 'string' },
     {
       from: 'Image',
-      prefix: 'https://quicksells.blob.core.windows.net/images/',
+      prefix: 'https://quicksells.blob.core.windows.net/images',
       to: 'image',
       typeof: 'string'
     },
@@ -38,7 +38,7 @@ const settings = {
       column: 5,
       from: 'image',
       to: 'Image',
-      prefix: 'https://quicksells.blob.core.windows.net/images/'
+      prefix: 'https://quicksells.blob.core.windows.net/images'
     },
     { column: 6, from: 'item', to: 'ItemID', pad: '0', length: 13 },
     { column: 7, from: 'top', to: 'Top' },
